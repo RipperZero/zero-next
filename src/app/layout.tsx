@@ -2,6 +2,7 @@
 import { FC, PropsWithChildren } from "react";
 
 import "./globals.css";
+import { RootProvider } from "./RootProvider";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,9 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <html lang="en">
       {/* <body className={inter.className}>{children}</body> */}
-      <body>{children}</body>
+      <body>
+        <RootProvider>{children}</RootProvider>
+      </body>
     </html>
   );
 };

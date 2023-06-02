@@ -2,7 +2,8 @@ import { FC } from "react";
 
 import Image from "next/image";
 
-import { RootApp } from "./RootApp";
+import { Counter } from "./Counter";
+import { ExampleServer } from "./ExampleServer";
 
 const Home: FC = () => {
   return (
@@ -112,7 +113,9 @@ const Home: FC = () => {
           </p>
         </a>
 
-        <RootApp />
+        <Counter serverComponent={<ExampleServer />}>
+          {/* <ExampleServer /> */}
+        </Counter>
       </div>
     </main>
   );
