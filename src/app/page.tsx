@@ -2,8 +2,8 @@ import { FC } from "react";
 
 import Image from "next/image";
 
-import { Counter } from "./Counter";
-import { ExampleServer } from "./ExampleServer";
+import { Counter } from "./components/client/Counter";
+import { ExampleServer } from "./components/ExampleServer";
 
 const Home: FC = () => {
   return (

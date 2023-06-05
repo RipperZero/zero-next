@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { ExampleClient } from "./ExampleClient";
+import { ExampleClient } from "./client/ExampleClient";
 
 type ExampleServerProps = {};
 
@@ -11,7 +11,6 @@ const ExampleServer: FC<ExampleServerProps> = () => {
       <div>ExampleServerComponent</div>
       <div>ExampleServerComponent</div>
       <ExampleClient />
-      <div>ExampleServerComponent</div>
       <div>ExampleServerComponent</div>
     </div>
   );
