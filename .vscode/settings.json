@@ -13,5 +13,6 @@
     // https://blog.csdn.net/mouday/article/details/103800887
     // npm install -g ts-node
     "typescript": "ts-node -r esm $fullFileName"
-  }
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
