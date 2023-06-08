@@ -12,6 +12,8 @@ const metadata = {
 };
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => {
+  // #region logic functions start
+  // #endregion logic functions end
   return (
     <html lang="en">
       {/* <body className={inter.className}>{children}</body> */}
