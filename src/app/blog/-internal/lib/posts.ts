@@ -4,16 +4,17 @@ import { join } from "path";
 import { remark } from "remark";
 import html from "remark-html";
 
+type PostData = {
+  date: string;
+  title: string;
+};
+
 const postsDirectory = join(process.cwd(), "posts");
 
 const getSortedPostsData = () => {
   // Get file names under /posts
   const fileNames = readdirSync(postsDirectory);
-  const allPostsData = fileNames.map<{
-    id: string;
-    date: string;
-    title: string;
-  }>((fileName) => {
+  const allPostsData = fileNames.map<{ id: string } & PostData>((fileName) => {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, "");
 
@@ -27,7 +28,7 @@ const getSortedPostsData = () => {
     // Combine the data with the id
     return {
       id,
-      ...(matterResult.data as any),
+      ...(matterResult.data as PostData),
     };
   });
 
@@ -38,18 +39,6 @@ const getSortedPostsData = () => {
     } else {
       return -1;
     }
-  });
-};
-
-const getAllPostIds = () => {
-  const fileNames = readdirSync(postsDirectory);
-
-  return fileNames.map((fileName) => {
-    return {
-      params: {
-        id: fileName.replace(/\.md$/, ""),
-      },
-    };
   });
 };
 
@@ -70,8 +59,20 @@ const getPostData = async (id: string) => {
   return {
     id,
     contentHtml,
-    ...matterResult.data,
+    ...(matterResult.data as PostData),
   };
 };
 
-export { getSortedPostsData, getAllPostIds, getPostData };
+// const getAllPostIds = () => {
+//   const fileNames = readdirSync(postsDirectory);
+
+//   return fileNames.map((fileName) => {
+//     return {
+//       params: {
+//         id: fileName.replace(/\.md$/, ""),
+//       },
+//     };
+//   });
+// };
+
+export { getSortedPostsData, getPostData };

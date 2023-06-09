@@ -1,12 +1,15 @@
-// import { GetStaticProps, InferGetStaticPropsType } from "next";
-import { Route } from "next";
-import Head from "next/head";
+import { Metadata, Route } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Date } from "./-internal/components/Date";
-import { SITE_TITLE } from "./-internal/constants/constants";
+import { NAME, SITE_TITLE } from "./-internal/constants/constants";
 import { getSortedPostsData } from "./-internal/lib/posts";
 import utilStyles from "./-internal/styles/utils.module.css";
+
+const metadata: Metadata = {
+  title: SITE_TITLE,
+};
 
 // BUG getStaticProps only can use in Page router
 // export const getStaticProps: GetStaticProps<{
@@ -24,8 +27,21 @@ import utilStyles from "./-internal/styles/utils.module.css";
 // type BlogProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 // const Blog: FC<BlogProps> = ({ allPostsData }) => {
+// const generateStaticParams = async () => {
+//   const allPostsData = await getSortedPostsData();
+//   console.log("-----generateStaticParams");
+//   console.log(allPostsData);
 
-const Blog = async () => {
+//   return allPostsData;
+// };
+
+const Blog = async (
+  // confirm that
+  // params only can get from router?
+  params: unknown,
+) => {
+  console.log("------Blog---params");
+  console.log(params);
   const allPostsData = await getSortedPostsData();
   // #region hooks start
   // #endregion hooks end
@@ -39,35 +55,49 @@ const Blog = async () => {
   // #region render functions start
   return (
     <>
-      <Head>
-        <title>{SITE_TITLE}</title>
-      </Head>
+      <header className="flex flex-col items-center">
+        <Image
+          priority
+          src="/images/profile.jpg"
+          className={utilStyles.borderCircle}
+          height={144}
+          width={144}
+          alt=""
+        />
+        <h1 className={utilStyles.heading2Xl}>{NAME}</h1>
+      </header>
 
-      <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{" "}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
-      </section>
+      <main>
+        <section className={utilStyles.headingMd}>
+          <p>[Your Self Introduction]</p>
+          <p>
+            (This is a sample website - you’ll be building a site like this on{" "}
+            <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+          </p>
+        </section>
+        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+          <h2 className={utilStyles.headingLg}>Blog</h2>
+          <ul className={utilStyles.list}>
+            {allPostsData?.map(({ id, date, title }) => (
+              <li className={utilStyles.listItem} key={id}>
+                <Link href={`/blog/post/${id}` as Route}>{title}</Link>
+                <br />
+                <small className={utilStyles.lightText}>
+                  <Date dateString={date} />
+                </small>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </main>
 
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData?.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}` as Route}>{title}</Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <div className="mt-12">
+        <Link href="/">← Back to home</Link>
+      </div>
     </>
   );
   // #endregion render functions end
 };
 
 export default Blog;
+export { metadata };

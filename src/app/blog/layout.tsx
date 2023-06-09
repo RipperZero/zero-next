@@ -1,81 +1,45 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
+import { Metadata } from "next";
 
 import { FC, PropsWithChildren } from "react";
 
-import { NAME, SITE_TITLE } from "./-internal/constants/constants";
-import utilStyles from "./-internal/styles/utils.module.css";
-import styles from "./layout.module.css";
+import { SITE_TITLE } from "./-internal/constants/constants";
 
-type BlogLayoutProps = {};
+const metadata: Metadata = {
+  icons: "/favicon.ico",
+  description: "Learn how to build a personal website using Next.js",
+  openGraph: {
+    title: SITE_TITLE,
+    images: [
+      {
+        url: `https://og-image.vercel.app/${encodeURI(
+          SITE_TITLE,
+        )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`,
+      },
+    ],
+  },
+};
 
-const BlogLayout: FC<PropsWithChildren<BlogLayoutProps>> = ({ children }) => {
-  // TODO get from router params
-  const home = true;
+type BlogLayoutProps = {
+  params: unknown;
+};
+
+const BlogLayout: FC<PropsWithChildren<BlogLayoutProps>> = ({
+  params,
+  children,
+}) => {
+  console.log("=====BlogLayout====params");
+  console.log(params);
   // #region logic functions start
   // #endregion logic functions end
 
   // #region render functions start
   return (
-    <div className={styles.container}>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Learn how to build a personal website using Next.js"
-        />
-        <meta
-          property="og:image"
-          content={`https://og-image.vercel.app/${encodeURI(
-            SITE_TITLE,
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-        />
-        <meta name="og:title" content={SITE_TITLE} />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-      <header className={styles.header}>
-        {home ? (
-          <>
-            <Image
-              priority
-              src="/images/profile.jpg"
-              className={utilStyles.borderCircle}
-              height={144}
-              width={144}
-              alt=""
-            />
-            <h1 className={utilStyles.heading2Xl}>{NAME}</h1>
-          </>
-        ) : (
-          <>
-            <Link href="/">
-              <Image
-                priority
-                src="/images/profile.jpg"
-                className={utilStyles.borderCircle}
-                height={108}
-                width={108}
-                alt=""
-              />
-            </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/" className={utilStyles.colorInherit}>
-                {NAME}
-              </Link>
-            </h2>
-          </>
-        )}
-      </header>
-      <main>{children}</main>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">← Back to home</Link>
-        </div>
-      )}
+    <div className="flex min-h-screen flex-col items-center justify-between p-24">
+      {children}
     </div>
   );
   // #endregion render functions end
 };
 
 export default BlogLayout;
+export { metadata };
