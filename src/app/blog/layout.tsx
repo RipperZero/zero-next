@@ -4,9 +4,9 @@ import Link from "next/link";
 
 import { FC, PropsWithChildren } from "react";
 
-import { NAME, SITE_TITLE } from "./constants/constants";
+import { NAME, SITE_TITLE } from "./-internal/constants/constants";
+import utilStyles from "./-internal/styles/utils.module.css";
 import styles from "./layout.module.css";
-import utilStyles from "./styles/utils.module.css";
 
 type BlogLayoutProps = {};
 

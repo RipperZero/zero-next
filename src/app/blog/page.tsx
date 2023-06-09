@@ -3,10 +3,10 @@ import { Route } from "next";
 import Head from "next/head";
 import Link from "next/link";
 
-import { Date } from "./components/Date";
-import { SITE_TITLE } from "./constants/constants";
-import { getSortedPostsData } from "./lib/posts";
-import utilStyles from "./styles/utils.module.css";
+import { Date } from "./-internal/components/Date";
+import { SITE_TITLE } from "./-internal/constants/constants";
+import { getSortedPostsData } from "./-internal/lib/posts";
+import utilStyles from "./-internal/styles/utils.module.css";
 
 // BUG getStaticProps only can use in Page router
 // export const getStaticProps: GetStaticProps<{
