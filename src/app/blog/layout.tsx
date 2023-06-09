@@ -4,11 +4,9 @@ import Link from "next/link";
 
 import { FC, PropsWithChildren } from "react";
 
+import { NAME, SITE_TITLE } from "./constants/constants";
 import styles from "./layout.module.css";
 import utilStyles from "./styles/utils.module.css";
-
-const NAME = "Zero";
-export const SITE_TITLE = "Next.js Sample Website";
 
 type BlogLayoutProps = {};
 
