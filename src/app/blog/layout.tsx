@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import { FC, PropsWithChildren } from "react";
 
-import { SITE_TITLE } from "./-internal/constants/constants";
+import { SITE_TITLE } from "./_internal/constants/constants";
 
 const metadata: Metadata = {
   icons: "/favicon.ico",

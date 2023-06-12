@@ -4,10 +4,10 @@ import Link from "next/link";
 
 import { FC } from "react";
 
-import { Date } from "../../-internal/components/Date";
-import { NAME } from "../../-internal/constants/constants";
-import { getPostData } from "../../-internal/lib/posts";
-import utilStyles from "../../-internal/styles/utils.module.css";
+import { Date } from "../../_internal/components/Date";
+import { NAME } from "../../_internal/constants/constants";
+import { getPostData } from "../../_internal/lib/posts";
+import utilStyles from "../../_internal/styles/utils.module.css";
 
 type RouteProps = {
   params: { id: string };

@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import { FC } from "react";
 
-import { Counter } from "./components/client/Counter";
-import { ExampleServer } from "./components/ExampleServer";
+import { Counter } from "./_internal/components/client/Counter";
+import { ExampleServer } from "./_internal/components/ExampleServer";
 
 const Home: FC = () => {
   return (

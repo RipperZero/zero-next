@@ -2,10 +2,10 @@ import { Metadata, Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Date } from "./-internal/components/Date";
-import { NAME, SITE_TITLE } from "./-internal/constants/constants";
-import { getSortedPostsData } from "./-internal/lib/posts";
-import utilStyles from "./-internal/styles/utils.module.css";
+import { Date } from "./_internal/components/Date";
+import { NAME, SITE_TITLE } from "./_internal/constants/constants";
+import { getSortedPostsData } from "./_internal/lib/posts";
+import utilStyles from "./_internal/styles/utils.module.css";
 
 const metadata: Metadata = {
   title: SITE_TITLE,
