@@ -2,7 +2,12 @@ import { Metadata } from "next";
 
 import { FC, PropsWithChildren } from "react";
 
+import dayjs from "dayjs";
+
 import { SITE_TITLE } from "./_internal/constants/constants";
+
+// revalidate this page every 60 seconds
+export const revalidate = 60;
 
 const metadata: Metadata = {
   icons: "/favicon.ico",
@@ -35,6 +40,7 @@ const BlogLayout: FC<PropsWithChildren<BlogLayoutProps>> = ({
   // #region render functions start
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div>BlogLayout build time {dayjs().format("YYYY-MM-DD HH:mm:ss")}</div>
       {children}
     </div>
   );
