@@ -2,25 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer components {
-  .scrollbar {
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background-color: red;
-    }
-
-    ::-moz-scrollbar {
-      width: 8px;
-    }
-
-    ::-moz-scrollbar-thumb {
-      background-color: red;
-    }
+/* TODO add classname in Tailwind CSS IntelliSense */
+@layer components {
+  /* @see https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear#%E5%B0%9D%E8%AF%95%E4%B8%80%E4%B8%8B */
+  .clearfix::after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
   }
-} */
+
+  /* @see https://www.cnblogs.com/Ry-yuan/p/6848197.html */
+  .clear-inline-block-gap {
+    font-size: 0;
+  }
+}
 
 /* :root {
   --foreground-rgb: 0, 0, 0;

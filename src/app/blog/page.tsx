@@ -62,7 +62,7 @@ const Blog = async (
           className={utilStyles.borderCircle}
           height={144}
           width={144}
-          alt=""
+          alt="profile"
         />
         <h1 className={utilStyles.heading2Xl}>{NAME}</h1>
       </header>

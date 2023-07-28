@@ -59,6 +59,10 @@ const HorizontalCenter: FC<HorizontalCenterProps> = () => {
           .parent {
             /* 对于子级为 display: inline-block; 可以通过 text-align: center; 实现水平居中 */
             text-align: center;
+
+            // clear-inline-block-gap
+            // @see https://www.cnblogs.com/Ry-yuan/p/6848197.html
+            font-size: 0
           }
 
           .child {
@@ -66,7 +70,9 @@ const HorizontalCenter: FC<HorizontalCenterProps> = () => {
           }
           `,
           content: (
-            <div className={`${parentClassName} text-center`}>
+            <div
+              className={`${parentClassName} clear-inline-block-gap text-center`}
+            >
               <div className={`${childClassName} inline-block`} />
             </div>
           ),
