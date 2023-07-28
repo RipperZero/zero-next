@@ -14,7 +14,7 @@
     "uninstall packages": "rimraf ./node_modules"
   },
   "dependencies": {
-    "@ant-design/cssinjs": "^1.15.0",
+    "@ant-design/cssinjs": "^1.16.0",
     "@ant-design/icons": "^5.1.4",
     "antd": "^5.7.3",
     "antd-style": "^3.4.3",
@@ -41,7 +41,7 @@
     "autoprefixer": "^10.4.14",
     "eslint": "^8.45.0",
     "eslint-config-next": "^13.4.12",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-prettier": "^8.9.0",
     "esm": "^3.2.25",
     "postcss": "^8.4.27",
     "prettier": "^3.0.0",
