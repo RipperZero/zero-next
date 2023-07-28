@@ -87,6 +87,9 @@ const TwoColumnLayout: FC<TwoColumnLayoutProps> = () => {
           content: (
             <Space direction="vertical" size="large">
               <SeeLink openUrl="https://juejin.cn/post/7028962991345254407#heading-23" />
+              <Typography.Text className="!text-xl">
+                两列布局就是一列定宽(也有可能由子元素决定宽度)，一列自适应的布局。
+              </Typography.Text>
               <Typography.Text mark strong className="!text-xl">
                 注意：1 2 3方案左边列必须定宽，才可以实现
               </Typography.Text>
@@ -221,7 +224,7 @@ const TwoColumnLayout: FC<TwoColumnLayoutProps> = () => {
 
           .container {
             display: grid;
-            /* 将其划分为两行，其中一列有本身宽度决定， 一列占剩余宽度*/
+            /* 将其划分为两列，其中一列由本身宽度决定，一列占剩余宽度*/
             grid-template-columns: auto 1fr;
           }
           `,

@@ -10,6 +10,8 @@ import {
   HORIZONTAL_VERTICAL_CENTER_TAB_LABEL,
   HorizontalCenter,
   HorizontalVerticalCenter,
+  THREE_COLUMN_LAYOUT_TAB_LABEL,
+  ThreeColumnLayout,
   TWO_COLUMN_LAYOUT_TAB_LABEL,
   TwoColumnLayout,
   VERTICAL_CENTER_TAB_LABEL,
@@ -38,6 +40,11 @@ const TabsItems: TabsProps["items"] = [
     key: "TwoColumnLayout",
     label: TWO_COLUMN_LAYOUT_TAB_LABEL,
     children: <TwoColumnLayout />,
+  },
+  {
+    key: "ThreeColumnLayout",
+    label: THREE_COLUMN_LAYOUT_TAB_LABEL,
+    children: <ThreeColumnLayout />,
   },
 ];
 
@@ -86,7 +93,7 @@ const CssLayout: FC<CssLayoutProps> = () => {
         </Header>
         <Content className="flex-grow p-3">
           <Tabs
-            defaultActiveKey={TabsItems[TabsItems.length - 1].key}
+            // defaultActiveKey={TabsItems[TabsItems.length - 1].key}
             className={cx("h-full rounded-lg bg-white", styles.tabs)}
             tabPosition="left"
             items={TabsItems}
