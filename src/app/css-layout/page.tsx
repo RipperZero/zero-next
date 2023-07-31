@@ -114,7 +114,7 @@ const CssLayout: FC<CssLayoutProps> = () => {
         </Header>
         <Content className="flex-grow p-3">
           <Tabs
-            defaultActiveKey={TabsItems[TabsItems.length - 1].key}
+            // defaultActiveKey={TabsItems[TabsItems.length - 1].key}
             className={cx("h-full rounded-lg bg-white", styles.tabs)}
             tabPosition="left"
             items={TabsItems}
