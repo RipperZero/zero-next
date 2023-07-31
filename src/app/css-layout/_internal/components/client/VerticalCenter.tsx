@@ -1,6 +1,10 @@
 "use client";
 
+import Image from "next/image";
+
 import { FC } from "react";
+
+import { Space } from "antd";
 
 import { SeeLink } from "./SeeLink";
 import { TabPane } from "./TabPane";
@@ -55,7 +59,15 @@ const VerticalCenter: FC<VerticalCenterProps> = () => {
           }
           `,
           content: (
-            <SeeLink openUrl="https://juejin.cn/post/7028962991345254407#heading-8" />
+            <Space direction="vertical" size="large">
+              <SeeLink openUrl="https://juejin.cn/post/7028962991345254407#heading-8" />
+              <Image
+                src="/images/verticalCenter.webp"
+                height={300}
+                width={770}
+                alt="verticalCenter"
+              />
+            </Space>
           ),
         },
         {
