@@ -216,9 +216,10 @@ const FullScreenLayout: FC<FullScreenLayoutProps> = ({}) => {
         `,
           content: (
             <Space className="w-full" direction="vertical" size="large">
-              <Typography.Text className="!text-xl font-bold !text-red-600">
-                {"TODO: check .content's planA&&planB ???"}
+              <Typography.Text strong className="!text-xl !text-red-600">
+                What the FXXX planA/planB is???
               </Typography.Text>
+              <SeeLink openUrl="https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size?answertab=votes#tab-top" />
 
               <section className={`${containerClassName} flex flex-col`}>
                 <header className={`${headerClassName}`}>header</header>
@@ -266,9 +267,10 @@ const FullScreenLayout: FC<FullScreenLayoutProps> = ({}) => {
         `,
           content: (
             <Space className="w-full" direction="vertical" size="large">
-              <Typography.Text className="!text-xl font-bold !text-red-600">
-                {"TODO: check .content's planA&&planB ???"}
+              <Typography.Text strong className="!text-xl !text-red-600">
+                What the FXXX planA/planB is???
               </Typography.Text>
+              <SeeLink openUrl="https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size?answertab=votes#tab-top" />
 
               <section
                 className={`${containerClassName} grid grid-rows-[auto,1fr,auto]`}
