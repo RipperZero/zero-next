@@ -66,7 +66,8 @@ const HorizontalCenter: FC<HorizontalCenterProps> = () => {
         {
           title: "1.使用text-align属性",
           preserveText: `
-          若元素为行内块级元素，也就是display: inline-block的元素，可以通过为其父元素设置text-align: center实现水平居中。
+          若元素为行内块级元素，也就是display: inline-block的元素，
+          可以通过为其父元素设置text-align: center实现水平居中。
 
           .parent {
             /* 对于子级为 display: inline-block; 可以通过 text-align: center; 实现水平居中 */
@@ -92,7 +93,8 @@ const HorizontalCenter: FC<HorizontalCenterProps> = () => {
         {
           title: "2.定宽块级元素水平居中(方法一)",
           preserveText: `
-          对于定宽的的块级元素实现水平居中，最简单的一种方式就是margin: 0 auto;，但是值得注意的是一定需要设置宽度。
+          对于定宽的的块级元素实现水平居中，最简单的一种方式就是margin: 0 auto;
+          但是值得注意的是一定需要设置宽度。
 
           .child {
             /* 对于定宽的子元素，直接 margin:0 auto; 即可实现水平居中 */

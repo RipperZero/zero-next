@@ -220,7 +220,8 @@ const HorizontalVerticalCenter: FC<HorizontalVerticalCenterProps> = () => {
           title: "6.Flex方案",
           preserveText: `
           1.将元素设置为 Flex 布局
-          2.通过justify-content: center以及align-items: center实现或者margin:auto;实现。
+          2.通过justify-content: center以及align-items: center实现
+          或者margin:auto;实现。
 
           .parent {
             /* 1. 将元素设置为 Flex 布局 */

@@ -73,7 +73,8 @@ const VerticalCenter: FC<VerticalCenterProps> = () => {
         {
           title: "1.行内块级元素垂直居中",
           preserveText: `
-          若元素是行内块级元素, 基本思想是子元素使用display: inline-block, vertical-align:middle;并让父元素行高等同于高度。
+          若元素是行内块级元素, 基本思想是子元素使用display: inline-block, vertical-align:middle;
+          并让父元素行高等同于高度。
 
           .parent {
             /* 为父级容器设置行高 */
@@ -96,7 +97,8 @@ const VerticalCenter: FC<VerticalCenterProps> = () => {
         {
           title: "2.定位方式实现(方法一)",
           preserveText: `
-          第一种通过定位的方式实现就比较简单，实际就是通过top: 50%; margin-top: 等于负的高度的一半就可以实现垂直居中。
+          第一种通过定位的方式实现就比较简单，
+          实际就是通过top: 50%; margin-top: 等于负的高度的一半就可以实现垂直居中。
 
           .parent {
             /* 为父级容器开启相对定位 */
@@ -121,7 +123,8 @@ const VerticalCenter: FC<VerticalCenterProps> = () => {
         {
           title: "3.定位方式实现(方法二)",
           preserveText: `
-          第二种通过定位的方式实现实现思路：top和bottom将子元素拉伸至100%，设置指定的高度，通过margin:auto; 即可实现垂直居中。
+          第二种通过定位的方式实现实现思路：top和bottom将子元素拉伸至100%，设置指定的高度，
+          通过margin:auto; 即可实现垂直居中。
 
           .parent {
             /* 为父级容器开启相对定位 */

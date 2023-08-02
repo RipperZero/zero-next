@@ -1,6 +1,7 @@
 import { FC, HTMLAttributes, ReactNode } from "react";
 
 import { Divider } from "antd";
+import { Highlight } from "prism-react-renderer";
 
 type BlockProps = {
   id?: HTMLAttributes<HTMLDivElement>["id"];
@@ -33,9 +34,31 @@ const Block: FC<BlockProps> = ({ id, title, preserveText, content }) => {
 
       {!!preserveText && (
         <>
-          <pre className="mb-4 whitespace-pre-wrap break-words bg-gray-100">
-            {preserveText}
-          </pre>
+          <div className="flex items-center justify-center">
+            <Highlight code={preserveText} language="tsx">
+              {({ style, tokens, getLineProps, getTokenProps }) => {
+                return (
+                  <pre
+                    className="w-4/5 whitespace-pre-wrap break-words"
+                    style={style}
+                  >
+                    {tokens.map((line, tokenIndex) => (
+                      <div key={tokenIndex} {...getLineProps({ line })}>
+                        {line.map((token, lineIndex) => {
+                          return (
+                            <span
+                              key={lineIndex}
+                              {...getTokenProps({ token })}
+                            />
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </pre>
+                );
+              }}
+            </Highlight>
+          </div>
           <Divider />
         </>
       )}
