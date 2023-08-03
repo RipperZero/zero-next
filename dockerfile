@@ -7,19 +7,20 @@ WORKDIR /app
 
 # set registry && proxy
 RUN npm config set registry https://registry.npmmirror.com/
-# RUN npm config set proxy http://10.167.23.54:8080/
+RUN npm config set proxy http://10.167.23.54:8080/
 RUN yarn config set registry https://registry.npmmirror.com/
-# RUN yarn config set proxy http://10.167.23.54:8080/
+RUN yarn config set proxy http://10.167.23.54:8080/
 
 # Install dependencies based on the preferred package manager
-COPY --link package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+# COPY --link package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+COPY --link ["package.json","yarn.lock*","package-lock.json*","pnpm-lock.yaml*","./"]
 
 RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i --frozen-lockfile; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+    if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
+    elif [ -f package-lock.json ]; then npm ci; \
+    elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i --frozen-lockfile; \
+    else echo "Lockfile not found." && exit 1; \
+    fi
 
 # build stage → build the source
 FROM base AS build-stage
@@ -41,8 +42,8 @@ WORKDIR /app
 ENV NODE_ENV production
 
 RUN \
-  addgroup --system --gid 1001 nodejs; \
-  adduser --system --uid 1001 nextjs
+    addgroup --system --gid 1001 nodejs; \
+    adduser --system --uid 1001 nextjs
 
 # copy all the files
 COPY --from=build-stage --link /app/public ./public
