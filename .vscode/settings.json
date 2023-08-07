@@ -11,7 +11,7 @@
     // without ts-node && esm
     // "typescript": "cd $dir && tsc $fileName && node $fileNameWithoutExt.js"
     // https://blog.csdn.net/mouday/article/details/103800887
-    // npm install -g ts-node
+    // yarn add ts-node --dev
     "typescript": "ts-node -r esm $fullFileName"
   },
   "typescript.tsdk": "node_modules\\typescript\\lib"
