@@ -1,6 +1,8 @@
+"use client";
+
 import { FC } from "react";
 
-import { Anchor, Col, Row } from "antd";
+import { TypedNextJS } from "@/app/_internal/components/client";
 
 type TestServerComponentProps = {};
 
@@ -17,34 +19,7 @@ const TestServerComponent: FC<TestServerComponentProps> = () => {
   // #region render functions start
   return (
     <div className="h-screen">
-      <Row className="h-full" gutter={8}>
-        <Col span={22}>
-          <div id="part-1" className="h-1/2 bg-red-600" />
-          <div id="part-2" className="h-1/2 bg-orange-600" />
-          <div id="part-3" className="h-1/2 bg-lime-600" />
-        </Col>
-        <Col span={2}>
-          <Anchor
-            items={[
-              {
-                key: "part-1",
-                href: "#part-1",
-                title: "Part 1",
-              },
-              {
-                key: "part-2",
-                href: "#part-2",
-                title: "Part 2",
-              },
-              {
-                key: "part-3",
-                href: "#part-3",
-                title: "Part 3",
-              },
-            ]}
-          />
-        </Col>
-      </Row>
+      <TypedNextJS />
     </div>
   );
   // #endregion render functions end

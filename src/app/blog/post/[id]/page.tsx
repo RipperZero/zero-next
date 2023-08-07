@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { FC } from "react";
 
-import { Date } from "../../_internal/components/Date";
+import { Date } from "../../_internal/components";
 import { NAME } from "../../_internal/constants/constants";
 import { getPostData } from "../../_internal/lib/posts";
 import utilStyles from "../../_internal/styles/utils.module.css";

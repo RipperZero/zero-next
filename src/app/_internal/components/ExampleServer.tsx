@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { ExampleClient } from "./client/ExampleClient";
+import { ExampleClient } from "./client";
 
 type ExampleServerProps = {};
 

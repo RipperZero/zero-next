@@ -2,7 +2,7 @@ import { Metadata, Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Date } from "./_internal/components/Date";
+import { Date } from "./_internal/components";
 import { NAME, SITE_TITLE } from "./_internal/constants/constants";
 import { getSortedPostsData } from "./_internal/lib/posts";
 import utilStyles from "./_internal/styles/utils.module.css";
