@@ -1,19 +1,15 @@
 {
   "configurations": [
-    // 安装Code Runner插件
-    // 运行当前JS代码片段
     {
-      "name": "Test JS",
+      "name": "Debug JS segment",
       "type": "node",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "program": "${file}"
     },
-    // 安装Code Runner插件
-    // 运行当前TS代码片段
     // @see https://juejin.cn/post/7144238328655642637#heading-7
     {
-      "name": "Test TS",
+      "name": "Debug TS segment",
       "type": "node",
       "request": "launch",
       // yarn add ts-node --dev
