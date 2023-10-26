@@ -12,14 +12,15 @@ RUN yarn config set registry https://registry.npmmirror.com/
 RUN yarn config set proxy http://10.167.23.54:8080/
 
 # Install dependencies based on the preferred package manager
-# COPY --link package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-COPY --link ["package.json","yarn.lock*","package-lock.json*","pnpm-lock.yaml*","./"]
+# COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+COPY ["package.json","yarn.lock*","package-lock.json*","pnpm-lock.yaml*","./"]
 
 RUN \
-    if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-    elif [ -f package-lock.json ]; then npm ci; \
-    elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i --frozen-lockfile; \
+    if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
+    elif [ -f package-lock.json ]; then npm install; \
+    elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm install --frozen-lockfile; \
     else echo "Lockfile not found." && exit 1; \
+    # else npm install; \
     fi
 
 # build stage → build the source
@@ -27,8 +28,8 @@ FROM base AS build-stage
 
 WORKDIR /app
 
-COPY --from=deps-stage --link /app/node_modules ./node_modules
-COPY --link . .
+COPY --from=deps-stage /app/node_modules ./node_modules
+COPY . .
 
 RUN yarn run build
 # If using npm comment out above and use below instead
@@ -46,11 +47,11 @@ RUN \
     adduser --system --uid 1001 nextjs
 
 # copy all the files
-COPY --from=build-stage --link /app/public ./public
+COPY --from=build-stage /app/public ./public
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=build-stage --link /app/.next/standalone ./
-COPY --from=build-stage --link /app/.next/static ./.next/static
+COPY --from=build-stage /app/.next/standalone ./
+COPY --from=build-stage /app/.next/static ./.next/static
 
 USER nextjs
 

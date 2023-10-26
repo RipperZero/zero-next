@@ -100,7 +100,7 @@ const CssLayout: FC<CssLayoutProps> = () => {
       theme={{
         components: {
           Layout: {
-            colorBgHeader: "white",
+            headerBg: "white",
           },
         },
       }}
