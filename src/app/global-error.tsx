@@ -16,6 +16,9 @@ const GlobalError: FC<GlobalErrorProps> = ({ error, reset }) => {
   // #endregion useEffect functions end
 
   // #region logic functions start
+  const handleTryAgainClick = () => {
+    reset()
+  }
   // #endregion logic functions end
 
   // #region render functions start
@@ -23,7 +26,7 @@ const GlobalError: FC<GlobalErrorProps> = ({ error, reset }) => {
     <html>
       <body>
         <h2>Something went wrong!</h2>
-        <button onClick={() => reset()}>Try again</button>
+        <button onClick={handleTryAgainClick}>Try again</button>
       </body>
     </html>
   );

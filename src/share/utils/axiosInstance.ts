@@ -1,5 +1,6 @@
 import axios from "axios";
 import type {
+  AxiosError,
   AxiosRequestConfig,
   AxiosInstance as RawAxiosInstance,
 } from "axios";
@@ -9,11 +10,18 @@ import type { IStringifyOptions } from "qs";
 
 import { getApiServerURL, getApiTimeOut } from "./envUtils";
 
+// type Result<T> = {
+//   success: boolean;
+//   code: number;
+//   msg: string;
+//   data: T;
+// };
 type Result<T> = {
+  statusCode: number;
   success: boolean;
-  code: number;
-  msg: string;
   data: T;
+  message?: string | string[];
+  error?: string;
 };
 
 type RequestConfig = AxiosRequestConfig & {
@@ -76,9 +84,19 @@ const interceptRequest = (instance: RawAxiosInstance) => {
  * response interceptor
  */
 const interceptResponse = (instance: RawAxiosInstance) => {
-  instance.interceptors.response.use((res) => {
-    return res.data;
-  });
+  instance.interceptors.response.use(
+    // onFulfilled
+    (res) => {
+      return res.data;
+    },
+    // onRejected
+    (error: AxiosError) => {
+      // log error
+      // console.log("interceptResponse", error);
+
+      return Promise.reject(error);
+    },
+  );
 };
 
 /**
