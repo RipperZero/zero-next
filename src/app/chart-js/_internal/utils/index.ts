@@ -93,4 +93,4 @@ const transparentize = (value: string, opacity: number) => {
   return new Color(value).alpha(alpha).rgbString();
 };
 
-export { months, numbers, CHART_COLORS, transparentize };
+export { months, numbers, CHART_COLORS, transparentize, rand };
