@@ -1,39 +1,44 @@
 import { FC, useEffect, useRef } from "react";
 
 import { Button, Space, Typography } from "antd";
+import { Chart, ChartData, RadarController, Title } from "chart.js";
+
 import {
-  ArcElement,
-  CategoryScale,
-  Chart,
-  ChartData,
-  DoughnutController,
-  Legend,
-  LinearScale,
-  Title,
-  Tooltip,
-} from "chart.js";
+  CHART_COLORS,
+  months,
+  namedColor,
+  numbers,
+  rand,
+  transparentize,
+} from "../utils";
 
-import { CHART_COLORS, months, numbers, rand } from "../utils";
+Chart.register(RadarController, Title);
 
-Chart.register(DoughnutController, ArcElement, Legend, Title, Tooltip);
-
-const DATA_COUNT = 5;
+const DATA_COUNT = 7;
 const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
 
-const data: ChartData<"bar"> = {
-  labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
+const labels = months({ count: 7 });
+const data: ChartData<"radar"> = {
+  labels: labels,
   datasets: [
     {
       label: "Dataset 1",
       data: numbers(NUMBER_CFG),
-      backgroundColor: Object.values(CHART_COLORS),
+      borderColor: CHART_COLORS.red,
+      backgroundColor: transparentize(CHART_COLORS.red, 0.5),
+    },
+    {
+      label: "Dataset 2",
+      data: numbers(NUMBER_CFG),
+      borderColor: CHART_COLORS.blue,
+      backgroundColor: transparentize(CHART_COLORS.blue, 0.5),
     },
   ],
 };
 
-type DoughnutChartProps = {};
+type RadarChartProps = {};
 
-const DoughnutChart: FC<DoughnutChartProps> = () => {
+const RadarChart: FC<RadarChartProps> = ({}) => {
   // #region hooks start
   const chart = useRef<Chart | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -46,17 +51,14 @@ const DoughnutChart: FC<DoughnutChartProps> = () => {
     }
 
     chart.current = new Chart(canvasRef.current, {
-      type: "doughnut",
+      type: "radar",
       data: data,
       options: {
         responsive: true,
         plugins: {
-          legend: {
-            position: "top",
-          },
           title: {
             display: true,
-            text: "Chart.js Doughnut Chart",
+            text: "Chart.js Radar Chart",
           },
         },
       },
@@ -74,7 +76,7 @@ const DoughnutChart: FC<DoughnutChartProps> = () => {
   // #region render functions start
   return (
     <Space className="w-[800px]" direction="vertical">
-      <Typography.Title>Doughnut</Typography.Title>
+      <Typography.Title>Radar</Typography.Title>
 
       <canvas ref={canvasRef} />
 
@@ -106,23 +108,15 @@ const DoughnutChart: FC<DoughnutChartProps> = () => {
             if (chart.current === null) {
               return;
             }
-            const datasetsLength = chart.current.data.datasets.length;
+            const data = chart.current.data;
+            const datasetsLength = data.datasets.length;
+            const dsColor = namedColor(data.datasets.length);
             const labelsLength = chart.current.data.labels?.length ?? 0;
-
-            const data: any[] = [];
-            const backgroundColor: string[] = [];
-
-            for (let index = 0; index < labelsLength; index++) {
-              data.push(numbers({ count: 1, min: 0, max: 100 }));
-
-              const colorIndex = index % Object.keys(CHART_COLORS).length;
-              backgroundColor.push(Object.values(CHART_COLORS)[colorIndex]);
-            }
 
             chart.current.data.datasets.push({
               label: `Dataset ${datasetsLength + 1}`,
-              backgroundColor: backgroundColor,
-              data: data,
+              backgroundColor: transparentize(dsColor, 0.5),
+              data: numbers({ count: labelsLength, min: 0, max: 100 }),
             });
 
             chart.current.update();
@@ -143,7 +137,9 @@ const DoughnutChart: FC<DoughnutChartProps> = () => {
               return;
             }
 
-            data.labels?.push("data #" + (data.labels.length + 1));
+            const labelsLength = data.labels?.length ?? 0;
+
+            data.labels = months({ count: labelsLength + 1 });
 
             for (let index = 0; index < data.datasets.length; ++index) {
               data.datasets[index].data.push(rand(0, 100));
@@ -153,58 +149,6 @@ const DoughnutChart: FC<DoughnutChartProps> = () => {
           }}
         >
           Add Data
-        </Button>
-
-        <Button
-          type="primary"
-          onClick={() => {
-            if (chart.current === null) {
-              return;
-            }
-
-            chart.current.hide(0);
-          }}
-        >
-          {"Hide(0)"}
-        </Button>
-
-        <Button
-          type="primary"
-          onClick={() => {
-            if (chart.current === null) {
-              return;
-            }
-
-            chart.current.show(0);
-          }}
-        >
-          {"Show(0)"}
-        </Button>
-
-        <Button
-          type="primary"
-          onClick={() => {
-            if (chart.current === null) {
-              return;
-            }
-
-            chart.current.hide(0, 1);
-          }}
-        >
-          {"Hide (0, 1)"}
-        </Button>
-
-        <Button
-          type="primary"
-          onClick={() => {
-            if (chart.current === null) {
-              return;
-            }
-
-            chart.current.show(0, 1);
-          }}
-        >
-          {"Show(0, 1)"}
         </Button>
 
         <Button
@@ -245,4 +189,4 @@ const DoughnutChart: FC<DoughnutChartProps> = () => {
   // #endregion render functions end
 };
 
-export { DoughnutChart };
+export { RadarChart };

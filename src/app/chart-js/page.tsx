@@ -1,11 +1,18 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC } from "react";
 
 import { Tabs } from "antd";
 import type { TabsProps } from "antd";
 
-import { BarChart, DoughnutChart, LineChart } from "./_internal/client";
+import {
+  BarChart,
+  DoughnutChart,
+  LineChart,
+  PieChart,
+  PolarAreaChart,
+  RadarChart,
+} from "./_internal/client";
 
 const ITEMS: TabsProps["items"] = [
   {
@@ -23,6 +30,21 @@ const ITEMS: TabsProps["items"] = [
     label: "Doughnut",
     children: <DoughnutChart />,
   },
+  {
+    key: "Pie",
+    label: "Pie",
+    children: <PieChart />,
+  },
+  {
+    key: "PolarArea",
+    label: "PolarArea",
+    children: <PolarAreaChart />,
+  },
+  {
+    key: "Radar",
+    label: "Radar",
+    children: <RadarChart />,
+  },
 ];
 
 type ChartJSProps = {};
@@ -39,7 +61,12 @@ const ChartJS: FC<ChartJSProps> = () => {
 
   // #region render functions start
   return (
-    <Tabs tabPosition="left" defaultActiveKey={ITEMS[0].key} items={ITEMS} />
+    <Tabs
+      className="!p-4"
+      tabPosition="left"
+      defaultActiveKey={ITEMS[0].key}
+      items={ITEMS}
+    />
   );
   // #endregion render functions end
 };

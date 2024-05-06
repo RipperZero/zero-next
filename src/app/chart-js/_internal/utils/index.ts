@@ -32,6 +32,20 @@ const CHART_COLORS = {
   grey: "rgb(201, 203, 207)",
 } as const;
 
+const NAMED_COLORS = [
+  CHART_COLORS.red,
+  CHART_COLORS.orange,
+  CHART_COLORS.yellow,
+  CHART_COLORS.green,
+  CHART_COLORS.blue,
+  CHART_COLORS.purple,
+  CHART_COLORS.grey,
+] as const;
+
+const namedColor = (index: number) => {
+  return NAMED_COLORS[index % NAMED_COLORS.length];
+};
+
 const rand = (min = 0, max = 0) => {
   _seed = (_seed * 9301 + 49297) % 233280;
   return min + (_seed / 233280) * (max - min);
@@ -93,4 +107,4 @@ const transparentize = (value: string, opacity: number) => {
   return new Color(value).alpha(alpha).rgbString();
 };
 
-export { months, numbers, CHART_COLORS, transparentize, rand };
+export { months, numbers, CHART_COLORS, transparentize, rand, namedColor };
