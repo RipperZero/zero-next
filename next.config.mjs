@@ -1,4 +1,7 @@
+// @ts-check
+
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   experimental: {
     // @see
@@ -8,4 +11,4 @@ const nextConfig = {
   output: "standalone",
 };
 
-module.exports = nextConfig;
+export default nextConfig;
