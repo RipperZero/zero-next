@@ -13,12 +13,12 @@ import {
   Tooltip,
 } from "chart.js";
 
-import { CHART_COLORS, months, numbers, rand } from "../utils";
+import { CHART_COLORS, Config, numbers, rand } from "../utils";
 
 Chart.register(DoughnutController, ArcElement, Legend, Title, Tooltip);
 
 const DATA_COUNT = 5;
-const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
+const NUMBER_CFG: Config = { count: DATA_COUNT, min: 0, max: 100 };
 
 const data: ChartData<"bar"> = {
   labels: ["Red", "Orange", "Yellow", "Green", "Blue"],

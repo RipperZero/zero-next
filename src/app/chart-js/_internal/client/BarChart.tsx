@@ -3,7 +3,6 @@
 import { FC, useEffect, useRef } from "react";
 
 import { Button, Space, Typography } from "antd";
-// import Chart from "chart.js/auto";
 import {
   BarController,
   BarElement,
@@ -16,7 +15,13 @@ import {
   Tooltip,
 } from "chart.js";
 
-import { CHART_COLORS, months, numbers, transparentize } from "../utils";
+import {
+  CHART_COLORS,
+  Config,
+  months,
+  numbers,
+  transparentize,
+} from "../utils";
 
 Chart.register(
   BarController,
@@ -29,7 +34,7 @@ Chart.register(
 );
 
 const DATA_COUNT = 7;
-const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
+const NUMBER_CFG: Config = { count: DATA_COUNT, min: -100, max: 100 };
 
 const labels = months({ count: DATA_COUNT });
 const data: ChartData<"bar"> = {

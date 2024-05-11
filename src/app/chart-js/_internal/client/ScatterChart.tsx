@@ -1,45 +1,56 @@
+"use client";
+
 import { FC, useEffect, useRef } from "react";
 
 import { Button, Space, Typography } from "antd";
-import { Chart, ChartData, RadarController, Title } from "chart.js";
+import {
+  Chart,
+  ChartData,
+  Legend,
+  ScatterController,
+  Title,
+  Tooltip,
+} from "chart.js";
 
 import {
+  bubbles,
   CHART_COLORS,
   Config,
-  months,
   namedColor,
-  numbers,
-  rand,
   transparentize,
 } from "../utils";
 
-Chart.register(RadarController, Title);
+Chart.register(ScatterController, Legend, Title, Tooltip);
 
 const DATA_COUNT = 7;
-const NUMBER_CFG: Config = { count: DATA_COUNT, min: 0, max: 100 };
+const NUMBER_CFG: Config = {
+  count: DATA_COUNT,
+  rmin: 1,
+  rmax: 1,
+  min: 0,
+  max: 100,
+};
 
-const labels = months({ count: 7 });
-const data: ChartData<"radar"> = {
-  labels: labels,
+const data: ChartData<"scatter"> = {
   datasets: [
     {
       label: "Dataset 1",
-      data: numbers(NUMBER_CFG),
+      data: bubbles(NUMBER_CFG),
       borderColor: CHART_COLORS.red,
       backgroundColor: transparentize(CHART_COLORS.red, 0.5),
     },
     {
       label: "Dataset 2",
-      data: numbers(NUMBER_CFG),
-      borderColor: CHART_COLORS.blue,
-      backgroundColor: transparentize(CHART_COLORS.blue, 0.5),
+      data: bubbles(NUMBER_CFG),
+      borderColor: CHART_COLORS.orange,
+      backgroundColor: transparentize(CHART_COLORS.orange, 0.5),
     },
   ],
 };
 
-type RadarChartProps = {};
+type ScatterChartProps = {};
 
-const RadarChart: FC<RadarChartProps> = ({}) => {
+const ScatterChart: FC<ScatterChartProps> = () => {
   // #region hooks start
   const chart = useRef<Chart | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -52,14 +63,17 @@ const RadarChart: FC<RadarChartProps> = ({}) => {
     }
 
     chart.current = new Chart(canvasRef.current, {
-      type: "radar",
+      type: "scatter",
       data: data,
       options: {
         responsive: true,
         plugins: {
+          legend: {
+            position: "top",
+          },
           title: {
             display: true,
-            text: "Chart.js Radar Chart",
+            text: "Chart.js Scatter Chart",
           },
         },
       },
@@ -77,7 +91,7 @@ const RadarChart: FC<RadarChartProps> = ({}) => {
   // #region render functions start
   return (
     <Space className="w-[800px]" direction="vertical">
-      <Typography.Title>Radar</Typography.Title>
+      <Typography.Title>Scatter</Typography.Title>
 
       <canvas ref={canvasRef} />
 
@@ -90,8 +104,10 @@ const RadarChart: FC<RadarChartProps> = ({}) => {
             }
 
             chart.current.data.datasets.forEach((dataset) => {
-              dataset.data = numbers({
-                count: chart.current?.data.labels?.length,
+              dataset.data = bubbles({
+                count: DATA_COUNT,
+                rmin: 1,
+                rmax: 1,
                 min: 0,
                 max: 100,
               });
@@ -109,17 +125,23 @@ const RadarChart: FC<RadarChartProps> = ({}) => {
             if (chart.current === null) {
               return;
             }
-            const data = chart.current.data;
-            const datasetsLength = data.datasets.length;
-            const dsColor = namedColor(data.datasets.length);
-            const labelsLength = chart.current.data.labels?.length ?? 0;
+            const chartData = chart.current.data;
+            const dsColor = namedColor(chartData.datasets.length);
 
-            chart.current.data.datasets.push({
-              label: `Dataset ${datasetsLength + 1}`,
+            const newDataset = {
+              label: "Dataset " + (chartData.datasets.length + 1),
               backgroundColor: transparentize(dsColor, 0.5),
-              data: numbers({ count: labelsLength, min: 0, max: 100 }),
-            });
+              borderColor: dsColor,
+              data: bubbles({
+                count: DATA_COUNT,
+                rmin: 1,
+                rmax: 1,
+                min: 0,
+                max: 100,
+              }),
+            };
 
+            chartData.datasets.push(newDataset);
             chart.current.update();
           }}
         >
@@ -133,17 +155,15 @@ const RadarChart: FC<RadarChartProps> = ({}) => {
               return;
             }
 
-            const data = chart.current.data;
-            if (data.datasets.length === 0) {
+            const chartData = chart.current.data;
+            if (chartData.datasets.length === 0) {
               return;
             }
 
-            const labelsLength = data.labels?.length ?? 0;
-
-            data.labels = months({ count: labelsLength + 1 });
-
-            for (let index = 0; index < data.datasets.length; ++index) {
-              data.datasets[index].data.push(rand(0, 100));
+            for (let index = 0; index < chartData.datasets.length; ++index) {
+              chartData.datasets[index].data.push(
+                bubbles({ count: 1, rmin: 1, rmax: 1, min: 0, max: 100 })[0],
+              );
             }
 
             chart.current.update();
@@ -173,8 +193,6 @@ const RadarChart: FC<RadarChartProps> = ({}) => {
               return;
             }
 
-            chart.current.data.labels?.pop();
-
             chart.current.data.datasets.forEach((dataset) => {
               dataset.data.pop();
             });
@@ -190,4 +208,4 @@ const RadarChart: FC<RadarChartProps> = ({}) => {
   // #endregion render functions end
 };
 
-export { RadarChart };
+export { ScatterChart };

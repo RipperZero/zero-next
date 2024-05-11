@@ -7,11 +7,13 @@ import type { TabsProps } from "antd";
 
 import {
   BarChart,
+  BubbleChart,
   DoughnutChart,
   LineChart,
   PieChart,
   PolarAreaChart,
   RadarChart,
+  ScatterChart,
 } from "./_internal/client";
 
 const ITEMS: TabsProps["items"] = [
@@ -24,6 +26,11 @@ const ITEMS: TabsProps["items"] = [
     key: "Line",
     label: "Line",
     children: <LineChart />,
+  },
+  {
+    key: "Bubble",
+    label: "Bubble",
+    children: <BubbleChart />,
   },
   {
     key: "Doughnut",
@@ -44,6 +51,11 @@ const ITEMS: TabsProps["items"] = [
     key: "Radar",
     label: "Radar",
     children: <RadarChart />,
+  },
+  {
+    key: "Scatter",
+    label: "Scatter",
+    children: <ScatterChart />,
   },
 ];
 

@@ -42,6 +42,18 @@ const NAMED_COLORS = [
   CHART_COLORS.grey,
 ] as const;
 
+type Config = Partial<{
+  count: number;
+  section: number;
+  min: number;
+  max: number;
+  from: number[];
+  decimals: number;
+  continuity: number;
+  rmin: number;
+  rmax: number;
+}>;
+
 const namedColor = (index: number) => {
   return NAMED_COLORS[index % NAMED_COLORS.length];
 };
@@ -56,11 +68,11 @@ const rand = (min = 0, max = 0) => {
  * @param value - The value to return if defined.
  * @param defaultValue - The value to return if `value` is undefined.
  */
-const valueOrDefault = <T>(value: T | undefined, defaultValue: T) => {
-  return typeof value === "undefined" ? defaultValue : value;
-};
+// const valueOrDefault = <T>(value: T | undefined, defaultValue: T) => {
+//   return typeof value === "undefined" ? defaultValue : value;
+// };
 
-const months = (config?: { count?: number; section?: number }) => {
+const months = (config: Config) => {
   const count = config?.count ?? 12;
   const section = config?.section;
   const values = [];
@@ -73,21 +85,14 @@ const months = (config?: { count?: number; section?: number }) => {
   return values;
 };
 
-const numbers = (config?: {
-  min?: number;
-  max?: number;
-  from?: [];
-  count?: number;
-  decimals?: number;
-  continuity?: number;
-}) => {
-  const cfg = config || {};
-  const min = valueOrDefault(cfg.min, 0);
-  const max = valueOrDefault(cfg.max, 100);
-  const from = valueOrDefault(cfg.from, []);
-  const count = valueOrDefault(cfg.count, 8);
-  const decimals = valueOrDefault(cfg.decimals, 8);
-  const continuity = valueOrDefault(cfg.continuity, 1);
+const numbers = ({
+  min = 0,
+  max = 100,
+  from = [],
+  count = 8,
+  decimals = 8,
+  continuity = 1,
+}: Config) => {
   const dfactor = Math.pow(10, decimals) || 0;
   const data = [];
 
@@ -107,4 +112,32 @@ const transparentize = (value: string, opacity: number) => {
   return new Color(value).alpha(alpha).rgbString();
 };
 
-export { months, numbers, CHART_COLORS, transparentize, rand, namedColor };
+const points = (config: Config) => {
+  const xs = numbers(config);
+  const ys = numbers(config);
+
+  return xs.map((x, i) => ({ x: x ?? 0, y: ys[i] ?? 0 }));
+};
+
+const bubbles = (config: Config) => {
+  return points(config).map((pt) => {
+    const r = rand(config.rmin, config.rmax);
+
+    return {
+      ...pt,
+      r: r,
+    };
+  });
+};
+
+export type { Config };
+export {
+  months,
+  numbers,
+  CHART_COLORS,
+  transparentize,
+  rand,
+  namedColor,
+  points,
+  bubbles,
+};
