@@ -316,7 +316,7 @@ const BigEye: FC<BigEyeProps> = () => {
           "big-eye-transition absolute left-[calc(50%-75px)] top-[calc(50%-75px)] z-[1] aspect-square w-[150px] rounded-[50%] border-4 border-solid border-[#2968D9] shadow-[0_35px_60px_-15px_transparent]",
           isSleep && "animate-[eyeSleeping_6s_infinite]",
           isAngry &&
-            "animate-[eyeLoockAround_2.5s] border-[#ffbbff] shadow-[#ff3c56]",
+            "animate-[eyeLookAround_2.5s] border-[#ffbbff] shadow-[#ff3c56]",
         )}
         onClick={handleBigEyeClick}
         onAnimationEnd={handleBigEyeAnimationEnd}
@@ -344,7 +344,7 @@ const BigEye: FC<BigEyeProps> = () => {
             "big-eye-transition absolute left-[calc(50%-92px)] top-[calc(50%-92px)] z-[1] aspect-square w-[150px] rounded-[50%] border-4 border-solid border-[#2968D9] opacity-0 shadow-[0_35px_60px_-15px_transparent] transition-[all_0.5s_ease-in-out]",
             isSleep && "animate-[eyeSleeping_6s_infinite]",
             isAngry &&
-              "animate-[eyeLoockAround_2.5s] border-[#ffbbff] opacity-100 shadow-[#ff3c56]",
+              "animate-[eyeLookAround_2.5s] border-[#ffbbff] opacity-100 shadow-[#ff3c56]",
           )}
         ></div>
       </div>

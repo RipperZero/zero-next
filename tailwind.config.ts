@@ -1,4 +1,7 @@
+import tailwindScrollbar from "tailwind-scrollbar";
 import type { Config } from "tailwindcss";
+
+import tailwindcssForms from "@tailwindcss/forms";
 
 export default {
   content: [
@@ -26,7 +29,7 @@ export default {
             transform: "scale(1)",
           },
         },
-        eyeLoockAround: {
+        eyeLookAround: {
           "0%": {
             transform: "translateX(0) rotateY(0)",
           },
@@ -44,7 +47,26 @@ export default {
           },
         },
       },
+
+      gridTemplateColumns: {
+        "13": "repeat(13, minmax(0, 1fr))",
+      },
+      colors: {
+        blue: {
+          400: "#2589FE",
+          500: "#0070F3",
+          600: "#2F6FEB",
+        },
+      },
+    },
+
+    keyframes: {
+      shimmer: {
+        "100%": {
+          transform: "translateX(100%)",
+        },
+      },
     },
   },
-  plugins: [require("tailwind-scrollbar")],
+  plugins: [tailwindScrollbar, tailwindcssForms],
 } satisfies Config;

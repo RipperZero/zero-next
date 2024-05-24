@@ -7,8 +7,7 @@ import { Space } from "antd";
 
 import { Tilt } from "@/share/components/client";
 
-import { ExampleServer } from "./_internal/components";
-import { Counter, TypedJS } from "./_internal/components/client";
+import { TypedJS } from "./_internal/components/client";
 
 const Home: FC = () => {
   return (
@@ -121,6 +120,20 @@ const Home: FC = () => {
           </Link>
         </Tilt>
 
+        <Tilt className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+          <Link href="/dashboard-example">
+            <h2 className={`mb-3 text-2xl font-semibold`}>
+              Dashboard{" "}
+              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                -&gt;
+              </span>
+            </h2>
+            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+              Next Learn → Dashboard
+            </p>
+          </Link>
+        </Tilt>
+
         <Tilt className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30">
           <a
             href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
@@ -153,24 +166,6 @@ const Home: FC = () => {
             </h2>
             <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
               Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-        </Tilt>
-
-        <Tilt className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={`mb-3 text-2xl font-semibold`}>
-              Deploy{" "}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                -&gt;
-              </span>
-            </h2>
-            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              Instantly deploy your Next.js site to a shareable URL with Vercel.
             </p>
           </a>
         </Tilt>

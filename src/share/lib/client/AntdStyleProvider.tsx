@@ -19,7 +19,13 @@ const NormalStyleProvider: FC<PropsWithChildren> = ({ children }) => {
   // #endregion logic functions end
 
   // #region render functions start
-  return <StyleProvider hashPriority="high">{children}</StyleProvider>;
+  return (
+    <StyleProvider
+    // hashPriority="high"
+    >
+      {children}
+    </StyleProvider>
+  );
   // #endregion render functions end
 };
 
@@ -44,7 +50,10 @@ const CachedStyleProvider: FC<PropsWithChildren> = ({ children }) => {
 
   // #region render functions start
   return (
-    <StyleProvider cache={cache} hashPriority="high">
+    <StyleProvider
+      cache={cache}
+      // hashPriority="high"
+    >
       {children}
     </StyleProvider>
   );
