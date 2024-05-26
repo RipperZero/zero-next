@@ -10,7 +10,7 @@ import { updatePassword, updatePasswordCaptcha } from "@/api";
 
 // import { AxiosError } from "axios";
 
-// import { axiosInstance } from "@/share/utils";
+// import { axiosInstance } from "@/shared/utils";
 
 type UpdatePassword = {
   username: string;

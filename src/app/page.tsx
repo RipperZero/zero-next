@@ -1,15 +1,63 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 
 import { FC } from "react";
 
 import { Space } from "antd";
 
-import { Tilt } from "@/share/components/client";
+import { Tilt } from "@/shared/components/client";
 
 import { TypedJS } from "./_internal/components/client";
 
-const Home: FC = () => {
+const LINKS: Array<{
+  href: LinkProps<undefined>["href"];
+  title: string;
+  description: string;
+}> = [
+  {
+    href: "/chart-js",
+    title: "ChartJs",
+    description: "ChartJs Demo",
+  },
+  {
+    href: "/css-layout",
+    title: "CssLayout",
+    description: "CssLayout Demo",
+  },
+  {
+    href: "/big-eye",
+    title: "BigEye",
+    description: "BigEye Demo",
+  },
+  {
+    href: "/react-flow",
+    title: "ReactFlow",
+    description: "ReactFlow Demo",
+  },
+  {
+    href: "/dashboard-example",
+    title: "Dashboard",
+    description: "Next Learn → Dashboard",
+  },
+  {
+    href: "/blog",
+    title: "Blog",
+    description: "Next Blog Demo",
+  },
+  {
+    href: "https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
+    title: "Learn",
+    description:
+      "Learn about Next.js in an interactive course with&nbsp;quizzes!",
+  },
+  {
+    href: "https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app",
+    title: "Docs",
+    description: "Find in-depth information about Next.js features and API.",
+  },
+];
+
+const RootPage: FC = () => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -52,123 +100,26 @@ const Home: FC = () => {
       </div>
 
       <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <Tilt className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <Link href="/chart-js">
-            <h2 className={`mb-3 text-2xl font-semibold`}>
-              ChartJs{" "}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                -&gt;
-              </span>
-            </h2>
-            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              ChartJs Demo
-            </p>
-          </Link>
-        </Tilt>
-
-        <Tilt className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <Link href="/css-layout">
-            <h2 className={`mb-3 text-2xl font-semibold`}>
-              CssLayout{" "}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                -&gt;
-              </span>
-            </h2>
-            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              CssLayout Demo
-            </p>
-          </Link>
-        </Tilt>
-
-        <Tilt className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <Link href="/big-eye">
-            <h2 className={`mb-3 text-2xl font-semibold`}>
-              BigEye{" "}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                -&gt;
-              </span>
-            </h2>
-            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>BigEye Demo</p>
-          </Link>
-        </Tilt>
-
-        <Tilt className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <Link href="/blog">
-            <h2 className={`mb-3 text-2xl font-semibold`}>
-              Blog{" "}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                -&gt;
-              </span>
-            </h2>
-            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              Next Previous Demo
-            </p>
-          </Link>
-        </Tilt>
-
-        <Tilt className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <Link href="/react-flow">
-            <h2 className={`mb-3 text-2xl font-semibold`}>
-              ReactFlow{" "}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                -&gt;
-              </span>
-            </h2>
-            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              ReactFlow Demo
-            </p>
-          </Link>
-        </Tilt>
-
-        <Tilt className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <Link href="/dashboard-example">
-            <h2 className={`mb-3 text-2xl font-semibold`}>
-              Dashboard{" "}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                -&gt;
-              </span>
-            </h2>
-            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              Next Learn → Dashboard
-            </p>
-          </Link>
-        </Tilt>
-
-        <Tilt className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30">
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={`mb-3 text-2xl font-semibold`}>
-              Learn{" "}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                -&gt;
-              </span>
-            </h2>
-            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-        </Tilt>
-
-        <Tilt className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={`mb-3 text-2xl font-semibold`}>
-              Docs{" "}
-              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                -&gt;
-              </span>
-            </h2>
-            <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-        </Tilt>
+        {LINKS.map(({ href, title, description }) => {
+          return (
+            <Tilt
+              key={title}
+              className="group rounded-lg border border-transparent px-5 py-4 text-blue-600 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+            >
+              <Link href={href}>
+                <h2 className={`mb-3 text-2xl font-semibold`}>
+                  {`${title} `}
+                  <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                    -&gt;
+                  </span>
+                </h2>
+                <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+                  {description}
+                </p>
+              </Link>
+            </Tilt>
+          );
+        })}
 
         {/* <Counter serverComponent={<ExampleServer />}></Counter> */}
       </div>
@@ -176,4 +127,4 @@ const Home: FC = () => {
   );
 };
 
-export default Home;
+export default RootPage;

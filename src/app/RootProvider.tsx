@@ -4,7 +4,7 @@ import { FC, PropsWithChildren } from "react";
 
 import { App } from "antd";
 
-import { AntdStyleProvider } from "@/share/lib/client";
+import { AntdStyleProvider } from "@/shared/lib/client";
 
 type RootProviderProps = {};
 

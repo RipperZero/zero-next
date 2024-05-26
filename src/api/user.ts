@@ -5,7 +5,7 @@ import {
   UpdatePasswordReqParams,
 } from "models.user";
 
-import { axiosInstance } from "@/share/utils";
+import { axiosInstance } from "@/shared/utils";
 
 const login = (parmas: LoginReqParams) => {
   return axiosInstance.post<LoginResObj>("/user/login", parmas);
