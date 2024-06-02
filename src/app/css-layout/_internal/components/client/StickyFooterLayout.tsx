@@ -13,7 +13,7 @@ const STICKY_FOOTER_LAYOUT_TAB_LABEL = "Sticky Footer布局";
 
 type StickyFooterLayoutProps = {};
 
-const StickyFooterLayout: FC<StickyFooterLayoutProps> = ({}) => {
+const StickyFooterLayout: FC<StickyFooterLayoutProps> = () => {
   // #region hooks start
   // #endregion hooks end
 

@@ -9,44 +9,34 @@ import { Space, Typography } from "antd";
 import { SeeLink } from "./SeeLink";
 import { TabPane } from "./TabPane";
 
-type ReactFiberNode = {
-  props: {
-    className: string;
-  };
-} & unknown;
+/** @tw */
+const containerClassName = "box-border h-[800px] text-center";
 
-const Container: FC = () => (
-  <section className="box-border h-[800px] text-center" />
-);
-const containerClassName = (Container({}) as ReactFiberNode).props.className;
-
-const Header: FC = () => <header className="h-[100px] bg-[#70a1ff]" />;
-const headerClassName = (Header({}) as ReactFiberNode).props.className;
+/** @tw */
+const headerClassName = "h-[100px] bg-[#70a1ff]";
 
 // #region Content ---start
-const Content: FC = () => (
-  <section className="grid grid-cols-[auto,1fr] bg-[#52c41a]" />
-);
-const contentClassName = (Content({}) as ReactFiberNode).props.className;
+/** @tw */
+const contentClassName = "grid grid-cols-[auto,1fr] bg-[#52c41a]";
 
-const Left: FC = () => <aside className="w-[200px] bg-[#52c41a]" />;
-const leftClassName = (Left({}) as ReactFiberNode).props.className;
+/** @tw */
+const leftClassName = "w-[200px] bg-[#52c41a]";
 
-const Right: FC = () => <main className="bg-[#f759ab]" />;
-const rightClassName = (Right({}) as ReactFiberNode).props.className;
+/** @tw */
+const rightClassName = "bg-[#f759ab]";
 
-const RightIn: FC = () => <div className="" />;
-const rightInClassName = (RightIn({}) as ReactFiberNode).props.className;
+/** @tw */
+const rightInClassName = "";
 // #endregion Content ---end
 
-const Footer: FC = () => <footer className="h-[100px] bg-[#ff7a45]" />;
-const footerClassName = (Footer({}) as ReactFiberNode).props.className;
+/** @tw */
+const footerClassName = "h-[100px] bg-[#ff7a45]";
 
 const FULL_SCREEN_LAYOUT_TAB_LABEL = "全屏布局";
 
 type FullScreenLayoutProps = {};
 
-const FullScreenLayout: FC<FullScreenLayoutProps> = ({}) => {
+const FullScreenLayout: FC<FullScreenLayoutProps> = () => {
   // #region hooks start
   // #endregion hooks end
 

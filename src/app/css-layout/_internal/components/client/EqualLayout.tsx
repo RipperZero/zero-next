@@ -9,32 +9,26 @@ import { Space, Typography } from "antd";
 import { SeeLink } from "./SeeLink";
 import { TabPane } from "./TabPane";
 
-type ReactFiberNode = {
-  props: {
-    className: string;
-  };
-} & unknown;
+/** @tw */
+const parentClassName = "clearfix h-[400px] bg-[#eebefa]";
 
-const Parent: FC = () => <div className="clearfix h-[400px] bg-[#eebefa]" />;
-const parentClassName = (Parent({}) as ReactFiberNode).props.className;
+/** @tw */
+const childAClassName = "h-full bg-[#eccc68]";
 
-const ChildA: FC = () => <div className="h-full bg-[#eccc68]" />;
-const childAClassName = (ChildA({}) as ReactFiberNode).props.className;
+/** @tw */
+const childBClassName = "h-full bg-[#a6c1fa]";
 
-const ChildB: FC = () => <div className="h-full bg-[#a6c1fa]" />;
-const childBClassName = (ChildB({}) as ReactFiberNode).props.className;
+/** @tw */
+const childCClassName = "h-full bg-[#fa7d90]";
 
-const ChildC: FC = () => <div className="h-full bg-[#fa7d90]" />;
-const childCClassName = (ChildC({}) as ReactFiberNode).props.className;
-
-const ChildD: FC = () => <div className="h-full bg-[#b0ff70]" />;
-const childDClassName = (ChildD({}) as ReactFiberNode).props.className;
+/** @tw */
+const childDClassName = "h-full bg-[#b0ff70]";
 
 const EQUAL_LAYOUT_TAB_LABEL = "等分布局";
 
 type EqualLayoutProps = {};
 
-const EqualLayout: FC<EqualLayoutProps> = ({}) => {
+const EqualLayout: FC<EqualLayoutProps> = () => {
   // #region hooks start
   // #endregion hooks end
 
@@ -179,7 +173,7 @@ const EqualLayout: FC<EqualLayoutProps> = ({}) => {
           }
           `,
           content: (
-            <div className={`${parentClassName} grid grid-cols-4 grid-rows-1 `}>
+            <div className={`${parentClassName} grid grid-cols-4 grid-rows-1`}>
               <div className={`${childAClassName}`} />
               <div className={`${childBClassName}`} />
               <div className={`${childCClassName}`} />

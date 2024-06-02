@@ -9,17 +9,11 @@ import { Space, Typography } from "antd";
 import { SeeLink } from "./SeeLink";
 import { TabPane } from "./TabPane";
 
-type ReactFiberNode = {
-  props: {
-    className: string;
-  };
-} & unknown;
+/** @tw */
+const parentClassName = "h-[500px] bg-[#eebefa]";
 
-const Parent: FC = () => <div className="h-[500px] bg-[#eebefa]" />;
-const parentClassName = (Parent({}) as ReactFiberNode).props.className;
-
-const Child: FC = () => <div className="h-[300px] w-[300px] bg-[#f783ac]" />;
-const childClassName = (Child({}) as ReactFiberNode).props.className;
+/** @tw */
+const childClassName = "h-[300px] w-[300px] bg-[#f783ac]";
 
 const HORIZONTAL_VERTICAL_CENTER_TAB_LABEL = "水平垂直居中";
 

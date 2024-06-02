@@ -9,30 +9,20 @@ import { Space, Typography } from "antd";
 import { SeeLink } from "./SeeLink";
 import { TabPane } from "./TabPane";
 
-type ReactFiberNode = {
-  props: {
-    className: string;
-  };
-} & unknown;
+/** @tw */
+const parentClassName = "clearfix bg-[#eebefa]";
 
-const Parent: FC = () => <div className="clearfix bg-[#eebefa]" />;
-const parentClassName = (Parent({}) as ReactFiberNode).props.className;
+/** @tw */
+const childLeftClassName =
+  "h-[400px] w-[200px] bg-[#f783ac] text-center text-3xl/[400px]";
 
-const ChildLeft: FC = () => (
-  <div className="h-[400px] w-[200px] bg-[#f783ac] text-center text-3xl/[400px]" />
-);
-const childLeftClassName = (ChildLeft({}) as ReactFiberNode).props.className;
+/** @tw */
+const childContentClassName =
+  "h-[400px] bg-[#d9480f] text-center text-3xl/[400px]";
 
-const ChildContent: FC = () => (
-  <div className="h-[400px] bg-[#d9480f] text-center text-3xl/[400px]" />
-);
-const childContentClassName = (ChildContent({}) as ReactFiberNode).props
-  .className;
-
-const ChildRight: FC = () => (
-  <div className="h-[400px] w-[200px] bg-[#c0eb75] text-center text-3xl/[400px]" />
-);
-const childRightClassName = (ChildRight({}) as ReactFiberNode).props.className;
+/** @tw */
+const childRightClassName =
+  "h-[400px] w-[200px] bg-[#c0eb75] text-center text-3xl/[400px]";
 
 const THREE_COLUMN_LAYOUT_TAB_LABEL = "三列布局";
 

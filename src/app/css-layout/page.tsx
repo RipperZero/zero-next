@@ -76,7 +76,7 @@ const useStyles = createStyles({
     },
     "& .ant-tabs-tabpane": {
       height: "100%",
-      padding: "0 !impotant",
+      padding: "0 !important",
     },
   },
 });
