@@ -2,16 +2,15 @@ import { FC } from "react";
 
 import { CalendarIcon } from "@heroicons/react/24/outline";
 
-import { Revenue } from "../../lib/definitions";
+import { fetchRevenue } from "../../lib/data";
 import { generateYAxis } from "../../lib/utils";
 
 const CHART_HEIGHT = 350;
 
-type RevenueChartProps = {
-  revenue: Revenue[];
-};
+type RevenueChartProps = {};
 
-const RevenueChart: FC<RevenueChartProps> = ({ revenue }) => {
+const RevenueChart = async () => {
+  const revenue = await fetchRevenue();
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
 
   // #region hooks start
@@ -61,7 +60,7 @@ const RevenueChart: FC<RevenueChartProps> = ({ revenue }) => {
         </div>
         <div className="flex items-center pb-2 pt-6">
           <CalendarIcon className="h-5 w-5 text-gray-500" />
-          <h3 className="ml-2 text-sm text-gray-500 ">Last 12 months</h3>
+          <h3 className="ml-2 text-sm text-gray-500">Last 12 months</h3>
         </div>
       </div>
     </div>
