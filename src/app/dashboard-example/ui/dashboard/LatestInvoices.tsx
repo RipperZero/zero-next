@@ -8,7 +8,7 @@ import { fetchLatestInvoices } from "../../lib/data";
 
 type LatestInvoicesProps = {};
 
-const LatestInvoices = async () => {
+const LatestInvoices: AsyncFC<LatestInvoicesProps> = async () => {
   const latestInvoices = await fetchLatestInvoices();
 
   // #region hooks start

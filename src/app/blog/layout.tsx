@@ -25,9 +25,10 @@ const metadata: Metadata = {
 };
 
 type BlogLayoutProps = {
-  params: unknown;
+  params?: {};
 };
 
+// @see https://nextjs.org/docs/app/api-reference/file-conventions/layout#props
 const BlogLayout: FC<PropsWithChildren<BlogLayoutProps>> = ({
   params,
   children,

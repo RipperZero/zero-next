@@ -3,15 +3,17 @@ import { unstable_noStore as noStore } from "next/cache";
 import { sql } from "@vercel/postgres";
 
 import {
-  //   CustomerField,
   //   CustomersTableType,
   //   InvoiceForm,
-  //   InvoicesTable,
   //   User,
+  CustomerField,
+  InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
 } from "./definitions";
 import { formatCurrency } from "./utils";
+
+const ITEMS_PER_PAGE = 6;
 
 const fetchRevenue = async () => {
   // Add noStore() here to prevent the response from being cached.
@@ -93,4 +95,84 @@ const fetchCardData = async () => {
   }
 };
 
-export { fetchRevenue, fetchLatestInvoices, fetchCardData };
+const fetchFilteredInvoices = async (query: string, currentPage: number) => {
+  noStore();
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+  try {
+    const invoices = await sql<InvoicesTable>`
+      SELECT
+        invoices.id,
+        invoices.amount,
+        invoices.date,
+        invoices.status,
+        customers.name,
+        customers.email,
+        customers.image_url
+      FROM invoices
+      JOIN customers ON invoices.customer_id = customers.id
+      WHERE
+        customers.name ILIKE ${`%${query}%`} OR
+        customers.email ILIKE ${`%${query}%`} OR
+        invoices.amount::text ILIKE ${`%${query}%`} OR
+        invoices.date::text ILIKE ${`%${query}%`} OR
+        invoices.status ILIKE ${`%${query}%`}
+      ORDER BY invoices.date DESC
+      LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+    `;
+
+    return invoices.rows;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch invoices.");
+  }
+};
+
+const fetchInvoicesPages = async (query: string) => {
+  noStore();
+  try {
+    const count = await sql`SELECT COUNT(*)
+    FROM invoices
+    JOIN customers ON invoices.customer_id = customers.id
+    WHERE
+      customers.name ILIKE ${`%${query}%`} OR
+      customers.email ILIKE ${`%${query}%`} OR
+      invoices.amount::text ILIKE ${`%${query}%`} OR
+      invoices.date::text ILIKE ${`%${query}%`} OR
+      invoices.status ILIKE ${`%${query}%`}
+  `;
+
+    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+    return totalPages;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch total number of invoices.");
+  }
+};
+
+const fetchCustomers = async () => {
+  try {
+    const data = await sql<CustomerField>`
+      SELECT
+        id,
+        name
+      FROM customers
+      ORDER BY name ASC
+    `;
+
+    const customers = data.rows;
+    return customers;
+  } catch (err) {
+    console.error("Database Error:", err);
+    throw new Error("Failed to fetch all customers.");
+  }
+};
+
+export {
+  fetchRevenue,
+  fetchLatestInvoices,
+  fetchCardData,
+  fetchFilteredInvoices,
+  fetchInvoicesPages,
+  fetchCustomers,
+};

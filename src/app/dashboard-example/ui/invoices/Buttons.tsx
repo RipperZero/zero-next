@@ -1,3 +1,4 @@
+import { Route } from "next";
 import Link from "next/link";
 
 import { FC } from "react";
@@ -17,4 +18,29 @@ const CreateInvoice: FC = () => {
   );
 };
 
-export { CreateInvoice };
+const UpdateInvoice: FC<{ id: string }> = ({ id }) => {
+  return (
+    <Link
+      href={`/dashboard/invoices/${id}/edit` as Route}
+      className="rounded-md border p-2 hover:bg-gray-100"
+    >
+      <PencilIcon className="w-5" />
+    </Link>
+  );
+};
+
+const DeleteInvoice: FC<{ id: string }> = ({ id }) => {
+  // const deleteInvoiceWithId = deleteInvoice.bind(null, id);
+
+  return (
+    // <form action={deleteInvoiceWithId}>
+    <form>
+      <button className="rounded-md border p-2 hover:bg-gray-100">
+        <span className="sr-only">Delete</span>
+        <TrashIcon className="w-5" />
+      </button>
+    </form>
+  );
+};
+
+export { CreateInvoice, UpdateInvoice, DeleteInvoice };

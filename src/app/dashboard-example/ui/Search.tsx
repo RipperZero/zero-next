@@ -1,8 +1,11 @@
 "use client";
 
+import { Route } from "next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { FC } from "react";
+
+import { useDebouncedCallback } from "use-debounce";
 
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
@@ -21,16 +24,17 @@ const Search: FC<SearchProps> = ({ placeholder }) => {
   // #endregion useEffect functions end
 
   // #region logic functions start
-  const handleSearch = (term: string) => {
-    console.log(term);
+  const handleSearch = useDebouncedCallback((term: string) => {
+    console.log(`Searching... ${term}`);
 
     const params = new URLSearchParams(searchParams);
 
+    params.set("page", "1");
+
     term.length > 0 ? params.set("query", term) : params.delete("query");
 
-    // @ts-ignore:next-line
-    replace(`${pathname}?${params.toString()}`);
-  };
+    replace(`${pathname}?${params.toString()}` as Route);
+  }, 300);
   // #endregion logic functions end
 
   // #region render functions start

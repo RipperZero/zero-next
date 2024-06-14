@@ -16,7 +16,7 @@ const ICON_MAP = {
   invoices: InboxIcon,
 };
 
-const CardWrapper = async () => {
+const CardWrapper: AsyncFC = async () => {
   const {
     numberOfInvoices,
     numberOfCustomers,

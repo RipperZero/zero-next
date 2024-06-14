@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, FC, useCallback, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import {
   addEdge,
   applyEdgeChanges,
@@ -60,7 +60,7 @@ const initialEdges: Edge[] = [
 
 type ReactFlowProps = {};
 
-const ReactFlow: FC<ReactFlowProps> = ({}) => {
+const ReactFlow: FC<ReactFlowProps> = () => {
   // #region hooks start
   const [nodes, setNodes] = useNodesState(initialNodes);
   const [edges, setEdges] = useEdgesState(initialEdges);

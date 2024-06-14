@@ -2,8 +2,6 @@ import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { FC } from "react";
-
 import { Date } from "../../_internal/components";
 import { NAME } from "../../_internal/constants/constants";
 import { getPostData } from "../../_internal/lib/posts";
@@ -27,7 +25,7 @@ const generateMetadata = async (
 
 type PostPageProps = { params: { id: string } };
 
-const PostPage: FC<PostPageProps> = async ({ params }) => {
+const PostPage: AsyncFC<PostPageProps> = async ({ params }) => {
   const postData = await getPostData(params.id);
 
   // #region logic functions start

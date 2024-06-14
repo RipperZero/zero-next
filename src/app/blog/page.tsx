@@ -35,13 +35,15 @@ const metadata: Metadata = {
 //   return allPostsData;
 // };
 
-const Blog = async (
-  // confirm that
-  // params only can get from router?
-  params: unknown,
-) => {
-  console.log("------Blog---params");
-  console.log(params);
+type BlogPageProps = {
+  params?: {};
+  searchParams?: {};
+};
+
+// @see https://nextjs.org/docs/app/api-reference/file-conventions/page#props
+const Blog: AsyncFC<BlogPageProps> = async (props) => {
+  console.log("------Blog---props");
+  console.log(props);
   const allPostsData = await getSortedPostsData();
   // #region hooks start
   // #endregion hooks end

@@ -9,7 +9,7 @@ const CHART_HEIGHT = 350;
 
 type RevenueChartProps = {};
 
-const RevenueChart = async () => {
+const RevenueChart: AsyncFC<RevenueChartProps> = async () => {
   const revenue = await fetchRevenue();
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
 
