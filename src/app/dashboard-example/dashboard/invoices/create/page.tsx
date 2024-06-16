@@ -1,5 +1,5 @@
 import { fetchCustomers } from "../../../lib/data";
-import { Breadcrumbs } from "../../../ui";
+import { Breadcrumbs, CreateInvoiceForm } from "../../../ui";
 
 type CreatePageProps = {
   params?: {};
@@ -20,7 +20,7 @@ const CreatePage: AsyncFC<CreatePageProps> = async () => {
   // #region render functions start
   return (
     <main>
-      {/* <Breadcrumbs
+      <Breadcrumbs
         breadcrumbs={[
           { label: "Invoices", href: "/dashboard-example/dashboard/invoices" },
           {
@@ -29,8 +29,8 @@ const CreatePage: AsyncFC<CreatePageProps> = async () => {
             active: true,
           },
         ]}
-      /> */}
-      {/* <Form customers={customers} /> */}
+      />
+      <CreateInvoiceForm customers={customers} />
     </main>
   );
   // #endregion render functions end

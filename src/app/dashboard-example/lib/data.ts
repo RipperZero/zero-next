@@ -7,6 +7,7 @@ import {
   //   InvoiceForm,
   //   User,
   CustomerField,
+  InvoiceForm,
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
@@ -150,6 +151,32 @@ const fetchInvoicesPages = async (query: string) => {
   }
 };
 
+const fetchInvoiceById = async (id: string) => {
+  noStore();
+  try {
+    const data = await sql<InvoiceForm>`
+      SELECT
+        invoices.id,
+        invoices.customer_id,
+        invoices.amount,
+        invoices.status
+      FROM invoices
+      WHERE invoices.id = ${id};
+    `;
+
+    const invoice = data.rows.map((invoice) => ({
+      ...invoice,
+      // Convert amount from cents to dollars
+      amount: invoice.amount / 100,
+    }));
+
+    return invoice[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch invoice.");
+  }
+};
+
 const fetchCustomers = async () => {
   try {
     const data = await sql<CustomerField>`
@@ -175,4 +202,5 @@ export {
   fetchFilteredInvoices,
   fetchInvoicesPages,
   fetchCustomers,
+  fetchInvoiceById,
 };
