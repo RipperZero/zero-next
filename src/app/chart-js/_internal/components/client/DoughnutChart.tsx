@@ -4,53 +4,38 @@ import { FC, useEffect, useRef } from "react";
 
 import { Button, Space, Typography } from "antd";
 import {
-  BubbleController,
+  ArcElement,
+  CategoryScale,
   Chart,
   ChartData,
+  DoughnutController,
   Legend,
+  LinearScale,
   Title,
   Tooltip,
 } from "chart.js";
 
-import {
-  bubbles,
-  CHART_COLORS,
-  Config,
-  namedColor,
-  transparentize,
-} from "../utils";
+import { CHART_COLORS, Config, numbers, rand } from "../../utils";
 
-Chart.register(BubbleController, Legend, Title, Tooltip);
+Chart.register(DoughnutController, ArcElement, Legend, Title, Tooltip);
 
-const DATA_COUNT = 7;
-const NUMBER_CFG: Config = {
-  count: DATA_COUNT,
-  rmin: 5,
-  rmax: 15,
-  min: 0,
-  max: 100,
-};
+const DATA_COUNT = 5;
+const NUMBER_CFG: Config = { count: DATA_COUNT, min: 0, max: 100 };
 
-const data: ChartData<"bubble"> = {
+const data: ChartData<"bar"> = {
+  labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
   datasets: [
     {
       label: "Dataset 1",
-      data: bubbles(NUMBER_CFG),
-      borderColor: CHART_COLORS.red,
-      backgroundColor: transparentize(CHART_COLORS.red, 0.5),
-    },
-    {
-      label: "Dataset 2",
-      data: bubbles(NUMBER_CFG),
-      borderColor: CHART_COLORS.orange,
-      backgroundColor: transparentize(CHART_COLORS.orange, 0.5),
+      data: numbers(NUMBER_CFG),
+      backgroundColor: Object.values(CHART_COLORS),
     },
   ],
 };
 
-type BubbleChartProps = {};
+type DoughnutChartProps = {};
 
-const BubbleChart: FC<BubbleChartProps> = () => {
+const DoughnutChart: FC<DoughnutChartProps> = () => {
   // #region hooks start
   const chart = useRef<Chart | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -63,7 +48,7 @@ const BubbleChart: FC<BubbleChartProps> = () => {
     }
 
     chart.current = new Chart(canvasRef.current, {
-      type: "bubble",
+      type: "doughnut",
       data: data,
       options: {
         responsive: true,
@@ -73,7 +58,7 @@ const BubbleChart: FC<BubbleChartProps> = () => {
           },
           title: {
             display: true,
-            text: "Chart.js Bubble Chart",
+            text: "Chart.js Doughnut Chart",
           },
         },
       },
@@ -91,7 +76,7 @@ const BubbleChart: FC<BubbleChartProps> = () => {
   // #region render functions start
   return (
     <Space className="w-[800px]" direction="vertical">
-      <Typography.Title>Bubble</Typography.Title>
+      <Typography.Title>Doughnut</Typography.Title>
 
       <canvas ref={canvasRef} />
 
@@ -104,10 +89,8 @@ const BubbleChart: FC<BubbleChartProps> = () => {
             }
 
             chart.current.data.datasets.forEach((dataset) => {
-              dataset.data = bubbles({
-                count: DATA_COUNT,
-                rmin: 5,
-                rmax: 15,
+              dataset.data = numbers({
+                count: chart.current?.data.labels?.length,
                 min: 0,
                 max: 100,
               });
@@ -125,23 +108,25 @@ const BubbleChart: FC<BubbleChartProps> = () => {
             if (chart.current === null) {
               return;
             }
-            const chartData = chart.current.data;
-            const dsColor = namedColor(chartData.datasets.length);
+            const datasetsLength = chart.current.data.datasets.length;
+            const labelsLength = chart.current.data.labels?.length ?? 0;
 
-            const newDataset = {
-              label: "Dataset " + (chartData.datasets.length + 1),
-              backgroundColor: transparentize(dsColor, 0.5),
-              borderColor: dsColor,
-              data: bubbles({
-                count: DATA_COUNT,
-                rmin: 5,
-                rmax: 15,
-                min: 0,
-                max: 100,
-              }),
-            };
+            const data: any[] = [];
+            const backgroundColor: string[] = [];
 
-            chartData.datasets.push(newDataset);
+            for (let index = 0; index < labelsLength; index++) {
+              data.push(numbers({ count: 1, min: 0, max: 100 }));
+
+              const colorIndex = index % Object.keys(CHART_COLORS).length;
+              backgroundColor.push(Object.values(CHART_COLORS)[colorIndex]);
+            }
+
+            chart.current.data.datasets.push({
+              label: `Dataset ${datasetsLength + 1}`,
+              backgroundColor: backgroundColor,
+              data: data,
+            });
+
             chart.current.update();
           }}
         >
@@ -155,21 +140,73 @@ const BubbleChart: FC<BubbleChartProps> = () => {
               return;
             }
 
-            const chartData = chart.current.data;
-            if (chartData.datasets.length === 0) {
+            const data = chart.current.data;
+            if (data.datasets.length === 0) {
               return;
             }
 
-            for (let index = 0; index < chartData.datasets.length; ++index) {
-              chartData.datasets[index].data.push(
-                bubbles({ count: 1, rmin: 5, rmax: 15, min: 0, max: 100 })[0],
-              );
+            data.labels?.push("data #" + (data.labels.length + 1));
+
+            for (let index = 0; index < data.datasets.length; ++index) {
+              data.datasets[index].data.push(rand(0, 100));
             }
 
             chart.current.update();
           }}
         >
           Add Data
+        </Button>
+
+        <Button
+          type="primary"
+          onClick={() => {
+            if (chart.current === null) {
+              return;
+            }
+
+            chart.current.hide(0);
+          }}
+        >
+          {"Hide(0)"}
+        </Button>
+
+        <Button
+          type="primary"
+          onClick={() => {
+            if (chart.current === null) {
+              return;
+            }
+
+            chart.current.show(0);
+          }}
+        >
+          {"Show(0)"}
+        </Button>
+
+        <Button
+          type="primary"
+          onClick={() => {
+            if (chart.current === null) {
+              return;
+            }
+
+            chart.current.hide(0, 1);
+          }}
+        >
+          {"Hide (0, 1)"}
+        </Button>
+
+        <Button
+          type="primary"
+          onClick={() => {
+            if (chart.current === null) {
+              return;
+            }
+
+            chart.current.show(0, 1);
+          }}
+        >
+          {"Show(0, 1)"}
         </Button>
 
         <Button
@@ -193,6 +230,8 @@ const BubbleChart: FC<BubbleChartProps> = () => {
               return;
             }
 
+            chart.current.data.labels?.pop();
+
             chart.current.data.datasets.forEach((dataset) => {
               dataset.data.pop();
             });
@@ -208,4 +247,4 @@ const BubbleChart: FC<BubbleChartProps> = () => {
   // #endregion render functions end
 };
 
-export { BubbleChart };
+export { DoughnutChart };

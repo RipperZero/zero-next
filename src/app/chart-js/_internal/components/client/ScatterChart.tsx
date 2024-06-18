@@ -18,7 +18,7 @@ import {
   Config,
   namedColor,
   transparentize,
-} from "../utils";
+} from "../../utils";
 
 Chart.register(ScatterController, Legend, Title, Tooltip);
 

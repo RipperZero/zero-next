@@ -1,45 +1,54 @@
+"use client";
+
 import { FC, useEffect, useRef } from "react";
 
 import { Button, Space, Typography } from "antd";
-import { Chart, ChartData, RadarController, Title } from "chart.js";
+import {
+  Chart,
+  ChartData,
+  Legend,
+  PolarAreaController,
+  RadialLinearScale,
+  Title,
+  Tooltip,
+} from "chart.js";
 
 import {
   CHART_COLORS,
   Config,
-  months,
-  namedColor,
   numbers,
   rand,
   transparentize,
-} from "../utils";
+} from "../../utils";
 
-Chart.register(RadarController, Title);
+Chart.register(PolarAreaController, RadialLinearScale, Legend, Title, Tooltip);
 
-const DATA_COUNT = 7;
+const DATA_COUNT = 5;
 const NUMBER_CFG: Config = { count: DATA_COUNT, min: 0, max: 100 };
 
-const labels = months({ count: 7 });
-const data: ChartData<"radar"> = {
+const labels = ["Red", "Orange", "Yellow", "Green", "Blue"];
+const data: ChartData<"polarArea"> = {
   labels: labels,
   datasets: [
     {
       label: "Dataset 1",
-      data: numbers(NUMBER_CFG),
-      borderColor: CHART_COLORS.red,
-      backgroundColor: transparentize(CHART_COLORS.red, 0.5),
-    },
-    {
-      label: "Dataset 2",
-      data: numbers(NUMBER_CFG),
-      borderColor: CHART_COLORS.blue,
-      backgroundColor: transparentize(CHART_COLORS.blue, 0.5),
+      data: numbers(NUMBER_CFG).filter(
+        (num) => typeof num === "number",
+      ) as number[],
+      backgroundColor: [
+        transparentize(CHART_COLORS.red, 0.5),
+        transparentize(CHART_COLORS.orange, 0.5),
+        transparentize(CHART_COLORS.yellow, 0.5),
+        transparentize(CHART_COLORS.green, 0.5),
+        transparentize(CHART_COLORS.blue, 0.5),
+      ],
     },
   ],
 };
 
-type RadarChartProps = {};
+type PolarAreaChartProps = {};
 
-const RadarChart: FC<RadarChartProps> = ({}) => {
+const PolarAreaChart: FC<PolarAreaChartProps> = () => {
   // #region hooks start
   const chart = useRef<Chart | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -52,14 +61,28 @@ const RadarChart: FC<RadarChartProps> = ({}) => {
     }
 
     chart.current = new Chart(canvasRef.current, {
-      type: "radar",
+      type: "polarArea",
       data: data,
       options: {
         responsive: true,
+        scales: {
+          r: {
+            pointLabels: {
+              display: true,
+              centerPointLabels: true,
+              font: {
+                size: 18,
+              },
+            },
+          },
+        },
         plugins: {
+          legend: {
+            position: "top",
+          },
           title: {
             display: true,
-            text: "Chart.js Radar Chart",
+            text: "Chart.js Polar Area Chart With Centered Point Labels",
           },
         },
       },
@@ -77,7 +100,7 @@ const RadarChart: FC<RadarChartProps> = ({}) => {
   // #region render functions start
   return (
     <Space className="w-[800px]" direction="vertical">
-      <Typography.Title>Radar</Typography.Title>
+      <Typography.Title>Polar area centered point labels</Typography.Title>
 
       <canvas ref={canvasRef} />
 
@@ -109,38 +132,13 @@ const RadarChart: FC<RadarChartProps> = ({}) => {
             if (chart.current === null) {
               return;
             }
-            const data = chart.current.data;
-            const datasetsLength = data.datasets.length;
-            const dsColor = namedColor(data.datasets.length);
-            const labelsLength = chart.current.data.labels?.length ?? 0;
-
-            chart.current.data.datasets.push({
-              label: `Dataset ${datasetsLength + 1}`,
-              backgroundColor: transparentize(dsColor, 0.5),
-              data: numbers({ count: labelsLength, min: 0, max: 100 }),
-            });
-
-            chart.current.update();
-          }}
-        >
-          Add Dataset
-        </Button>
-
-        <Button
-          type="primary"
-          onClick={() => {
-            if (chart.current === null) {
-              return;
-            }
 
             const data = chart.current.data;
             if (data.datasets.length === 0) {
               return;
             }
 
-            const labelsLength = data.labels?.length ?? 0;
-
-            data.labels = months({ count: labelsLength + 1 });
+            data.labels?.push("data #" + (data.labels.length + 1));
 
             for (let index = 0; index < data.datasets.length; ++index) {
               data.datasets[index].data.push(rand(0, 100));
@@ -150,20 +148,6 @@ const RadarChart: FC<RadarChartProps> = ({}) => {
           }}
         >
           Add Data
-        </Button>
-
-        <Button
-          type="primary"
-          onClick={() => {
-            if (chart.current === null) {
-              return;
-            }
-
-            chart.current.data.datasets.pop();
-            chart.current.update();
-          }}
-        >
-          Remove Dataset
         </Button>
 
         <Button
@@ -190,4 +174,4 @@ const RadarChart: FC<RadarChartProps> = ({}) => {
   // #endregion render functions end
 };
 
-export { RadarChart };
+export { PolarAreaChart };

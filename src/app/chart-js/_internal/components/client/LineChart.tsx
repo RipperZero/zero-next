@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useEffect, useRef } from "react";
 
 import { Space, Typography } from "antd";
@@ -12,7 +14,7 @@ import {
   Tooltip,
 } from "chart.js";
 
-import { CHART_COLORS, Config, months, numbers } from "../utils";
+import { CHART_COLORS, Config, months, numbers } from "../../utils";
 
 Chart.register(
   LineController,

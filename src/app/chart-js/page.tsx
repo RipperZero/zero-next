@@ -14,7 +14,7 @@ import {
   PolarAreaChart,
   RadarChart,
   ScatterChart,
-} from "./_internal/client";
+} from "./_internal/components/client";
 
 const ITEMS: TabsProps["items"] = [
   {

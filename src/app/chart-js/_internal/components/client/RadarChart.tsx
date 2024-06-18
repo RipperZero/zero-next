@@ -1,38 +1,47 @@
+"use client";
+
 import { FC, useEffect, useRef } from "react";
 
 import { Button, Space, Typography } from "antd";
+import { Chart, ChartData, RadarController, Title } from "chart.js";
+
 import {
-  Chart,
-  ChartData,
-  Legend,
-  PieController,
-  Title,
-  Tooltip,
-} from "chart.js";
+  CHART_COLORS,
+  Config,
+  months,
+  namedColor,
+  numbers,
+  rand,
+  transparentize,
+} from "../../utils";
 
-import { CHART_COLORS, Config, numbers, rand } from "../utils";
+Chart.register(RadarController, Title);
 
-Chart.register(PieController, Legend, Title, Tooltip);
-
-const DATA_COUNT = 5;
+const DATA_COUNT = 7;
 const NUMBER_CFG: Config = { count: DATA_COUNT, min: 0, max: 100 };
 
-const data: ChartData<"pie"> = {
-  labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
+const labels = months({ count: 7 });
+const data: ChartData<"radar"> = {
+  labels: labels,
   datasets: [
     {
       label: "Dataset 1",
-      data: numbers(NUMBER_CFG).filter(
-        (num) => typeof num === "number",
-      ) as number[],
-      backgroundColor: Object.values(CHART_COLORS),
+      data: numbers(NUMBER_CFG),
+      borderColor: CHART_COLORS.red,
+      backgroundColor: transparentize(CHART_COLORS.red, 0.5),
+    },
+    {
+      label: "Dataset 2",
+      data: numbers(NUMBER_CFG),
+      borderColor: CHART_COLORS.blue,
+      backgroundColor: transparentize(CHART_COLORS.blue, 0.5),
     },
   ],
 };
 
-type PieChartProps = {};
+type RadarChartProps = {};
 
-const PieChart: FC<PieChartProps> = () => {
+const RadarChart: FC<RadarChartProps> = ({}) => {
   // #region hooks start
   const chart = useRef<Chart | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -45,17 +54,14 @@ const PieChart: FC<PieChartProps> = () => {
     }
 
     chart.current = new Chart(canvasRef.current, {
-      type: "pie",
+      type: "radar",
       data: data,
       options: {
         responsive: true,
         plugins: {
-          legend: {
-            position: "top",
-          },
           title: {
             display: true,
-            text: "Chart.js Pie Chart",
+            text: "Chart.js Radar Chart",
           },
         },
       },
@@ -73,7 +79,7 @@ const PieChart: FC<PieChartProps> = () => {
   // #region render functions start
   return (
     <Space className="w-[800px]" direction="vertical">
-      <Typography.Title>Pie</Typography.Title>
+      <Typography.Title>Radar</Typography.Title>
 
       <canvas ref={canvasRef} />
 
@@ -105,23 +111,15 @@ const PieChart: FC<PieChartProps> = () => {
             if (chart.current === null) {
               return;
             }
-            const datasetsLength = chart.current.data.datasets.length;
+            const data = chart.current.data;
+            const datasetsLength = data.datasets.length;
+            const dsColor = namedColor(data.datasets.length);
             const labelsLength = chart.current.data.labels?.length ?? 0;
-
-            const data: any[] = [];
-            const backgroundColor: string[] = [];
-
-            for (let index = 0; index < labelsLength; index++) {
-              data.push(numbers({ count: 1, min: 0, max: 100 }));
-
-              const colorIndex = index % Object.keys(CHART_COLORS).length;
-              backgroundColor.push(Object.values(CHART_COLORS)[colorIndex]);
-            }
 
             chart.current.data.datasets.push({
               label: `Dataset ${datasetsLength + 1}`,
-              backgroundColor: backgroundColor,
-              data: data,
+              backgroundColor: transparentize(dsColor, 0.5),
+              data: numbers({ count: labelsLength, min: 0, max: 100 }),
             });
 
             chart.current.update();
@@ -142,7 +140,9 @@ const PieChart: FC<PieChartProps> = () => {
               return;
             }
 
-            data.labels?.push("data #" + (data.labels.length + 1));
+            const labelsLength = data.labels?.length ?? 0;
+
+            data.labels = months({ count: labelsLength + 1 });
 
             for (let index = 0; index < data.datasets.length; ++index) {
               data.datasets[index].data.push(rand(0, 100));
@@ -192,4 +192,4 @@ const PieChart: FC<PieChartProps> = () => {
   // #endregion render functions end
 };
 
-export { PieChart };
+export { RadarChart };

@@ -1,39 +1,40 @@
+"use client";
+
 import { FC, useEffect, useRef } from "react";
 
 import { Button, Space, Typography } from "antd";
 import {
-  ArcElement,
-  CategoryScale,
   Chart,
   ChartData,
-  DoughnutController,
   Legend,
-  LinearScale,
+  PieController,
   Title,
   Tooltip,
 } from "chart.js";
 
-import { CHART_COLORS, Config, numbers, rand } from "../utils";
+import { CHART_COLORS, Config, numbers, rand } from "../../utils";
 
-Chart.register(DoughnutController, ArcElement, Legend, Title, Tooltip);
+Chart.register(PieController, Legend, Title, Tooltip);
 
 const DATA_COUNT = 5;
 const NUMBER_CFG: Config = { count: DATA_COUNT, min: 0, max: 100 };
 
-const data: ChartData<"bar"> = {
+const data: ChartData<"pie"> = {
   labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
   datasets: [
     {
       label: "Dataset 1",
-      data: numbers(NUMBER_CFG),
+      data: numbers(NUMBER_CFG).filter(
+        (num) => typeof num === "number",
+      ) as number[],
       backgroundColor: Object.values(CHART_COLORS),
     },
   ],
 };
 
-type DoughnutChartProps = {};
+type PieChartProps = {};
 
-const DoughnutChart: FC<DoughnutChartProps> = () => {
+const PieChart: FC<PieChartProps> = () => {
   // #region hooks start
   const chart = useRef<Chart | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -46,7 +47,7 @@ const DoughnutChart: FC<DoughnutChartProps> = () => {
     }
 
     chart.current = new Chart(canvasRef.current, {
-      type: "doughnut",
+      type: "pie",
       data: data,
       options: {
         responsive: true,
@@ -56,7 +57,7 @@ const DoughnutChart: FC<DoughnutChartProps> = () => {
           },
           title: {
             display: true,
-            text: "Chart.js Doughnut Chart",
+            text: "Chart.js Pie Chart",
           },
         },
       },
@@ -74,7 +75,7 @@ const DoughnutChart: FC<DoughnutChartProps> = () => {
   // #region render functions start
   return (
     <Space className="w-[800px]" direction="vertical">
-      <Typography.Title>Doughnut</Typography.Title>
+      <Typography.Title>Pie</Typography.Title>
 
       <canvas ref={canvasRef} />
 
@@ -162,58 +163,6 @@ const DoughnutChart: FC<DoughnutChartProps> = () => {
               return;
             }
 
-            chart.current.hide(0);
-          }}
-        >
-          {"Hide(0)"}
-        </Button>
-
-        <Button
-          type="primary"
-          onClick={() => {
-            if (chart.current === null) {
-              return;
-            }
-
-            chart.current.show(0);
-          }}
-        >
-          {"Show(0)"}
-        </Button>
-
-        <Button
-          type="primary"
-          onClick={() => {
-            if (chart.current === null) {
-              return;
-            }
-
-            chart.current.hide(0, 1);
-          }}
-        >
-          {"Hide (0, 1)"}
-        </Button>
-
-        <Button
-          type="primary"
-          onClick={() => {
-            if (chart.current === null) {
-              return;
-            }
-
-            chart.current.show(0, 1);
-          }}
-        >
-          {"Show(0, 1)"}
-        </Button>
-
-        <Button
-          type="primary"
-          onClick={() => {
-            if (chart.current === null) {
-              return;
-            }
-
             chart.current.data.datasets.pop();
             chart.current.update();
           }}
@@ -245,4 +194,4 @@ const DoughnutChart: FC<DoughnutChartProps> = () => {
   // #endregion render functions end
 };
 
-export { DoughnutChart };
+export { PieChart };

@@ -21,7 +21,7 @@ import {
   months,
   numbers,
   transparentize,
-} from "../utils";
+} from "../../utils";
 
 Chart.register(
   BarController,
