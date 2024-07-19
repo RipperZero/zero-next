@@ -24,8 +24,9 @@
   "importOrder": [
     "^next",
     "^react",
-    "^ant$",
+    "^antd",
     "<THIRD_PARTY_MODULES>",
+    "^@api.",
     "^[@/]",
     "^[./]"
   ],

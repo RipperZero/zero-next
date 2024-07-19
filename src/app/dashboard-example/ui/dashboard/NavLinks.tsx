@@ -1,6 +1,7 @@
 "use client";
 
-import Link, { LinkProps } from "next/link";
+import { Link } from "next-view-transitions";
+import { LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 
 import { FC } from "react";

@@ -1,4 +1,4 @@
-import { FC, JSX } from "react";
+import { FC } from "react";
 
 import {
   BanknotesIcon,

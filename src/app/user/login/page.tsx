@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
 
 import { FC } from "react";
 
 import { App, Button, Form, FormProps, Input, Typography } from "antd";
-import { LoginReqParams } from "models.user";
+
+import { LoginReqParams } from "api.user";
 
 import { login } from "@/api";
 import { LOCAL_STORAGE_KEY } from "@/constants";

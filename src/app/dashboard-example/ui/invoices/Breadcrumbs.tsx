@@ -1,5 +1,5 @@
 import { Route } from "next";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 import { FC } from "react";
 

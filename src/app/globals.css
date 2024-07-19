@@ -19,6 +19,18 @@
   }
 }
 
+/* @see https://juejin.cn/post/7389651944253587491 */
+/* :root {
+  --view-transition-duration: 0.5s;
+} */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  /* 覆盖默认过渡时间 */
+  /* animation-duration: var(--view-transition-duration); */
+  animation-duration: 0.5s;
+}
+
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

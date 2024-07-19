@@ -1,5 +1,6 @@
 // import { Inter } from "next/font/google";
 import { Metadata } from "next";
+import { ViewTransitions } from "next-view-transitions";
 
 import { FC, PropsWithChildren } from "react";
 
@@ -17,12 +18,14 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => {
   // #region logic functions start
   // #endregion logic functions end
   return (
-    <html lang="en">
-      {/* <body className={inter.className}>{children}</body> */}
-      <body>
-        <RootProvider>{children}</RootProvider>
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en">
+        {/* <body className={inter.className}>{children}</body> */}
+        <body>
+          <RootProvider>{children}</RootProvider>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 };
 

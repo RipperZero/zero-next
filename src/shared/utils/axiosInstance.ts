@@ -1,6 +1,5 @@
-import axios from "axios";
+import axios, { isAxiosError, isCancel } from "axios";
 import type {
-  AxiosError,
   AxiosRequestConfig,
   AxiosInstance as RawAxiosInstance,
 } from "axios";
@@ -90,9 +89,15 @@ const interceptResponse = (instance: RawAxiosInstance) => {
       return res.data;
     },
     // onRejected
-    (error: AxiosError) => {
+    (error: unknown) => {
       // log error
-      // console.log("interceptResponse", error);
+      if (isCancel(error)) {
+        console.log("request cancel", error);
+      }
+
+      if (isAxiosError(error)) {
+        console.log("request error", error);
+      }
 
       return Promise.reject(error);
     },

@@ -1,6 +1,6 @@
 import { Metadata, Route } from "next";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
-import Link from "next/link";
 
 import { Date } from "./_internal/components";
 import { NAME, SITE_TITLE } from "./_internal/constants/constants";

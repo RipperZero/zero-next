@@ -1,6 +1,6 @@
 import { Metadata, ResolvingMetadata } from "next";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
-import Link from "next/link";
 
 import { Date } from "../../_internal/components";
 import { NAME } from "../../_internal/constants/constants";

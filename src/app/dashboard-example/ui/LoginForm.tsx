@@ -10,6 +10,7 @@ import {
   KeyIcon,
 } from "@heroicons/react/24/outline";
 
+import { authenticate } from "../lib/actions";
 import { Button } from "./Button";
 
 const LoginButton: FC = () => {
@@ -26,7 +27,7 @@ type LoginFormProps = {};
 
 const LoginForm: FC<LoginFormProps> = () => {
   // #region hooks start
-  const [errorMessage, dispatch] = useFormState((state) => state, undefined);
+  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
   // #endregion hooks end
 
   // #region useEffect functions start

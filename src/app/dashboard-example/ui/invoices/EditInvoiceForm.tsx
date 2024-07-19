@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 import { FC } from "react";
 import { useFormState } from "react-dom";

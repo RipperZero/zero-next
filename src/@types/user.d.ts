@@ -1,4 +1,4 @@
-declare module "models.user" {
+declare module "api.user" {
   type LoginReqParams = {
     username: string;
     password: string;

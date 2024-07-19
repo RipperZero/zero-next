@@ -3,9 +3,6 @@ import { unstable_noStore as noStore } from "next/cache";
 import { sql } from "@vercel/postgres";
 
 import {
-  //   CustomersTableType,
-  //   InvoiceForm,
-  //   User,
   CustomerField,
   InvoiceForm,
   InvoicesTable,

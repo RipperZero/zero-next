@@ -3,7 +3,7 @@ import {
   LoginResObj,
   RegisterReqParams,
   UpdatePasswordReqParams,
-} from "models.user";
+} from "api.user";
 
 import { axiosInstance } from "@/shared/utils";
 

@@ -24,6 +24,11 @@ const EditPage: FC<EditPageProps> = async ({ params }) => {
     fetchInvoiceById(id),
     fetchCustomers(),
   ]);
+
+  if (invoice === undefined) {
+    notFound();
+  }
+
   // #region hooks start
   // #endregion hooks end
 

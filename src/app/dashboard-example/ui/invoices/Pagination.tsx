@@ -1,7 +1,7 @@
 "use client";
 
 import { Route } from "next";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import { FC } from "react";
