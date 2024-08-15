@@ -1,7 +1,7 @@
-FROM node:20.14-alpine AS base
+FROM node:20.14-alpine AS node-base
 
 # deps stage → Install dependencies
-FROM base AS deps-stage
+FROM node-base AS deps-stage
 
 WORKDIR /app
 
@@ -24,7 +24,7 @@ RUN \
     fi
 
 # build stage → build the source
-FROM base AS build-stage
+FROM node-base AS build-stage
 
 WORKDIR /app
 
@@ -36,7 +36,7 @@ RUN yarn run build
 # RUN npm run build
 
 # production stage → copy built files then use node to run next
-FROM base AS production-stage
+FROM node-base AS production-stage
 
 WORKDIR /app
 

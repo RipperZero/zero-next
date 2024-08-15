@@ -1,10 +1,10 @@
 {
-  "name": "next-app",
+  "name": "zero-next",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "rimraf ./.next && next dev",
-    "build": "npm run generate-docs && next build",
+    "build": "next build",
     "generate-docs": "npx typedoc --tsconfig typedoc.json --plugin typedoc-plugin-rename-defaults",
     "build-with-doc": "npm run generate-docs && next build",
     "delete-built": "rimraf ./.next",

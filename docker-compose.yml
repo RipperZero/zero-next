@@ -1,0 +1,28 @@
+# docker compose's version
+version: '2.19.1'
+  # When we ran the container with docker run, the named volume was created automatically.
+  # However, that doesn’t happen when running with Compose. 
+  # We need to define the volume in the top-level 
+  # volumes: section and then specify the mountpoint in the service config.
+
+services:
+  # region zero-next ---start
+  # name for the service
+  # The name will automatically become a network alias
+  # zero-next:
+  #   image: zero-next:8-15
+  #   build:
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 3001:3000
+  # endregion zero-next  ---end
+
+
+  # region zero-next-doc ---start
+  doc:
+    image: zero-next-doc:8-15
+    build:
+      dockerfile: Dockerfile.docs
+    ports:
+      - 3002:80
+  # endregion zero-next-doc ---end
