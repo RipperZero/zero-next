@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "rimraf ./.next && next dev",
-    "build": "next build",
+    "build": "npm run generate-docs && next build",
     "generate-docs": "npx typedoc --tsconfig typedoc.json --plugin typedoc-plugin-rename-defaults",
     "build-with-doc": "npm run generate-docs && next build",
     "delete-built": "rimraf ./.next",
