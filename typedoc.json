@@ -1,0 +1,17 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "exclude": ["**/node_modules/**"],
+  // 输入选项 - 入口文件/文件夹
+  // "entryPoints": ["./src/**/*"],
+  "entryPoints": ["./src/@typedoc/**/*"],
+  "out": "docs",
+  "includeVersion": true,
+  // 包含私有成员
+  "excludePrivate": false,
+  // 包含受保护成员
+  "excludeProtected": false,
+  // 包含内部成员
+  "excludeInternal": false,
+  "tsconfig": "./tsconfig.json",
+  "readme": "none"
+}
