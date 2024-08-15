@@ -5,13 +5,14 @@
   "scripts": {
     "dev": "rimraf ./.next && next dev",
     "build": "next build",
+    "generate-docs": "npx typedoc --tsconfig typedoc.json --plugin typedoc-plugin-rename-defaults",
+    "build-with-doc": "npm run generate-docs && next build",
+    "delete-built": "rimraf ./.next",
     "start": "next start",
-    "start after build": "rimraf ./.next && next build && next start",
+    "start-after-build": "rimraf ./.next && next build && next start",
     "lint": "next lint",
-    "delete built": "rimraf ./.next",
-    "uninstall packages": "rimraf ./node_modules",
     "seed": "node -r dotenv/config ./scripts/seed.js",
-    "doc": "npx typedoc --tsconfig typedoc.json --plugin typedoc-plugin-rename-defaults"
+    "uninstall-packages": "rimraf ./node_modules"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.21.0",

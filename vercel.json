@@ -1,0 +1,13 @@
+{
+  "builds": [
+    {
+      "src": "next.config.mjs",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "docs/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [{ "src": "/docs/(.*)", "dest": "/docs/$1" }]
+}
