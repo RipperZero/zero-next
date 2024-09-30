@@ -15,6 +15,8 @@ import {
   RadarChart,
   ScatterChart,
 } from "./_internal/components/client";
+import { _LineChartD } from "./_internal/components/client/_LineChartD";
+import { _LineChartW } from "./_internal/components/client/_LineChartW";
 
 const ITEMS: TabsProps["items"] = [
   {
@@ -26,6 +28,16 @@ const ITEMS: TabsProps["items"] = [
     key: "Line",
     label: "Line",
     children: <LineChart />,
+  },
+  {
+    key: "_LineChartW",
+    label: "_LineChartW",
+    children: <_LineChartW />,
+  },
+  {
+    key: "_LineChartD",
+    label: "_LineChartD",
+    children: <_LineChartD />,
   },
   {
     key: "Bubble",
