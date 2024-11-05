@@ -1,0 +1,18 @@
+{
+  "editor.formatOnSave": true,
+  "editor.renderWhitespace": "trailing",
+  "workbench.colorCustomizations": {
+    "editorWhitespace.foreground": "#fbff00"
+  },
+  "code-runner.executorMap": {
+    // @see https://github.com/formulahendry/vscode-code-runner/issues/29
+    // yarn add esm --dev
+    "javascript": "node -r esm $fullFileName",
+    // without ts-node && esm
+    // "typescript": "cd $dir && tsc $fileName && node $fileNameWithoutExt.js"
+    // @see https://blog.csdn.net/mouday/article/details/103800887
+    // yarn add ts-node --dev
+    "typescript": "ts-node -r esm $fullFileName"
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib"
+}

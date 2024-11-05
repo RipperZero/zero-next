@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TODO add classname in Tailwind CSS IntelliSense */
+@layer components {
+  /* @see https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear#%E5%B0%9D%E8%AF%95%E4%B8%80%E4%B8%8B */
+  .clearfix::after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  /* @see https://www.cnblogs.com/Ry-yuan/p/6848197.html */
+  .clear-inline-block-gap {
+    font-size: 0;
+  }
+}
+
+/* @see https://juejin.cn/post/7389651944253587491 */
+/* :root {
+  --view-transition-duration: 0.5s;
+} */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  /* 覆盖默认过渡时间 */
+  /* animation-duration: var(--view-transition-duration); */
+  animation-duration: 0.5s;
+}
+
+/* :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+} */
