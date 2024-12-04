@@ -9,6 +9,7 @@ import {
   RadarChart,
   RadarChartProps,
 } from "./_internal/components/client/RadarChart";
+import { ReviewTime } from "./_internal/components/client/ReviewTime";
 
 const radarChartProps: Array<RadarChartProps> = [
   {
@@ -82,13 +83,27 @@ const radarChartProps: Array<RadarChartProps> = [
   },
 ];
 
-const ITEMS: TabsProps["items"] = radarChartProps.map((radarChartProp) => {
-  return {
-    key: radarChartProp.title,
-    label: radarChartProp.title,
-    children: <RadarChart {...radarChartProp} />,
-  };
-});
+// const ITEMS: TabsProps["items"] = radarChartProps.map((radarChartProp) => {
+//   return {
+//     key: radarChartProp.title,
+//     label: radarChartProp.title,
+//     children: <RadarChart {...radarChartProp} />,
+//   };
+// });
+
+// ITEMS.push({
+//   key: "レビュー工数",
+//   label: "レビュー工数",
+//   children: <ReviewTime />,
+// });
+
+const ITEMS: TabsProps["items"] = [
+  {
+    key: "レビュー工数",
+    label: "レビュー工数",
+    children: <ReviewTime />,
+  },
+];
 
 type GrowthGroupPageProps = {
   params: Promise<unknown>;

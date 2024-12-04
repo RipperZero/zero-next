@@ -9,14 +9,38 @@ import {
   BarChart,
   BubbleChart,
   DoughnutChart,
+  ITFix,
   LineChart,
+  PGTime,
   PieChart,
   PolarAreaChart,
   RadarChart,
+  ReviewFix,
+  ReviewTime,
   ScatterChart,
 } from "./_internal/components/client";
 
 const ITEMS: TabsProps["items"] = [
+  {
+    key: "レビュー工数",
+    label: "レビュー工数",
+    children: <ReviewTime />,
+  },
+  {
+    key: "レビュー指摘",
+    label: "レビュー指摘",
+    children: <ReviewFix />,
+  },
+  {
+    key: "IT指摘",
+    label: "IT指摘",
+    children: <ITFix />,
+  },
+  {
+    key: "PG工数",
+    label: "PG工数",
+    children: <PGTime />,
+  },
   {
     key: "Bar",
     label: "Bar",
