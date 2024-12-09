@@ -14,5 +14,41 @@
     // yarn add ts-node --dev
     "typescript": "ts-node -r esm $fullFileName"
   },
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+
+  // #region tailwindCSS ---start
+  "tailwindCSS.experimental.configFile": null,
+  "tailwindCSS.experimental.classRegex": [
+    // @see https://blog.csdn.net/qq_41614928/article/details/135962738
+    // → clsx("")
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    // → twMerge("")
+    ["twMerge\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    // @see https://github.com/tailwindlabs/tailwindcss-intellisense/issues/350#issuecomment-921740173
+    // →
+    // /* @tw */
+    // const XXX = "";
+    "/\\*\\s*@tw\\s*\\*/[^\"]+\"([^\"]*)\"",
+    // →
+    // /** @tw */
+    // const XXX = "";
+    "/\\**\\s*@tw\\s*\\*/[^\"]+\"([^\"]*)\"",
+    // →
+    // // @tw
+    // const XXX = "";
+    "//\\s*@tw\\s*const\\s*\\w+\\s*=\\s*\"([^\"]*)\"",
+    // @see https://github.com/paolotiu/tailwind-intellisense-regex-list?tab=readme-ov-file#typescript-or-javascript-variables-strings-or-arrays-with-keyword
+    // → XXXclasses = ""  XXXClasses = ""
+    [
+      "[cC]lasses\\s*(?::\\s*[^=]+)?\\s*=\\s*([^;]*);",
+      "['\"`]([^'\"`]*)['\"`]"
+    ],
+    // → XXXclassName = ""  XXXClassName = ""
+    [
+      "[cC]lassName\\s*(?::\\s*[^=]+)?\\s*=\\s*([^;]*);",
+      "['\"`]([^'\"`]*)['\"`]"
+    ]
+  ],
+  "tailwind-fold.autoFold": false
+  // #endregion tailwindCSS ---end
 }

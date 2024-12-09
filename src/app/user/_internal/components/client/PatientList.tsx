@@ -1,5 +1,6 @@
 "use client";
 
+// import { connection } from "next/server";
 import { FC, use } from "react";
 
 import { Card } from "antd";
@@ -14,6 +15,7 @@ type PatientListProps = {
   getPatientListPromise: GetPatientListPromise;
 };
 
+// TODO: ban server request
 const PatientList: FC<PatientListProps> = ({ getPatientListPromise }) => {
   // #region hooks start
   const res = use(getPatientListPromise) as unknown as GetPatientList;
