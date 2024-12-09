@@ -4,6 +4,10 @@ import { ViewTransitions } from "next-view-transitions";
 
 import { FC, PropsWithChildren } from "react";
 
+// polyfill for(lvh svh dvh)
+// @see https://github.com/joppuyo/large-small-dynamic-viewport-units-polyfill
+import "large-small-dynamic-viewport-units-polyfill";
+
 import "./globals.css";
 import { RootProvider } from "./RootProvider";
 
