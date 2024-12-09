@@ -46,11 +46,16 @@ const LINKS: Array<{
     description: "Next Blog Demo",
   },
   {
-    href: "https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
-    title: "Learn",
-    description:
-      "Learn about Next.js in an interactive course with&nbsp;quizzes!",
+    href: "/test-compiler",
+    title: "TestCompiler",
+    description: "Test React Compiler",
   },
+  // {
+  //   href: "https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
+  //   title: "Learn",
+  //   description:
+  //     "Learn about Next.js in an interactive course with&nbsp;quizzes!",
+  // },
   {
     href: "https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app",
     title: "Docs",
