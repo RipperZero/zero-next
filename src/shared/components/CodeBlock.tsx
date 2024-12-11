@@ -1,16 +1,22 @@
 import { FC, HTMLAttributes, ReactNode } from "react";
 
 import { Divider } from "antd";
+
 import { Highlight } from "prism-react-renderer";
 
-type BlockProps = {
+type CodeBlockProps = {
   id?: HTMLAttributes<HTMLDivElement>["id"];
   title?: string;
   preserveText?: string;
   content?: ReactNode;
 };
 
-const Block: FC<BlockProps> = ({ id, title, preserveText, content }) => {
+const CodeBlock: FC<CodeBlockProps> = ({
+  id,
+  title,
+  preserveText,
+  content,
+}) => {
   // #region hooks start
   // #endregion hooks end
 
@@ -74,5 +80,5 @@ const Block: FC<BlockProps> = ({ id, title, preserveText, content }) => {
   // #endregion render functions end
 };
 
-export type { BlockProps };
-export { Block };
+export type { CodeBlockProps };
+export { CodeBlock };

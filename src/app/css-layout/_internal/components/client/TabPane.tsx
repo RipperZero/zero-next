@@ -5,9 +5,9 @@ import { FC, ReactNode, useRef } from "react";
 import { Anchor, Col, Row } from "antd";
 import { AnchorLinkItemProps } from "antd/es/anchor/Anchor";
 
-import { Block, BlockProps } from "../Block";
+import { CodeBlock, CodeBlockProps } from "@/shared/components";
 
-type BlockInfo = Omit<BlockProps, "id">;
+type BlockInfo = Omit<CodeBlockProps, "id">;
 
 type TabPaneProps = {
   tabLabel: string;
@@ -23,7 +23,7 @@ const createContent = (tabLabel: string, blocks: BlockInfo[]) => {
     const blockId = `${tabLabel}_${title}`;
 
     Blocks.push(
-      <Block
+      <CodeBlock
         key={blockId}
         id={blockId}
         title={title}

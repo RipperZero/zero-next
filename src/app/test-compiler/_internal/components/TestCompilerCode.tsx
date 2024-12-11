@@ -1,3 +1,8 @@
+import { FC } from "react";
+
+import { CodeBlock } from "@/shared/components";
+
+const TEST_COMPILER_CODE = `
 "use client";
 
 import { FC, use, useRef, useState } from "react";
@@ -186,3 +191,24 @@ const TestCompilerPage: FC<TestCompilerPageProps> = ({
 
 export type { TestCompilerPageProps };
 export default TestCompilerPage;
+`;
+
+type TestCompilerCodeProps = unknown;
+
+const TestCompilerCode: FC<TestCompilerCodeProps> = () => {
+  // #region hooks start
+  // #endregion hooks end
+
+  // #region useEffect functions start
+  // #endregion useEffect functions end
+
+  // #region logic functions start
+  // #endregion logic functions end
+
+  // #region render functions start
+  return <CodeBlock title="CODE" preserveText={TEST_COMPILER_CODE} />;
+  // #endregion render functions end
+};
+
+export type { TestCompilerCodeProps };
+export { TestCompilerCode };
