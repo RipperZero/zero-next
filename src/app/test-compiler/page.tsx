@@ -185,4 +185,6 @@ const TestCompilerPage: FC<TestCompilerPageProps> = ({
 };
 
 export type { TestCompilerPageProps };
+export { TestCompilerAandB };
+
 export default TestCompilerPage;

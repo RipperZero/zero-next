@@ -5,8 +5,6 @@ import { FC, useEffect, useRef } from "react";
 import { clsx } from "clsx";
 import Typed, { TypedOptions } from "typed.js";
 
-import "./index.css";
-
 type TypedJSProps = {
   className?: string;
   strings?: TypedOptions["strings"];
@@ -36,10 +34,7 @@ const TypedJS: FC<TypedJSProps> = ({ className, strings }) => {
 
   // #region render functions start
   return (
-    <span
-      ref={spanRef}
-      className={clsx("typed-cursor text-3xl font-bold", className)}
-    />
+    <span ref={spanRef} className={clsx("text-3xl font-bold", className)} />
   );
   // #endregion render functions end
 };
