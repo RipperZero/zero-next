@@ -2,7 +2,7 @@
 
 import { FC, PropsWithChildren, ReactNode, useState } from "react";
 
-import { Button, Space, Typography } from "antd";
+import { Box, Button, Typography } from "@mui/material";
 
 type CounterProps = {
   serverComponent?: ReactNode;
@@ -24,10 +24,10 @@ const Counter: FC<PropsWithChildren<CounterProps>> = ({
 
   // #region render functions start
   return (
-    <Space>
-      <Typography.Text>{count}</Typography.Text>
+    <Box>
+      <Typography>{count}</Typography>
       <Button
-        type="primary"
+        variant="contained"
         onClick={() => {
           setCount((pre) => {
             return pre + 1;
@@ -38,7 +38,7 @@ const Counter: FC<PropsWithChildren<CounterProps>> = ({
       </Button>
       {serverComponent}
       {children}
-    </Space>
+    </Box>
   );
   // #endregion render functions end
 };

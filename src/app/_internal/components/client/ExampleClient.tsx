@@ -2,7 +2,7 @@
 
 import { FC, useState } from "react";
 
-import { Input, Space, Typography } from "antd";
+import { Box, TextField, Typography } from "@mui/material";
 
 import { ExampleInnerClient } from "./ExampleInnerClient";
 
@@ -15,17 +15,17 @@ const ExampleClient: FC<ExampleClientProps> = () => {
 
   // #region render functions start
   return (
-    <Space direction="vertical">
+    <Box>
       <div className={"text-blue-600"}>ExampleClientComponent</div>
-      <Typography.Text>{input}</Typography.Text>
-      <Input
+      <Typography>{input}</Typography>
+      <TextField
         value={input}
         onChange={(e) => {
           setInput(e.target.value);
         }}
       />
       <ExampleInnerClient />
-    </Space>
+    </Box>
   );
   // #endregion render functions end
 };

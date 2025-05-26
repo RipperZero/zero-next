@@ -2,13 +2,13 @@
 
 import { FC, useState } from "react";
 
-import { InputNumber } from "antd";
+import { InputAdornment, OutlinedInput } from "@mui/material";
 
 type ExampleInnerClientProps = unknown;
 
 const ExampleInnerClient: FC<ExampleInnerClientProps> = () => {
   // #region hooks start
-  const [inputNum, setInputNum] = useState(0);
+  const [inputNum, setInputNum] = useState<string | undefined>(undefined);
   // #endregion hooks end
 
   // #region useEffect functions start
@@ -21,12 +21,19 @@ const ExampleInnerClient: FC<ExampleInnerClientProps> = () => {
   return (
     <div>
       <div className={"text-pink-400"}>ExampleInnerClientComponent</div>
-      <InputNumber
+      {/* <InputNumber
         prefix="￥"
         style={{ width: "100%" }}
         value={inputNum}
         onChange={(value) => {
           setInputNum(value ?? 0);
+        }}
+      /> */}
+      <OutlinedInput
+        startAdornment={<InputAdornment position="start">￥</InputAdornment>}
+        value={inputNum}
+        onChange={(e) => {
+          setInputNum(e.target.value);
         }}
       />
     </div>

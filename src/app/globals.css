@@ -1,9 +1,8 @@
 /* #region import tailwindcss ==========>>>>>>>>>> ---start */
 /* @import "tailwindcss"; */
 
-/* @see https://ant.design/docs/react/compatible-style-cn#tailwindcss-%E6%8E%92%E5%B8%83-layer */
-@layer theme, base, antd, components, utilities;
-
+/* @see https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4/#next-js-app-router */
+@layer theme, base, mui, components, utilities;
 @import "tailwindcss";
 /* #endregion import tailwindcss ==========>>>>>>>>>> ---end */
 

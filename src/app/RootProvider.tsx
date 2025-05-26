@@ -2,9 +2,10 @@
 
 import { FC, PropsWithChildren } from "react";
 
-import { App } from "antd";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 
-import { AntdStyleProvider } from "@/shared/lib/client";
+import { theme } from "./theme";
 
 type RootProviderProps = unknown;
 
@@ -22,9 +23,14 @@ const RootProvider: FC<PropsWithChildren<RootProviderProps>> = ({
 
   // #region render functions start
   return (
-    <AntdStyleProvider>
-      <App>{children}</App>
-    </AntdStyleProvider>
+    <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+      <ThemeProvider theme={theme}>
+        {/* must be used under CssProvider */}
+        <CssBaseline />
+
+        {children}
+      </ThemeProvider>
+    </AppRouterCacheProvider>
   );
   // #endregion render functions end
 };

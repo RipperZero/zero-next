@@ -8,8 +8,6 @@ import { FC, PropsWithChildren } from "react";
 // @see https://github.com/joppuyo/large-small-dynamic-viewport-units-polyfill
 import "large-small-dynamic-viewport-units-polyfill";
 
-import "@ant-design/v5-patch-for-react-19";
-
 import "./globals.css";
 import { RootProvider } from "./RootProvider";
 
