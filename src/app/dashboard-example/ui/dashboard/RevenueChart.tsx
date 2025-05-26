@@ -3,6 +3,12 @@ import { CalendarIcon } from "@heroicons/react/24/outline";
 import { fetchRevenue } from "../../lib/data";
 import { generateYAxis } from "../../lib/utils";
 
+// This component is representational only.
+// For data visualization UI, check out:
+// https://www.tremor.so/
+// https://www.chartjs.org/
+// https://airbnb.io/visx/
+
 const CHART_HEIGHT = 350;
 
 type RevenueChartProps = unknown;
@@ -56,7 +62,7 @@ const RevenueChart: AsyncFC<RevenueChartProps> = async () => {
             </div>
           ))}
         </div>
-        <div className="flex items-center pb-2 pt-6">
+        <div className="flex items-center pt-6 pb-2">
           <CalendarIcon className="h-5 w-5 text-gray-500" />
           <h3 className="ml-2 text-sm text-gray-500">Last 12 months</h3>
         </div>

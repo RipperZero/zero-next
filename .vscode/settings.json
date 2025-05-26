@@ -49,6 +49,7 @@
       "['\"`]([^'\"`]*)['\"`]"
     ]
   ],
-  "tailwind-fold.autoFold": false
+  "tailwind-fold.autoFold": false,
+  "cSpell.words": ["ILIKE"]
   // #endregion tailwindCSS ---end
 }

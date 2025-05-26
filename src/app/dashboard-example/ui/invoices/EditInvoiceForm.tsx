@@ -2,8 +2,9 @@
 
 import { Link } from "next-view-transitions";
 
-import { FC } from "react";
-import { useFormState } from "react-dom";
+import { FC, useActionState } from "react";
+
+// import { useFormState } from "react-dom";
 
 import {
   CheckIcon,
@@ -25,7 +26,7 @@ const EditInvoiceForm: FC<EditInvoiceFormProps> = ({ invoice, customers }) => {
   const initialState: State = { message: null, errors: {} };
   // #region hooks start
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
-  const [state, dispatch] = useFormState(updateInvoiceWithId, initialState);
+  const [state, formAction] = useActionState(updateInvoiceWithId, initialState);
   // #endregion hooks end
 
   // #region useEffect functions start
@@ -36,7 +37,7 @@ const EditInvoiceForm: FC<EditInvoiceFormProps> = ({ invoice, customers }) => {
 
   // #region render functions start
   return (
-    <form action={dispatch}>
+    <form action={formAction}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -60,7 +61,7 @@ const EditInvoiceForm: FC<EditInvoiceFormProps> = ({ invoice, customers }) => {
                 </option>
               ))}
             </select>
-            <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
+            <UserCircleIcon className="pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
 
           <div id="customer-error" aria-live="polite" aria-atomic="true">
@@ -90,7 +91,7 @@ const EditInvoiceForm: FC<EditInvoiceFormProps> = ({ invoice, customers }) => {
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                 aria-describedby="amount-error"
               />
-              <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              <CurrencyDollarIcon className="pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
 

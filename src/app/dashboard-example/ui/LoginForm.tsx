@@ -1,7 +1,8 @@
 "use client";
 
-import { FC } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useSearchParams } from "next/navigation";
+
+import { FC, useActionState } from "react";
 
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import {
@@ -13,21 +14,16 @@ import {
 import { authenticate } from "../lib/actions";
 import { Button } from "./Button";
 
-const LoginButton: FC = () => {
-  const { pending } = useFormStatus();
-
-  return (
-    <Button className="mt-4 w-full" aria-disabled={pending}>
-      Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-    </Button>
-  );
-};
-
 type LoginFormProps = unknown;
 
 const LoginForm: FC<LoginFormProps> = () => {
   // #region hooks start
-  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const [errorMessage, formAction, isPending] = useActionState(
+    authenticate,
+    undefined,
+  );
   // #endregion hooks end
 
   // #region useEffect functions start
@@ -38,18 +34,13 @@ const LoginForm: FC<LoginFormProps> = () => {
 
   // #region render functions start
   return (
-    <form
-      className="space-y-3"
-      //   TODO test this
-      //   autoComplete="current-password"
-      action={dispatch}
-    >
-      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className="mb-3 text-2xl">Please log in to continue.</h1>
+    <form action={formAction} className="space-y-3">
+      <div className="flex-1 rounded-lg bg-gray-50 px-6 pt-8 pb-4">
+        <h1 className={"mb-3 text-2xl"}>Please log in to continue.</h1>
         <div className="w-full">
           <div>
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mt-5 mb-3 block text-xs font-medium text-gray-900"
               htmlFor="email"
             >
               Email
@@ -60,16 +51,15 @@ const LoginForm: FC<LoginFormProps> = () => {
                 id="email"
                 type="email"
                 name="email"
-                defaultValue={"user@nextmail.com"}
                 placeholder="Enter your email address"
                 required
               />
-              <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              <AtSymbolIcon className="pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
           <div className="mt-4">
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mt-5 mb-3 block text-xs font-medium text-gray-900"
               htmlFor="password"
             >
               Password
@@ -80,16 +70,18 @@ const LoginForm: FC<LoginFormProps> = () => {
                 id="password"
                 type="password"
                 name="password"
-                defaultValue={"123456"}
                 placeholder="Enter password"
                 required
                 minLength={6}
               />
-              <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              <KeyIcon className="pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
         </div>
-        <LoginButton />
+        <input type="hidden" name="redirectTo" value={callbackUrl} />
+        <Button className="mt-4 w-full" aria-disabled={isPending}>
+          Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+        </Button>
         <div
           className="flex h-8 items-end space-x-1"
           aria-live="polite"

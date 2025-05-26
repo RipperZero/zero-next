@@ -1,1 +1,193 @@
+/* #region import tailwindcss ==========>>>>>>>>>> ---start */
+/* @import "tailwindcss"; */
+
+/* @see https://ant.design/docs/react/compatible-style-cn#tailwindcss-%E6%8E%92%E5%B8%83-layer */
+@layer theme, base, antd, components, utilities;
+
 @import "tailwindcss";
+/* #endregion import tailwindcss ==========>>>>>>>>>> ---end */
+
+/* @see https://juejin.cn/post/7389651944253587491 */
+/* :root {
+  --view-transition-duration: 0.5s;
+} */
+::view-transition-old(root),
+::view-transition-new(root) {
+  /* 覆盖默认过渡时间 */
+  /* animation-duration: var(--view-transition-duration); */
+  animation-duration: 0.5s;
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --viewport-height: 100dvh;
+  }
+}
+
+/* TODO confirm */
+@supports not (height: 100dvh) {
+  :root {
+    /* polyfill from large-small-dynamic-viewport-units-polyfill(import from main.tsx) */
+    /* @see https://github.com/joppuyo/large-small-dynamic-viewport-units-polyfill */
+    --viewport-height: calc(var(--1dvh, 1vh) * 100);
+  }
+}
+
+/* follow the official naming convention.
+/* @see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties
+/* NOTE
+/* 1. do not use [_] for variable concatenation
+/* it will not be recognized correctly after [tailwindcss → 4.0.9]
+/* 2. try not use uppercase letters as they might not be recognized.
+/* EG:
+/* [--abcd-efg-hlj-123] */
+
+@theme {
+  /* #region border ---start */
+  /* RADIUS_10 */
+  --radius-radius-10: 10px;
+  /* RADIUS_4 */
+  --radius-radius-4: 4px;
+  /* #endregion border ---end */
+
+  /* #region colors ---start */
+  /* BLUE_1 */
+  --color-blue-1: #4874ce;
+  /* BLUE_L1 */
+  --color-blue-l1: #c9dbff;
+  /* BLUE_L2 */
+  --color-blue-l2: #dde8ff;
+  /* BLUE_L3 */
+  --color-blue-l3: #f1f6ff;
+  /* GRAY_1 */
+  --color-gray-1: #e6e6e6;
+  /* GRAY_2 */
+  --color-gray-2: #f4f4f4;
+  /* GRAY_3 */
+  --color-gray-3: #f8f8f8;
+  /* YELLOW_1 */
+  --color-yellow-1: #fffecc;
+  /* YELLOW_2 */
+  --color-yellow-2: #ffef7a;
+  /* WHITE */
+  --color-white: #ffffff;
+  /* LINE_GRAY_1 */
+  --color-line-gray-1: #cccccc;
+  /* LINE_GRAY_2 */
+  --color-line-gray-2: #dddddd;
+  /* LINE_GRAY_3 */
+  --color-line-gray-3: #eeeeee;
+  /* LINE_BLUE_1 */
+  --color-line-blue-1: #a2c1ff;
+  /* LINE_BLUE_2 */
+  --color-line-blue-2: #a4bae6;
+  /* LINE_BLUE_3 */
+  --color-line-blue-3: #cfdcf5;
+  /* TEXT_BLACK */
+  --color-text-black: #000000;
+  /* TEXT_BLACK_60 */
+  --color-text-black-60: --alpha(var(--color-text-black) / 60%);
+  /* TEXT_BLACK_30 */
+  --color-text-black-30: --alpha(var(--color-text-black) / 30%);
+  /* TEXT_BLUE_1 */
+  --color-text-blue-1: #2a4c91;
+  /* TEXT_BLUE_2 */
+  --color-text-blue-2: #4874ce;
+  /* TEXT_BLUE_L1 */
+  --color-text-blue-l1: #b6cefb;
+  /* ERROR_RED */
+  --color-error-red: #ce0101;
+  /* REQUIRED_RED */
+  --color-required-red: #c90c1f;
+  /* TEXT_WHITE */
+  --color-text-white: #ffffff;
+  /* ICON-BLUE */
+  --color-icon-blue: #608add;
+  /* ORANGE */
+  --color-orange: #ce6e00;
+  /* ERROR_BG_RED */
+  --color-error-bg-red: #fadfe5;
+
+  /* TODO confirm this ⬇ */
+  /* do not delete [--color-i-do-not-know-why]
+  /* a dummy variable must be written on the last line
+  /* otherwise the previous color configuration will not be recognized */
+  --color-i-do-not-know-why: "";
+  /* #endregion colors ---end */
+
+  /* #region font ---start */
+  /* BASE_FONT */
+  --font-base-font: "Meiryo UI", sans-serif;
+  /* #endregion font ---end */
+
+  /* #region drop shadow ---start */
+  /* DROPSHADOW_1 */
+  --drop-shadow-dropshadow-1: 0px 2px 6px rgb(0, 0, 0, 0.3);
+  /* #endregion drop shadow ---end */
+
+  /* #region screens ---start */
+  /* TODO fix this → use new key */
+  /* --screen-h5-xs: 320px;
+  --screen-h5-sm: 360px;
+  --screen-h5-md: 414px;
+  --screen-h5-lg: 480px; */
+  /* #endregion screens ---end */
+}
+@utility raw-transition-none {
+  transition: none;
+}
+
+@utility safe-min-h-dvh {
+  /* Defaults to `100vh` if `--viewport-height` is not set */
+  min-height: var(--viewport-height, 100vh);
+}
+
+@layer components {
+  /* @see https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear#%E5%B0%9D%E8%AF%95%E4%B8%80%E4%B8%8B */
+  .clearfix::after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  /* @see https://www.cnblogs.com/Ry-yuan/p/6848197.html */
+  .clear-inline-block-gap {
+    font-size: 0;
+  }
+}
+
+/* remove input background color for chrome autocomplete */
+/* @see https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete */
+/*
+  Note:
+  - The class naming concatenation rule is: Element Selector + Class Name + Pseudo-class/element.
+*/
+input.hide-input-autocomplete-background:-webkit-autofill {
+  -webkit-background-clip: text;
+  &:hover {
+    -webkit-background-clip: text;
+  }
+}
+/*
+    Note:
+    - When using @utility, element selectors within the @utility block are not effective.
+  */
+/* @utility hide-input-autocomplete-background {
+    input.hide-input-autocomplete-background:-webkit-autofill {
+      -webkit-background-clip: text;
+      &:hover {
+        -webkit-background-clip: text;
+      }
+    }
+  } */
+
+/* hide native password reveal and clear icons in Edge/IE */
+/* @see https://blog.csdn.net/qq_41872385/article/details/130850917 */
+input[type="password"].hide-input-password-icon::-ms-clear {
+  display: none;
+}
+input[type="password"].hide-input-password-icon::-ms-reveal {
+  display: none;
+}

@@ -61,7 +61,7 @@ const LatestInvoices: AsyncFC<LatestInvoicesProps> = async () => {
             );
           })}
         </div>
-        <div className="flex items-center pb-2 pt-6">
+        <div className="flex items-center pt-6 pb-2">
           <ArrowPathIcon className="h-5 w-5 text-gray-500" />
           <h3 className="ml-2 text-sm text-gray-500">Updated just now</h3>
         </div>

@@ -139,21 +139,21 @@ const TestCompilerPage: FC<TestCompilerPageProps> = ({
     <div className="m-6 flex flex-col gap-6">
       <div className="card flex flex-col gap-2">
         <button
-          className="w-[200px]"
+          className="w-[200px] cursor-pointer border"
           onClick={() => setCountA((pre) => pre + 1)}
         >
           countA(state) is {countA}
         </button>
 
         <button
-          className="w-[200px]"
+          className="w-[200px] cursor-pointer border"
           onClick={() => setCountB((pre) => pre + 1)}
         >
           countB(state) is {countB}
         </button>
 
         <button
-          className="w-[200px]"
+          className="w-[200px] cursor-pointer border"
           onClick={() => {
             objC.count += 1;
             refC.current.count += 1;
@@ -164,7 +164,7 @@ const TestCompilerPage: FC<TestCompilerPageProps> = ({
       </div>
 
       <div>
-        <button className="w-[200px]" onClick={printAllC}>
+        <button className="w-[200px] cursor-pointer border" onClick={printAllC}>
           printAllC(obj & ref)
         </button>
       </div>
@@ -185,6 +185,5 @@ const TestCompilerPage: FC<TestCompilerPageProps> = ({
 };
 
 export type { TestCompilerPageProps };
-export { TestCompilerAandB };
 
 export default TestCompilerPage;
