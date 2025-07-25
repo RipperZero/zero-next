@@ -2,16 +2,14 @@
 
 import { FC, SyntheticEvent, use, useState } from "react";
 
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Tab,
-  Tabs,
-  TextField,
-  Typography,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 
 import AuthWidgets from "../../assets/auth-widgets.png";
 

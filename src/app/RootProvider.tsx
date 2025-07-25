@@ -2,8 +2,9 @@
 
 import { FC, PropsWithChildren } from "react";
 
-import { CssBaseline, ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
 
 import { theme } from "./theme";
 

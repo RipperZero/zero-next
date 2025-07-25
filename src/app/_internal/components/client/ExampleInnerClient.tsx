@@ -2,7 +2,8 @@
 
 import { FC, useState } from "react";
 
-import { InputAdornment, OutlinedInput } from "@mui/material";
+import InputAdornment from "@mui/material/InputAdornment";
+import OutlinedInput from "@mui/material/OutlinedInput";
 
 type ExampleInnerClientProps = unknown;
 

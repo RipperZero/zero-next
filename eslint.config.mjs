@@ -31,6 +31,13 @@ const eslintConfig = tseslint.config(
           destructuredArrayIgnorePattern: "^_",
         },
       ],
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [{ regex: "^@mui/[^/]+$" }],
+        },
+      ],
+
       "@typescript-eslint/no-explicit-any": "warn",
     },
   },
