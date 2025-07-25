@@ -14,6 +14,11 @@ const LINKS: Array<{
   description: string;
 }> = [
   {
+    href: "/d2c/auth/sign-in",
+    title: "D2C",
+    description: "D2C",
+  },
+  {
     href: "/big-eye",
     title: "BigEye",
     description: "BigEye Demo",
@@ -27,11 +32,6 @@ const LINKS: Array<{
     href: "/blog",
     title: "Blog",
     description: "Next Blog Demo",
-  },
-  {
-    href: "/test-compiler",
-    title: "TestCompiler",
-    description: "Test React Compiler",
   },
   // {
   //   href: "https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
