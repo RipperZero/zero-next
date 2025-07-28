@@ -23,7 +23,7 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => {
   // #endregion logic functions end
   return (
     <ViewTransitions>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         {/* <body className={inter.className}>{children}</body> */}
         <body>
           <RootProvider>{children}</RootProvider>
