@@ -4,7 +4,8 @@ import { FC, PropsWithChildren } from "react";
 
 import { App } from "antd";
 
-import { AntdStyleProvider } from "@/shared/lib/client";
+// @see https://ant.design/docs/react/use-with-next-cn#%E4%BD%BF%E7%94%A8-app-router
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 type RootProviderProps = unknown;
 
@@ -22,9 +23,9 @@ const RootProvider: FC<PropsWithChildren<RootProviderProps>> = ({
 
   // #region render functions start
   return (
-    <AntdStyleProvider>
+    <AntdRegistry>
       <App>{children}</App>
-    </AntdStyleProvider>
+    </AntdRegistry>
   );
   // #endregion render functions end
 };
