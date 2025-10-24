@@ -7,7 +7,9 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   // https://nextjs.org/docs/app/api-reference/config/typescript#statically-typed-links
   typedRoutes: true,
-  // output: "standalone",
+
+  // use when building in docker
+  output: "standalone",
 };
 
 export default nextConfig;

@@ -41,7 +41,7 @@ const CreatePage: AsyncFC<CreatePageProps> = async () => {
           },
         ]}
       />
-      <CreateInvoiceForm customers={customers} />
+      <CreateInvoiceForm customers={customers ?? []} />
     </main>
   );
   // #endregion render functions end

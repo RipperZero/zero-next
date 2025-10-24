@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Suspense } from "react";
 
 import { AcmeLogo, LoginForm } from "../ui";
 
@@ -23,7 +23,10 @@ const LoginPage: FC<LoginPageProps> = () => {
             <AcmeLogo />
           </div>
         </div>
-        <LoginForm />
+
+        <Suspense>
+          <LoginForm />
+        </Suspense>
       </div>
     </main>
   );

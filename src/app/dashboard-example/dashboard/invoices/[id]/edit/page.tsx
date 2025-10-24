@@ -61,7 +61,7 @@ const EditPage: FC<EditPageProps> = async ({ params }) => {
           },
         ]}
       />
-      <EditInvoiceForm invoice={invoice} customers={customers} />
+      <EditInvoiceForm invoice={invoice} customers={customers ?? []} />
     </main>
   );
   // #endregion render functions end

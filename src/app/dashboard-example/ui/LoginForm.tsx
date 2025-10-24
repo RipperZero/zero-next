@@ -19,7 +19,8 @@ type LoginFormProps = unknown;
 const LoginForm: FC<LoginFormProps> = () => {
   // #region hooks start
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const callbackUrl =
+    searchParams.get("callbackUrl") || "/dashboard-example/dashboard";
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined,
