@@ -1,25 +1,21 @@
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 import configPrettier from "eslint-config-prettier/flat";
-import reactCompiler from "eslint-plugin-react-compiler";
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
-import tseslint from "typescript-eslint";
+import { defineConfig, globalIgnores } from "eslint/config";
 
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-// const eslintConfig = [XXXXX];
-
-const eslintConfig = tseslint.config(
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-  reactCompiler.configs.recommended,
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
   configPrettier,
-  { ignores: [".next", "node_modules"] },
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+    "next-custom-env.d.ts",
+  ]),
   {
     rules: {
       "@typescript-eslint/no-unused-vars": [
@@ -34,6 +30,6 @@ const eslintConfig = tseslint.config(
       "@typescript-eslint/no-explicit-any": "warn",
     },
   },
-);
+]);
 
 export default eslintConfig;

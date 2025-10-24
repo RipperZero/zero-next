@@ -18,11 +18,11 @@ const getRandomColor = () => {
 const TestCompilerA: FC<{
   printCountB: () => void;
 }> = ({ printCountB }) => {
+  "use no memo";
+
   console.log("TestCompilerA render");
 
-  // use var to ignore react compiler
-  // eslint-disable-next-line no-var
-  var color = getRandomColor();
+  const color = getRandomColor();
 
   printCountB();
 
@@ -41,11 +41,11 @@ const TestCompilerA: FC<{
 const TestCompilerB: FC<{
   printCountA: () => void;
 }> = ({ printCountA }) => {
+  // "use no memo";
+
   console.log("TestCompilerB render");
 
-  // use var to ignore react compiler
-  // eslint-disable-next-line no-var
-  var color = getRandomColor();
+  const color = getRandomColor();
 
   printCountA();
 
@@ -65,11 +65,11 @@ const TestCompilerAandB: FC<{
   printCountA: () => void;
   printCountB: () => void;
 }> = ({ printCountA, printCountB }) => {
+  // "use no memo";
+
   console.log("TestCompilerAandB render");
 
-  // use var to ignore react compiler
-  // eslint-disable-next-line no-var
-  var color = getRandomColor();
+  const color = getRandomColor();
 
   printCountA();
   printCountB();
@@ -154,6 +154,7 @@ const TestCompilerPage: FC<TestCompilerPageProps> = ({
 
         <button
           className="w-[200px] cursor-pointer border"
+          // eslint-disable-next-line react-hooks/immutability
           onClick={() => {
             objC.count += 1;
             refC.current.count += 1;

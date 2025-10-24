@@ -23,11 +23,11 @@ const getRandomColor = () => {
 const TestCompilerA: FC<{
   printCountB: () => void;
 }> = ({ printCountB }) => {
+  "use no memo";
+
   console.log("TestCompilerA render");
 
-  // use var to ignore react compiler
-  // eslint-disable-next-line no-var
-  var color = getRandomColor();
+  const color = getRandomColor();
 
   printCountB();
 
@@ -46,11 +46,11 @@ const TestCompilerA: FC<{
 const TestCompilerB: FC<{
   printCountA: () => void;
 }> = ({ printCountA }) => {
+  // "use no memo";
+
   console.log("TestCompilerB render");
 
-  // use var to ignore react compiler
-  // eslint-disable-next-line no-var
-  var color = getRandomColor();
+  const color = getRandomColor();
 
   printCountA();
 
@@ -70,11 +70,11 @@ const TestCompilerAandB: FC<{
   printCountA: () => void;
   printCountB: () => void;
 }> = ({ printCountA, printCountB }) => {
+  // "use no memo";
+
   console.log("TestCompilerAandB render");
 
-  // use var to ignore react compiler
-  // eslint-disable-next-line no-var
-  var color = getRandomColor();
+  const color = getRandomColor();
 
   printCountA();
   printCountB();
@@ -144,21 +144,22 @@ const TestCompilerPage: FC<TestCompilerPageProps> = ({
     <div className="m-6 flex flex-col gap-6">
       <div className="card flex flex-col gap-2">
         <button
-          className="w-[200px]"
+          className="w-[200px] cursor-pointer border"
           onClick={() => setCountA((pre) => pre + 1)}
         >
           countA(state) is {countA}
         </button>
 
         <button
-          className="w-[200px]"
+          className="w-[200px] cursor-pointer border"
           onClick={() => setCountB((pre) => pre + 1)}
         >
           countB(state) is {countB}
         </button>
 
         <button
-          className="w-[200px]"
+          className="w-[200px] cursor-pointer border"
+          // eslint-disable-next-line react-hooks/immutability
           onClick={() => {
             objC.count += 1;
             refC.current.count += 1;
@@ -169,7 +170,7 @@ const TestCompilerPage: FC<TestCompilerPageProps> = ({
       </div>
 
       <div>
-        <button className="w-[200px]" onClick={printAllC}>
+        <button className="w-[200px] cursor-pointer border" onClick={printAllC}>
           printAllC(obj & ref)
         </button>
       </div>
@@ -190,6 +191,7 @@ const TestCompilerPage: FC<TestCompilerPageProps> = ({
 };
 
 export type { TestCompilerPageProps };
+
 export default TestCompilerPage;
 `;
 

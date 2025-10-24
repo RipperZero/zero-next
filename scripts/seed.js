@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 const { db } = require("@vercel/postgres");
 const {
   invoices,
