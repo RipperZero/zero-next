@@ -5,11 +5,6 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-**Important:**
-Due to an issue with the `eslint.config` file and the Next.js official configuration
-using `pnpm` to install dependencies will cause ESLint errors.
-Please use `npm` or `yarn` to install dependencies until the issue is resolved by the Next.js team.
-
 First, run the development server:
 
 ```bash
@@ -17,7 +12,7 @@ npm run dev
 # or
 yarn dev
 # or
-# pnpm dev
+pnpm dev
 # or
 bun dev
 ```

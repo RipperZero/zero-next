@@ -1,13 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    // @see
-    // https://nextjs.org/docs/app/building-your-application/configuring/typescript#statically-typed-links
-    typedRoutes: true,
-    // https://nextjs.org/docs/app/api-reference/next-config-js/reactCompiler
-    reactCompiler: true,
-  },
+  /* config options here */
+
+  // https://nextjs.org/docs/app/api-reference/next-config-js/reactCompiler
+  reactCompiler: true,
+  // https://nextjs.org/docs/app/api-reference/config/typescript#statically-typed-links
+  typedRoutes: true,
+
+  // use when building in docker
   output: "standalone",
 };
 

@@ -23,16 +23,6 @@ const LINKS: Array<{
     title: "BigEye",
     description: "BigEye Demo",
   },
-  {
-    href: "/dashboard-example/dashboard",
-    title: "Dashboard",
-    description: "Next Learn → Dashboard",
-  },
-  {
-    href: "/blog",
-    title: "Blog",
-    description: "Next Blog Demo",
-  },
   // {
   //   href: "https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
   //   title: "Learn",
@@ -84,7 +74,7 @@ const RootPage: FC = () => {
             height={37}
             priority
           />
-          <TypedJS strings={["NEXT.JS", "The React Framework for the Web"]} />
+          <TypedJS strings={["NEXT 16", "The React Framework for the Web"]} />
         </div>
       </div>
 
