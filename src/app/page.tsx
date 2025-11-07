@@ -40,10 +40,15 @@ const LINKS: Array<{
     title: "Dashboard",
     description: "Next Learn → Dashboard",
   },
+  // {
+  //   href: "/blog",
+  //   title: "Blog",
+  //   description: "Next Blog Demo",
+  // },
   {
-    href: "/blog",
-    title: "Blog",
-    description: "Next Blog Demo",
+    href: "/render",
+    title: "NextRender",
+    description: "Next Render Demo",
   },
   {
     href: "/test-compiler",
@@ -101,7 +106,9 @@ const RootPage: FC = () => {
             height={37}
             priority
           />
-          <TypedJS strings={["NEXT.JS", "The React Framework for the Web"]} />
+          <TypedJS
+            strings={["NEXT.JS 16", "The React Framework for the Web"]}
+          />
         </Space>
       </div>
 

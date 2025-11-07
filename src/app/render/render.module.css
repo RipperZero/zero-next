@@ -1,0 +1,7 @@
+@layer components {
+  .render-layout {
+    max-width: 68.75rem;
+    width: calc((11 / 12) * 100%);
+    margin-inline: auto;
+  }
+}

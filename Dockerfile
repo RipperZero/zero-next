@@ -1,6 +1,6 @@
 # @see https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
 
-FROM node:22.21.0-alpine AS node-base
+FROM node:24.11.0-alpine AS node-base
 
 # deps stage → Install dependencies
 FROM node-base AS deps-stage

@@ -22,7 +22,7 @@ import {
   times,
 } from "number-precision";
 
-import "./page.css";
+import styles from "./page.module.css";
 
 // @see https://juejin.cn/post/7132409301380890660
 
@@ -304,13 +304,17 @@ const BigEye: FC<BigEyeProps> = () => {
   return (
     <div
       ref={containerRef}
-      className="big-eye-container-perspective h-screen w-screen overflow-hidden bg-[#111]"
+      className={clsx(
+        styles["big-eye-container-perspective"],
+        "h-screen w-screen overflow-hidden bg-[#111]",
+      )}
       onMouseMove={handleContainerMouseMove}
     >
       <div
         ref={bigEyeRef}
         className={clsx(
-          "big-eye-transition absolute top-[calc(50%-75px)] left-[calc(50%-75px)] z-[1] aspect-square w-[150px] rounded-[50%] border-4 border-solid border-[#2968D9] shadow-[0_35px_60px_-15px_transparent]",
+          "absolute top-[calc(50%-75px)] left-[calc(50%-75px)] z-1 aspect-square w-[150px] rounded-[50%] border-4 border-solid border-[#2968D9] shadow-[0_35px_60px_-15px_transparent]",
+          styles["big-eye-transition"],
           isSleep && "animate-[eyeSleeping_6s_infinite]",
           isAngry &&
             "animate-[eyeLookAround_2.5s] border-[#ffbbff] shadow-[#ff3c56]",
@@ -320,7 +324,8 @@ const BigEye: FC<BigEyeProps> = () => {
       >
         <div
           className={clsx(
-            "big-eye-pseudo h-[calc(100%+20px)] w-[calc(100%+20px)] border-[6px] border-solid border-[#02ffff]",
+            styles["big-eye-pseudo"],
+            "h-[calc(100%+20px)] w-[calc(100%+20px)] border-[6px] border-solid border-[#02ffff]",
             isAngry && "border-[#ee5587]",
           )}
         />
@@ -329,7 +334,8 @@ const BigEye: FC<BigEyeProps> = () => {
 
         <div
           className={clsx(
-            "big-eye-pseudo h-full w-full border-4 border-solid border-[#23168c] shadow-[inset_0px_0px_30px_#23168c]",
+            styles["big-eye-pseudo"],
+            "h-full w-full border-4 border-solid border-[#23168c] shadow-[inset_0px_0px_30px_#23168c]",
             isAngry && "border-[#d00e4a] shadow-[#d00e4a]",
           )}
         />
@@ -338,7 +344,8 @@ const BigEye: FC<BigEyeProps> = () => {
       <div style={{ filter: "url('#filter')" }} className="h-full w-full">
         <div
           className={clsx(
-            "big-eye-transition absolute top-[calc(50%-92px)] left-[calc(50%-92px)] z-[1] aspect-square w-[150px] rounded-[50%] border-4 border-solid border-[#2968D9] opacity-0 shadow-[0_35px_60px_-15px_transparent] transition-[all_0.5s_ease-in-out]",
+            styles["big-eye-transition"],
+            "absolute top-[calc(50%-92px)] left-[calc(50%-92px)] z-1 aspect-square w-[150px] rounded-[50%] border-4 border-solid border-[#2968D9] opacity-0 shadow-[0_35px_60px_-15px_transparent] transition-[all_0.5s_ease-in-out]",
             isSleep && "animate-[eyeSleeping_6s_infinite]",
             isAngry &&
               "animate-[eyeLookAround_2.5s] border-[#ffbbff] opacity-100 shadow-[#ff3c56]",

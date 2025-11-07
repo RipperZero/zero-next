@@ -7,7 +7,7 @@ import { FC } from "react";
 
 import { App, Button, Form, FormProps, Input, Typography } from "antd";
 
-import { register, registerCaptcha } from "@/api";
+import { register, registerCaptcha } from "@/api/user";
 
 type RegisterUser = {
   username: string;

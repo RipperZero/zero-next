@@ -9,7 +9,7 @@ import { App, Button, Form, FormProps, Input, Typography } from "antd";
 
 import { LoginReqParams } from "@api.user";
 
-import { login } from "@/api";
+import { login } from "@/api/user";
 import { LOCAL_STORAGE_KEY } from "@/constants";
 
 type FormValues = LoginReqParams;

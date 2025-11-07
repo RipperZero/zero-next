@@ -116,6 +116,8 @@
   /* ERROR_BG_RED */
   --color-error-bg-red: #fadfe5;
 
+  --color-dark: #222222;
+
   /* TODO confirm this ⬇ */
   /* do not delete [--color-i-do-not-know-why]
   /* a dummy variable must be written on the last line

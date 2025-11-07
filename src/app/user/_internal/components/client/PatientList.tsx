@@ -5,9 +5,11 @@ import { FC, use } from "react";
 
 import { Card } from "antd";
 
+import { AxiosResponse } from "axios";
+
 import { GetPatientList } from "@api.mockapi";
 
-import { getPatientList } from "@/api";
+import { getPatientList } from "@/api/mockapi";
 
 type GetPatientListPromise = ReturnType<typeof getPatientList>;
 
@@ -17,8 +19,13 @@ type PatientListProps = {
 
 // TODO: ban server request
 const PatientList: FC<PatientListProps> = ({ getPatientListPromise }) => {
+  // @see https://nextjs.org/docs/app/api-reference/functions/connection
+  // await connection()
+
   // #region hooks start
-  const res = use(getPatientListPromise) as unknown as GetPatientList;
+  const res = use(
+    getPatientListPromise,
+  ) as unknown as AxiosResponse<GetPatientList>;
   // #endregion hooks end
 
   // #region useEffect functions start
@@ -28,10 +35,10 @@ const PatientList: FC<PatientListProps> = ({ getPatientListPromise }) => {
   // #endregion logic functions end
 
   // #region render functions start
-  return res.map((item) => {
+  return res.data.map((item) => {
     return (
-      <Card key={item.wardId} className="w-[50vw] text-center">
-        {item.wardNumber}
+      <Card key={item.id} className="w-[50vw] text-center">
+        {item.userName}
       </Card>
     );
   });

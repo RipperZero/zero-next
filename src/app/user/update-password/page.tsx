@@ -6,7 +6,7 @@ import { FC } from "react";
 
 import { App, Button, Form, FormProps, Input, Typography } from "antd";
 
-import { updatePassword, updatePasswordCaptcha } from "@/api";
+import { updatePassword, updatePasswordCaptcha } from "@/api/user";
 
 // import { AxiosError } from "axios";
 

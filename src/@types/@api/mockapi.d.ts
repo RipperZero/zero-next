@@ -1,9 +1,10 @@
 declare module "@api.mockapi" {
   type GetPatientList = Array<{
-    wardNumber: string;
-    wardId: string;
+    userName: string;
+    test: string;
+    id: string;
     patientList: Array<{
-      createdAt: string;
+      createdAt: Array<number>;
       name: string;
       kanaName: string;
       gender: string;

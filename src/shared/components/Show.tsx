@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 import { isEmpty, isFunction } from "radash";
 
-import { isNullable } from "../utils";
+import { isNullish } from "../utils/tools";
 
 type ShowProps<T> = {
   fallback?: ReactNode;
@@ -52,7 +52,7 @@ const Show = <T,>({
   // #endregion logic functions end
 
   // #region render functions start
-  if (hideWhenNullish && isNullable(trigger)) {
+  if (hideWhenNullish && isNullish(trigger)) {
     return null;
   }
 
@@ -60,7 +60,7 @@ const Show = <T,>({
     return trigger ? (children as ReactNode) : fallback;
   }
 
-  if (!isNullable(trigger)) {
+  if (!isNullish(trigger)) {
     if (banEmptyTrigger && isEmpty(trigger)) {
       return fallback;
     }

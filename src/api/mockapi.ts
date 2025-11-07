@@ -1,9 +1,9 @@
 import { GetPatientList } from "@api.mockapi";
 
-import { axiosInstance } from "@/shared/utils";
+import { mockapiAxiosInstance } from "./axiosInstance";
 
-axiosInstance.defaults.baseURL =
-  "https://6643258f3c01a059ea21adf8.mockapi.io/api";
+// axiosInstance.defaults.baseURL =
+//   "https://6643258f3c01a059ea21adf8.mockapi.io/api";
 
 const hasWindow = () => {
   return typeof window !== "undefined";
@@ -12,7 +12,8 @@ const hasWindow = () => {
 const getPatientList = () => {
   console.log("getPatientList innnnnnnnnnn");
   console.log("has window ====>>>>", hasWindow());
-  return axiosInstance.get<GetPatientList>("/patientList");
+
+  return mockapiAxiosInstance.get<GetPatientList>("/patientList");
 };
 
 export { getPatientList };
