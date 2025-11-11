@@ -1,6 +1,18 @@
-"use client";
+import { Result } from "@/shared/utils/createAxiosInstance";
+import { getApiServerURL } from "@/shared/utils/envUtils";
 
-import { FC, use, useEffect, useState } from "react";
+import { TimeSection } from "../_internal/components/client/TimeSection";
+
+const getTimeStamp = async () => {
+  const res = await fetch(`${getApiServerURL()}/time/getTimestamp`, {
+    next: { revalidate: 20 },
+  });
+  const resJSON = (await res.json()) as
+    | Omit<Result<number>, "axios">
+    | undefined;
+
+  return resJSON;
+};
 
 type ISR20PageProps = {
   /**
@@ -18,18 +30,14 @@ type ISR20PageProps = {
   searchParams: Promise<unknown>;
 };
 
-const ISR20Page: FC<ISR20PageProps> = ({ params, searchParams }) => {
+// @see https://nextjs.org/docs/app/guides/migrating/app-router-migration#incremental-static-regeneration-getstaticprops-with-revalidate
+const ISR20Page: AsyncFC<ISR20PageProps> = async () => {
+  // const [_error, res] = await tryit(getTimeStamp)();
+  const res = await getTimeStamp();
   // #region hooks start
-  const {} = use(params) ?? {};
-  const {} = use(searchParams) ?? {};
-
-  const [_temp, setTemp] = useState();
   // #endregion hooks end
 
   // #region useEffect functions start
-  useEffect(() => {
-    console.log(_temp);
-  }, [_temp]);
   // #endregion useEffect functions end
 
   // #region logic functions start
@@ -37,9 +45,13 @@ const ISR20Page: FC<ISR20PageProps> = ({ params, searchParams }) => {
 
   // #region render functions start
   return (
-    <>
-      <div>FC</div>
-    </>
+    <main>
+      <TimeSection
+        title="ISR20"
+        description="If you visit after the revalidate time (20s), your next full refresh visit will trigger fetch."
+        timestamp={res?.data}
+      />
+    </main>
   );
   // #endregion render functions end
 };

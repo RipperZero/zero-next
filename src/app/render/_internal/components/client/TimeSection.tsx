@@ -1,3 +1,7 @@
+"use client";
+
+import dynamic from "next/dynamic";
+
 import { FC } from "react";
 
 import { clsx } from "clsx";
@@ -5,12 +9,15 @@ import dayjs from "dayjs";
 
 import { isNullish } from "@/shared/utils/tools";
 
-import { ButtonLink } from "./ButtonLink";
-import { RealTime } from "./client/RealTime";
-import styles from "./components.module.css";
-import { CustomLink } from "./CustomLink";
+import { TIME_FORMAT } from "../../hooks/useRealTime";
+import { ButtonLink } from "../ButtonLink";
+import styles from "../components.module.css";
+import { CustomLink } from "../CustomLink";
 
-const TIME_FORMAT = "HH:mm:ss UTC Z";
+const NoSSRRealTime = dynamic(
+  () => import("./RealTime").then((mod) => mod.RealTime),
+  { ssr: false },
+);
 
 type TimeSectionProps = {
   /** timestamp */
@@ -56,17 +63,19 @@ const TimeSection: FC<TimeSectionProps> = ({
         </ButtonLink>
 
         <footer className="absolute bottom-2 text-gray-500">
-          © {dayjs().year()} By{" "}
+          © {dayjs().year()} · Adapted from{" "}
           <CustomLink href="https://theodorusclarence.com?ref=tsnextstarter">
             Theodorus Clarence
           </CustomLink>
+          {" · Modified by "}
+          <span className="font-medium">Zero</span>
         </footer>
       </div>
 
       <div className="absolute right-4 bottom-8 text-right text-sm font-medium sm:bottom-4">
         <p className="text-white">Real Time:</p>
 
-        <RealTime />
+        <NoSSRRealTime />
       </div>
     </section>
   );

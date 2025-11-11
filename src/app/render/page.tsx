@@ -34,6 +34,7 @@ type RenderPageProps = {
   searchParams: Promise<unknown>;
 };
 
+// @see https://theodorusclarence.com/blog/nextjs-fetch-method
 const RenderPage: FC<RenderPageProps> = () => {
   // #region hooks start
   // #endregion hooks end
@@ -55,8 +56,8 @@ const RenderPage: FC<RenderPageProps> = () => {
           )}
         >
           <h1 className="text-2xl md:text-4xl">
-            <CustomLink href="https://github.com/theodorusclarence/nextjs-csr-ssg-isr">
-              Types of Next Rendering
+            <CustomLink href="https://github.com/RipperZero/zero-next/tree/main/src/app/render">
+              Types of Next16 Rendering
             </CustomLink>
           </h1>
           <p className="mt-2 text-sm text-gray-300">
@@ -72,10 +73,12 @@ const RenderPage: FC<RenderPageProps> = () => {
           </div>
 
           <footer className="absolute bottom-2 text-gray-500">
-            © {dayjs().year()} By{" "}
+            © {dayjs().year()} · Adapted from{" "}
             <CustomLink href="https://theodorusclarence.com?ref=tsnextstarter">
               Theodorus Clarence
             </CustomLink>
+            {" · Modified by "}
+            <span className="font-medium">Zero</span>
           </footer>
         </div>
 

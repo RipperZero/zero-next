@@ -1,8 +1,22 @@
 import { tryit } from "radash";
 
-import { getTimeStamp } from "@/api/render";
+import { Result } from "@/shared/utils/createAxiosInstance";
+import { getApiServerURL } from "@/shared/utils/envUtils";
 
-import { TimeSection } from "../_internal/components/TimeSection";
+// import { getTimeStamp } from "@/api/render";
+
+import { TimeSection } from "../_internal/components/client/TimeSection";
+
+const getTimeStamp = async () => {
+  const res = await fetch(`${getApiServerURL()}/time/getTimestamp`, {
+    cache: "no-cache",
+  });
+  const resJSON = (await res.json()) as
+    | Omit<Result<number>, "axios">
+    | undefined;
+
+  return resJSON;
+};
 
 type SSRPageProps = unknown;
 

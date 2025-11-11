@@ -1,7 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
+// import dynamic from "next/dynamic";
 import { FC, use, useEffect, useState } from "react";
 
 import { tryit } from "radash";
@@ -9,13 +8,15 @@ import { tryit } from "radash";
 import { getTimeStamp } from "@/api/render";
 import { isNullish } from "@/shared/utils";
 
-const NoSSRTimeSection = dynamic(
-  () =>
-    import("../_internal/components/TimeSection").then(
-      (mod) => mod.TimeSection,
-    ),
-  { ssr: false },
-);
+import { TimeSection } from "../_internal/components/client/TimeSection";
+
+// const NoSSRTimeSection = dynamic(
+//   () =>
+//     import("../_internal/components/client/TimeSection").then(
+//       (mod) => mod.TimeSection,
+//     ),
+//   { ssr: false },
+// );
 
 type CSRPageProps = {
   /**
@@ -84,7 +85,7 @@ const CSRPage: FC<CSRPageProps> = ({ params, searchParams }) => {
   return (
     <>
       <main>
-        <NoSSRTimeSection
+        <TimeSection
           title="CSR"
           description="Fetched every render, on client side. Notice the loading."
           timestamp={timestamp}

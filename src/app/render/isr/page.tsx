@@ -1,8 +1,18 @@
-"use client";
+import { Result } from "@/shared/utils/createAxiosInstance";
+import { getApiServerURL } from "@/shared/utils/envUtils";
 
-import { FC, use, useEffect, useState } from "react";
+import { TimeSection } from "../_internal/components/client/TimeSection";
 
-// revalidate this page every 60 seconds
+const getTimeStamp = async () => {
+  const res = await fetch(`${getApiServerURL()}/time/getTimestamp`, {
+    next: { revalidate: 5 },
+  });
+  const resJSON = (await res.json()) as
+    | Omit<Result<number>, "axios">
+    | undefined;
+
+  return resJSON;
+};
 // export const revalidate = 60;
 
 type ISRPageProps = {
@@ -21,18 +31,14 @@ type ISRPageProps = {
   searchParams: Promise<unknown>;
 };
 
-const ISRPage: FC<ISRPageProps> = ({ params, searchParams }) => {
+// @see https://nextjs.org/docs/app/guides/migrating/app-router-migration#incremental-static-regeneration-getstaticprops-with-revalidate
+const ISRPage: AsyncFC<ISRPageProps> = async () => {
+  // const [_error, res] = await tryit(getTimeStamp)();
+  const res = await getTimeStamp();
   // #region hooks start
-  const {} = use(params) ?? {};
-  const {} = use(searchParams) ?? {};
-
-  const [_temp, setTemp] = useState();
   // #endregion hooks end
 
   // #region useEffect functions start
-  useEffect(() => {
-    console.log(_temp);
-  }, [_temp]);
   // #endregion useEffect functions end
 
   // #region logic functions start
@@ -40,9 +46,13 @@ const ISRPage: FC<ISRPageProps> = ({ params, searchParams }) => {
 
   // #region render functions start
   return (
-    <>
-      <div>FC</div>
-    </>
+    <main>
+      <TimeSection
+        title="ISR"
+        description="If you visit after the revalidate time (5s), your next full refresh visit will trigger fetch."
+        timestamp={res?.data}
+      />
+    </main>
   );
   // #endregion render functions end
 };

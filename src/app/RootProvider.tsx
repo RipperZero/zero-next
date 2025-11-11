@@ -1,5 +1,8 @@
 "use client";
 
+import { Route } from "next";
+import { usePathname } from "next/navigation";
+
 import { FC, PropsWithChildren } from "react";
 
 import { App } from "antd";
@@ -13,6 +16,7 @@ const RootProvider: FC<PropsWithChildren<RootProviderProps>> = ({
   children,
 }) => {
   // #region hooks start
+  const pathname = usePathname();
   // #endregion hooks end
 
   // #region useEffect functions start
@@ -22,6 +26,11 @@ const RootProvider: FC<PropsWithChildren<RootProviderProps>> = ({
   // #endregion logic functions end
 
   // #region render functions start
+  // ban Antd with path
+  if (pathname.startsWith("/render" as Route)) {
+    return children;
+  }
+
   return (
     <AntdRegistry>
       <App>{children}</App>
