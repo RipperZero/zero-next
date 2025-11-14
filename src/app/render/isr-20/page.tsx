@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { Result } from "@/shared/utils/createAxiosInstance";
 import { getApiServerURL } from "@/shared/utils/envUtils";
 
@@ -31,7 +33,7 @@ type ISR20PageProps = {
 };
 
 // @see https://nextjs.org/docs/app/guides/migrating/app-router-migration#incremental-static-regeneration-getstaticprops-with-revalidate
-const ISR20Page: AsyncFC<ISR20PageProps> = async () => {
+const ISR20Page: FC<ISR20PageProps> = async () => {
   // const [_error, res] = await tryit(getTimeStamp)();
   const res = await getTimeStamp();
   // #region hooks start

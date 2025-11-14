@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { FC, Suspense } from "react";
 
 import { fetchInvoicesPages } from "../../lib/data";
 import {
@@ -28,7 +28,7 @@ type InvoicesPageProps = {
   }>;
 };
 
-const InvoicesPage: AsyncFC<InvoicesPageProps> = async ({ searchParams }) => {
+const InvoicesPage: FC<InvoicesPageProps> = async ({ searchParams }) => {
   const { page: searchParamsPage, query: searchParamsQuery } =
     await searchParams;
 

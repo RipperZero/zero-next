@@ -5,11 +5,11 @@ import { FC, useEffect, useRef } from "react";
 import { Button, Space, Typography } from "antd";
 
 import {
-  ArcElement, // CategoryScale,
+  ArcElement,
   Chart,
   ChartData,
   DoughnutController,
-  Legend, // LinearScale,
+  Legend,
   Title,
   Tooltip,
 } from "chart.js";

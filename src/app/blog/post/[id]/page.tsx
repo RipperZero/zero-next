@@ -2,6 +2,8 @@ import { Metadata, ResolvingMetadata } from "next";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 
+import { FC } from "react";
+
 import { Date } from "../../_internal/components";
 import { NAME } from "../../_internal/constants/constants";
 import { getPostData } from "../../_internal/lib/posts";
@@ -40,7 +42,7 @@ type PostPageProps = {
   searchParams: RouteProps["searchParams"];
 };
 
-const PostPage: AsyncFC<PostPageProps> = async ({ params }) => {
+const PostPage: FC<PostPageProps> = async ({ params }) => {
   const id = (await params).id;
   const postData = await getPostData(id);
   // #region hooks start

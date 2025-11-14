@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { CalendarIcon } from "@heroicons/react/24/outline";
 
 import { fetchRevenue } from "../../lib/data";
@@ -13,7 +15,7 @@ const CHART_HEIGHT = 350;
 
 type RevenueChartProps = unknown;
 
-const RevenueChart: AsyncFC<RevenueChartProps> = async () => {
+const RevenueChart: FC<RevenueChartProps> = async () => {
   const revenue = await fetchRevenue();
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
 

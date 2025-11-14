@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { FC } from "react";
+
 import { clsx } from "clsx";
 
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
@@ -8,7 +10,7 @@ import { fetchLatestInvoices } from "../../lib/data";
 
 type LatestInvoicesProps = unknown;
 
-const LatestInvoices: AsyncFC<LatestInvoicesProps> = async () => {
+const LatestInvoices: FC<LatestInvoicesProps> = async () => {
   const latestInvoices = await fetchLatestInvoices();
 
   // #region hooks start

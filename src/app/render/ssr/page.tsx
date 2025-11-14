@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { tryit } from "radash";
 
 import { Result } from "@/shared/utils/createAxiosInstance";
@@ -21,7 +23,7 @@ const getTimeStamp = async () => {
 type SSRPageProps = unknown;
 
 // @see https://nextjs.org/docs/app/guides/migrating/app-router-migration#server-side-rendering-getserversideprops
-const SSRPage: AsyncFC<SSRPageProps> = async () => {
+const SSRPage: FC<SSRPageProps> = async () => {
   const [_error, res] = await tryit(getTimeStamp)();
 
   // #region hooks start

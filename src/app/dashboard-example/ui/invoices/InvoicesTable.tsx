@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { FC } from "react";
+
 import { formatCurrency, formatDateToLocal } from "../../lib//utils";
 import { fetchFilteredInvoices } from "../../lib/data";
 import { DeleteInvoice, UpdateInvoice } from "./Buttons";
@@ -10,7 +12,7 @@ type InvoicesTableProps = {
   currentPage: number;
 };
 
-const InvoicesTable: AsyncFC<InvoicesTableProps> = async ({
+const InvoicesTable: FC<InvoicesTableProps> = async ({
   query,
   currentPage,
 }) => {

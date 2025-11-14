@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { fetchCustomers } from "../../../lib/data";
 import { Breadcrumbs, CreateInvoiceForm } from "../../../ui";
 
@@ -17,7 +19,7 @@ type CreatePageProps = {
   searchParams: Promise<unknown>;
 };
 
-const CreatePage: AsyncFC<CreatePageProps> = async () => {
+const CreatePage: FC<CreatePageProps> = async () => {
   const customers = await fetchCustomers();
   // #region hooks start
   // #endregion hooks end

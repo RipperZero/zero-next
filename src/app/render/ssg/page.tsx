@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { _QueryTimestampRes } from "@/_mock/render/_mockAPI";
 import { Result } from "@/shared/utils/createAxiosInstance";
 import { getApiServerURL } from "@/shared/utils/envUtils";
@@ -32,7 +34,7 @@ type SSGPageProps = {
 };
 
 // @see https://nextjs.org/docs/app/guides/migrating/app-router-migration#static-site-generation-getstaticprops
-const SSGPage: AsyncFC<SSGPageProps> = async () => {
+const SSGPage: FC<SSGPageProps> = async () => {
   // const [_error, res] = await tryit(getTimeStamp)();
   const res = await getTimeStamp();
   // #region hooks start
