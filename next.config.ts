@@ -10,6 +10,25 @@ const nextConfig: NextConfig = {
 
   // use when building in docker
   output: "standalone",
+
+  turbopack: {
+    rules: {
+      // @see https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#configuring-webpack-loaders
+      "*.svg": {
+        loaders: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              // @see https://react-svgr.com/docs/options/#svgo
+              // it will delete [viewBox]&[id]... attribute
+              svgo: false,
+            },
+          },
+        ],
+        as: "*.js",
+      },
+    },
+  },
 };
 
 export default nextConfig;
