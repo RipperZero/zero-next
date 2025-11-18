@@ -98,7 +98,7 @@ const ChartJS: FC<ChartJSProps> = () => {
   // #region render functions start
   return (
     <Tabs
-      className="!p-4"
+      className="p-4!"
       tabPosition="left"
       defaultActiveKey={ITEMS[0].key}
       items={ITEMS}

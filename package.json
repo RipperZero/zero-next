@@ -55,6 +55,7 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4.1.17",
     "@trivago/prettier-plugin-sort-imports": "6.0.0",
     "@types/bcrypt": "^6.0.0",
