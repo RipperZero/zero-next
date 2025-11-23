@@ -122,7 +122,7 @@ const GrowthGroupPage: FC<GrowthGroupPageProps> = () => {
 
   // #region render functions start
   return (
-    <Tabs className="!p-4" defaultActiveKey={ITEMS[0].key} items={ITEMS} />
+    <Tabs className="p-4!" defaultActiveKey={ITEMS[0].key} items={ITEMS} />
   );
   // #endregion render functions end
 };

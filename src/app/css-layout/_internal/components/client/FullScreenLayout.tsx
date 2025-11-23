@@ -115,9 +115,9 @@ const FullScreenLayout: FC<FullScreenLayoutProps> = () => {
         //   }
         `,
           content: (
-            <Space direction="vertical" size="large">
+            <Space orientation="vertical" size="large">
               <SeeLink openUrl="https://juejin.cn/post/7028962991345254407#heading-46" />
-              <Typography.Text className="!text-xl">
+              <Typography.Text className="text-xl!">
                 全屏布局主要应用在后台
               </Typography.Text>
               <Image
@@ -205,8 +205,8 @@ const FullScreenLayout: FC<FullScreenLayoutProps> = () => {
           }
         `,
           content: (
-            <Space className="w-full" direction="vertical" size="large">
-              <Typography.Text strong className="!text-xl !text-red-600">
+            <Space className="w-full" orientation="vertical" size="large">
+              <Typography.Text strong className="text-xl! text-red-600!">
                 What the FXXX planA/planB is???
               </Typography.Text>
               <SeeLink openUrl="https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size?answertab=votes#tab-top" />
@@ -256,8 +256,8 @@ const FullScreenLayout: FC<FullScreenLayoutProps> = () => {
           }
         `,
           content: (
-            <Space className="w-full" direction="vertical" size="large">
-              <Typography.Text strong className="!text-xl !text-red-600">
+            <Space className="w-full" orientation="vertical" size="large">
+              <Typography.Text strong className="text-xl! text-red-600!">
                 What the FXXX planA/planB is???
               </Typography.Text>
               <SeeLink openUrl="https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size?answertab=votes#tab-top" />

@@ -108,15 +108,15 @@ const CssLayout: FC<CssLayoutProps> = () => {
     >
       <Layout className="h-screen">
         <Header
-          className={"flex items-center justify-center !text-3xl font-bold"}
+          className={"flex items-center justify-center text-3xl! font-bold"}
         >
           Common Front Layout
         </Header>
-        <Content className="flex-grow p-3">
+        <Content className="grow p-3">
           <Tabs
             // defaultActiveKey={TabsItems[TabsItems.length - 1].key}
             className={cx("h-full rounded-lg bg-white", styles.tabs)}
-            tabPosition="left"
+            tabPlacement="start"
             items={TabsItems}
           />
         </Content>

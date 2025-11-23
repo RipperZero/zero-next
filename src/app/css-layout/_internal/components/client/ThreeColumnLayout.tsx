@@ -89,9 +89,9 @@ const ThreeColumnLayout: FC<ThreeColumnLayoutProps> = () => {
           }
           `,
           content: (
-            <Space direction="vertical" size="large">
+            <Space orientation="vertical" size="large">
               <SeeLink openUrl="https://juejin.cn/post/7028962991345254407#heading-30" />
-              <Typography.Text className="!text-xl">
+              <Typography.Text className="text-xl!">
                 三列布局主要分为两种：
                 <br />
                 第一种是前两列定宽，最后一列自适应，这一种本质上与两列布局没有什么区别，可以参照两列布局实现。
@@ -219,7 +219,7 @@ const ThreeColumnLayout: FC<ThreeColumnLayoutProps> = () => {
           `,
           content: (
             <div className={`${parentClassName} relative`}>
-              <div className={`${childLeftClassName} absolute left-0 top-0`}>
+              <div className={`${childLeftClassName} absolute top-0 left-0`}>
                 左
               </div>
               <div
@@ -227,7 +227,7 @@ const ThreeColumnLayout: FC<ThreeColumnLayoutProps> = () => {
               >
                 内容
               </div>
-              <div className={`${childRightClassName} absolute right-0 top-0`}>
+              <div className={`${childRightClassName} absolute top-0 right-0`}>
                 右
               </div>
             </div>

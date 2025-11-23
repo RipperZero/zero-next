@@ -40,6 +40,6 @@
     ]
   ],
   "tailwind-fold.autoFold": false,
-  "cSpell.words": ["ILIKE", "Theodorus", "unixtime"]
+  "cSpell.words": ["ILIKE", "rmax", "rmin", "Theodorus", "unixtime"]
   // #endregion tailwindCSS ---end
 }

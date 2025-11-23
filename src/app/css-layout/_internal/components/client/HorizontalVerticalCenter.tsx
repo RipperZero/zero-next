@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { FC } from "react";
 
-import { Space, Typography } from "antd";
+import { Space } from "antd";
 
 import { SeeLink } from "./SeeLink";
 import { TabPane } from "./TabPane";
@@ -53,7 +53,7 @@ const HorizontalVerticalCenter: FC<HorizontalVerticalCenterProps> = () => {
           }
           `,
           content: (
-            <Space direction="vertical" size="large">
+            <Space orientation="vertical" size="large">
               <SeeLink openUrl="https://juejin.cn/post/7028962991345254407#heading-15" />
               <Image
                 src="/images/horizontalVerticalCenter.webp"
@@ -113,7 +113,7 @@ const HorizontalVerticalCenter: FC<HorizontalVerticalCenterProps> = () => {
           content: (
             <div className={`${parentClassName} relative`}>
               <div
-                className={`${childClassName} absolute left-[calc(50%-150px)] top-[calc(50%-150px)]`}
+                className={`${childClassName} absolute top-[calc(50%-150px)] left-[calc(50%-150px)]`}
               />
             </div>
           ),
@@ -143,7 +143,7 @@ const HorizontalVerticalCenter: FC<HorizontalVerticalCenterProps> = () => {
           content: (
             <div className={`${parentClassName} relative`}>
               <div
-                className={`${childClassName} absolute left-1/2 top-1/2 -ml-[150px] -mt-[150px]`}
+                className={`${childClassName} absolute top-1/2 left-1/2 -mt-[150px] -ml-[150px]`}
               />
             </div>
           ),
@@ -205,7 +205,7 @@ const HorizontalVerticalCenter: FC<HorizontalVerticalCenterProps> = () => {
           content: (
             <div className={`${parentClassName} relative`}>
               <div
-                className={`${childClassName} absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}
+                className={`${childClassName} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`}
               />
             </div>
           ),

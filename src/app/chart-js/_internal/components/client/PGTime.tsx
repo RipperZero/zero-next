@@ -151,7 +151,7 @@ const PGTime: FC<PGTimeProps> = () => {
 
   // #region render functions start
   return (
-    <Space className="w-[800px]" direction="vertical">
+    <Space className="w-[800px]" orientation="vertical">
       <Typography.Title>PG</Typography.Title>
 
       <div className="text-center font-bold">

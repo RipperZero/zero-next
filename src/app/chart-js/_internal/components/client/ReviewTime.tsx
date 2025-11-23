@@ -154,8 +154,8 @@ const ReviewTime: FC<ReviewTimeProps> = () => {
 
   // #region render functions start
   return (
-    <Space className="w-[800px]" direction="vertical">
-      <Typography.Title>Reivew</Typography.Title>
+    <Space className="w-[800px]" orientation="vertical">
+      <Typography.Title>Review</Typography.Title>
 
       <div className="text-center font-bold">
         <Typography className="text-[20px]">目标 工数下降10%</Typography>

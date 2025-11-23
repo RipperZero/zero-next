@@ -79,7 +79,7 @@ const RadarChart: FC<RadarChartProps> = () => {
 
   // #region render functions start
   return (
-    <Space className="w-[800px]" direction="vertical">
+    <Space className="w-[800px]" orientation="vertical">
       <Typography.Title>Radar</Typography.Title>
 
       <canvas ref={canvasRef} />

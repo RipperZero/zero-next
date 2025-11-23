@@ -119,7 +119,7 @@ const ReviewTime: FC<ReviewTimeProps> = () => {
 
   // #region render functions start
   return (
-    <Space className="w-[800px]" direction="vertical">
+    <Space className="w-[800px]" orientation="vertical">
       <Typography.Title>レビュー工数</Typography.Title>
 
       <canvas ref={canvasRef} />

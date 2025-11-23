@@ -53,7 +53,7 @@ const VerticalCenter: FC<VerticalCenterProps> = () => {
           }
           `,
           content: (
-            <Space direction="vertical" size="large">
+            <Space orientation="vertical" size="large">
               <SeeLink openUrl="https://juejin.cn/post/7028962991345254407#heading-8" />
               <Image
                 src="/images/verticalCenter.webp"
@@ -137,7 +137,7 @@ const VerticalCenter: FC<VerticalCenterProps> = () => {
           content: (
             <div className={`${parentClassName} relative`}>
               <div
-                className={`${childClassName} absolute bottom-0 top-0 m-auto`}
+                className={`${childClassName} absolute top-0 bottom-0 m-auto`}
               />
             </div>
           ),

@@ -84,7 +84,7 @@ const EqualLayout: FC<EqualLayoutProps> = () => {
           }
         `,
           content: (
-            <Space direction="vertical" size="large">
+            <Space orientation="vertical" size="large">
               <SeeLink openUrl="https://juejin.cn/post/7028962991345254407#heading-36" />
               <Typography.Text className="!text-xl">
                 等分布局就是将一个容器平均分成几等份，这里以 4 等分为例

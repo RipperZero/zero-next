@@ -136,7 +136,7 @@ const ReviewFix: FC<ReviewFixProps> = () => {
 
   // #region render functions start
   return (
-    <Space className="w-[800px]" direction="vertical">
+    <Space className="w-[800px]" orientation="vertical">
       <Typography.Title>レビュー指摘</Typography.Title>
 
       <div className="text-center font-bold">

@@ -3,6 +3,7 @@
 import { FC, useEffect, useRef } from "react";
 
 import { Space, Typography } from "antd";
+
 import {
   Chart,
   ChartData,
@@ -164,7 +165,7 @@ const RadarChart: FC<RadarChartProps> = ({ title, data }) => {
 
   // #region render functions start
   return (
-    <Space className="w-[800px]" direction="vertical">
+    <Space className="w-[800px]" orientation="vertical">
       <Typography.Title className="text-center">{title}</Typography.Title>
 
       <canvas ref={canvasRef} />
