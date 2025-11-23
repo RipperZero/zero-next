@@ -104,7 +104,7 @@ const BarChart: FC<BarChartProps> = () => {
 
   // #region render functions start
   return (
-    <Space className="w-[800px]" direction="vertical">
+    <Space className="w-[800px]" orientation="vertical">
       <Typography.Title>Bar Chart Border Radius</Typography.Title>
 
       <canvas ref={canvasRef} />

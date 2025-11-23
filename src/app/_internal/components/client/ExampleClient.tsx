@@ -15,7 +15,7 @@ const ExampleClient: FC<ExampleClientProps> = () => {
 
   // #region render functions start
   return (
-    <Space direction="vertical">
+    <Space orientation="vertical">
       <div className={"text-blue-600"}>ExampleClientComponent</div>
       <Typography.Text>{input}</Typography.Text>
       <Input
