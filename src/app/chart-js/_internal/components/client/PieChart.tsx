@@ -75,7 +75,7 @@ const PieChart: FC<PieChartProps> = () => {
 
   // #region render functions start
   return (
-    <Space className="w-[800px]" direction="vertical">
+    <Space className="w-[800px]" orientation="vertical">
       <Typography.Title>Pie</Typography.Title>
 
       <canvas ref={canvasRef} />

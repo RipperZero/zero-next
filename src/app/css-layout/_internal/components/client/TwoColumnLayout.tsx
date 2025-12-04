@@ -76,9 +76,9 @@ const TwoColumnLayout: FC<TwoColumnLayoutProps> = () => {
           }
           `,
           content: (
-            <Space direction="vertical" size="large">
+            <Space orientation="vertical" size="large">
               <SeeLink openUrl="https://juejin.cn/post/7028962991345254407#heading-23" />
-              <Typography.Text className="!text-xl">
+              <Typography.Text className="text-xl!">
                 两列布局就是一列定宽(也有可能由子元素决定宽度)，一列自适应的布局。
               </Typography.Text>
               <Typography.Text mark strong className="!text-xl">

@@ -46,7 +46,7 @@ const HorizontalCenter: FC<HorizontalCenterProps> = () => {
           .child { height: 300px; width: 300px; background: #e599f7; }
           `,
           content: (
-            <Space direction="vertical" size="large">
+            <Space orientation="vertical" size="large">
               <SeeLink openUrl="https://juejin.cn/post/7028962991345254407#heading-0" />
               <Image
                 src="/images/horizontalCenter.webp"
@@ -146,7 +146,7 @@ const HorizontalCenter: FC<HorizontalCenterProps> = () => {
           content: (
             <div className={`${parentClassName} relative h-[300px]`}>
               <div
-                className={`${childClassName} absolute left-0 right-0 m-auto`}
+                className={`${childClassName} absolute right-0 left-0 m-auto`}
               />
             </div>
           ),

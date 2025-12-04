@@ -99,7 +99,7 @@ const ChartJS: FC<ChartJSProps> = () => {
   return (
     <Tabs
       className="p-4!"
-      tabPosition="left"
+      tabPlacement="start"
       defaultActiveKey={ITEMS[0].key}
       items={ITEMS}
     />

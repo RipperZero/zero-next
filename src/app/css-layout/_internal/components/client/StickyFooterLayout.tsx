@@ -31,9 +31,9 @@ const StickyFooterLayout: FC<StickyFooterLayoutProps> = () => {
         {
           title: STICKY_FOOTER_LAYOUT_TAB_LABEL,
           content: (
-            <Space direction="vertical" size="large">
+            <Space orientation="vertical" size="large">
               <SeeLink openUrl="https://juejin.cn/post/7028962991345254407#heading-41" />
-              <Typography.Text className="!text-xl">
+              <Typography.Text className="text-xl!">
                 所谓的Sticky
                 Footer布局并不是一种新的前端技术和概念，它就是一种网页布局。
                 <br />
