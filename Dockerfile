@@ -1,6 +1,6 @@
 # @see https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
 
-FROM node:24.11.0-alpine AS node-base
+FROM node:24.12.0-alpine AS node-base
 
 # deps stage → Install dependencies
 FROM node-base AS deps-stage
@@ -11,7 +11,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # set registry && proxy
-# RUN npm config set registry https://registry.npmmirror.com/
+RUN npm config set registry https://registry.npmmirror.com/
 # RUN npm config set proxy http://10.167.23.54:8080/
 
 # Install dependencies based on the preferred package manager
@@ -19,13 +19,13 @@ WORKDIR /app
 COPY ["package.json","yarn.lock*","package-lock.json*","pnpm-lock.yaml*",".npmrc*","./"]
 # COPY ["package.json","pnpm-lock.yaml","./"]
 
-RUN \
-    if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-    elif [ -f package-lock.json ]; then npm ci; \
-    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
-# RUN pnpm install --frozen-lockfile
+# RUN \
+#     if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
+#     elif [ -f package-lock.json ]; then npm ci; \
+#     elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
+#     else echo "Lockfile not found." && exit 1; \
+#     fi
+RUN yarn install --frozen-lockfile
 
 # build stage → build the source
 FROM node-base AS build-stage
@@ -40,13 +40,13 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN \
-    if [ -f yarn.lock ]; then yarn run build; \
-    elif [ -f package-lock.json ]; then npm run build; \
-    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
-# RUN pnpm run build
+# RUN \
+#     if [ -f yarn.lock ]; then yarn run build; \
+#     elif [ -f package-lock.json ]; then npm run build; \
+#     elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
+#     else echo "Lockfile not found." && exit 1; \
+#     fi
+RUN yarn run build
 
 # production stage → copy built files then use node to run next
 FROM node-base AS production-stage

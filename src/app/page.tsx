@@ -97,7 +97,7 @@ const RootPage: FC = () => {
       </div>
 
       <div className="flex w-full place-items-center">
-        <Space className="w-full place-items-center" direction="vertical">
+        <Space className="w-full place-items-center" orientation="vertical">
           <Image
             className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
             src="/next.svg"
