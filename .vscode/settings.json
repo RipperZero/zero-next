@@ -1,6 +1,11 @@
 {
   "editor.formatOnSave": true,
   "editor.renderWhitespace": "trailing",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "tsconfig.json": "tsconfig.*.json, env.d.ts, next-*.d.ts",
+    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig"
+  },
   "workbench.colorCustomizations": {
     "editorWhitespace.foreground": "#fbff00"
   },
