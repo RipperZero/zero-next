@@ -1,38 +1,31 @@
 {
+  // must start project first
   "configurations": [
+    // may need to trigger twice
     {
-      "name": "Debug JS segment",
-      "type": "node",
+      "name": "Launch Chrome",
       "request": "launch",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${file}"
-    },
-    // @see https://juejin.cn/post/7144238328655642637#heading-7
-    {
-      "name": "Debug TS segment",
-      "type": "node",
-      "request": "launch",
-      // yarn add ts-node --dev
-      "runtimeArgs": ["-r", "${workspaceRoot}/node_modules/ts-node/register"],
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${file}"
-    },
-    {
-      "name": "Launch Chrome(must run porject)",
       "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:3000",
+      "url": "https://localhost:1234",
       "webRoot": "${workspaceFolder}",
-      "sourceMaps": true,
-      "skipFiles": ["<node_internals>/**"],
-      "trace": true
+      // "sourceMaps": false,
+      "runtimeExecutable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      //   https://developer.chrome.com/blog/remote-debugging-port?hl=zh-cn
+      // ⬇ invalid after Chrome 136
+      //   "userDataDir": false,
+      "runtimeArgs": [
+        "--remote-debugging-port=9222",
+        // "--user-data-dir=${workspaceFolder}\\.vscode\\ChromeDev"
+        "--user-data-dir=E:\\ChromeDevUserData",
+        "--auto-open-devtools-for-tabs"
+        // "--incognito"
+      ]
     },
     {
-      "name": "Attach to Chrome",
+      "name": "Attach to Running Chrome",
       "port": 9222,
       "request": "attach",
       "type": "chrome",
-      "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}"
     }
   ]

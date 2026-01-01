@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "prettier.prettier-vscode",
+    "naumovs.color-highlight",
+    "usernamehw.errorlens",
+    "mkxml.vscode-filesize",
+    "vincaslt.highlight-matching-tag",
+    "wix.vscode-import-cost",
+    "oderwat.indent-rainbow",
+    "yoavbls.pretty-ts-errors",
+    "bradlc.vscode-tailwindcss",
+    "alfredbirk.tailwind-documentation",
+    "vscode-icons-team.vscode-icons"
+  ]
+}

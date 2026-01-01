@@ -12,7 +12,6 @@
     "start": "next start",
     "start-after-build": "rimraf ./.next && next build && next start",
     "lint": "eslint",
-    "packages-inspector": "node-modules-inspector",
     "seed": "node -r dotenv/config ./scripts/seed.js",
     "uninstall-packages": "rimraf ./node_modules"
   },
