@@ -4,12 +4,12 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     "tsconfig.json": "tsconfig.*.json, env.d.ts, next-*.d.ts",
-    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig"
+    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig",
+    "README.md": "AGENTS.md, CLAUDE.md,"
   },
   "workbench.colorCustomizations": {
     "editorWhitespace.foreground": "#fbff00"
   },
-  "typescript.tsdk": "node_modules\\typescript\\lib",
 
   // #region tailwindCSS ---start
   "tailwindCSS.experimental.configFile": null,
@@ -45,6 +45,7 @@
     ]
   ],
   "tailwind-fold.autoFold": false,
-  "cSpell.words": ["ILIKE", "rmax", "rmin", "Theodorus", "unixtime"]
+  "cSpell.words": ["ILIKE", "rmax", "rmin", "Theodorus", "unixtime"],
+  "js/ts.tsdk.path": "node_modules\\typescript\\lib"
   // #endregion tailwindCSS ---end
 }

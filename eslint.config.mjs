@@ -13,8 +13,9 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
-    "next-env.d.ts",
     "next-custom-env.d.ts",
+    "next-env.d.ts",
+    "next-svgr.d.ts",
   ]),
   {
     rules: {
