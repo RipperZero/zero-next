@@ -1,3 +1,10 @@
+# Declare the current repository root as the only workspace package.
+# This avoids pnpm workspace resolution errors on platforms like Vercel.
+packages:
+  - .
+
+# Skip selected native build scripts during install.
+# Keep this list aligned with dependencies that are safe to ignore in CI.
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
